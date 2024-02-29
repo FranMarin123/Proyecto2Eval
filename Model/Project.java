@@ -4,14 +4,15 @@ import java.util.List;
 
 public class Project {
     private List<User> member;
-    private User Boss;
+    private User boss;
     private String name;
     private String descripcion;
+
     private List<Task> tasks;
 
     public Project(List<User> member, User boss, String name, String descripcion, List<Task> tasks) {
         this.member = member;
-        Boss = boss;
+        this.boss = boss;
         this.name = name;
         this.descripcion = descripcion;
         this.tasks = tasks;
@@ -26,11 +27,11 @@ public class Project {
     }
 
     public User getBoss() {
-        return Boss;
+        return boss;
     }
 
     public void setBoss(User boss) {
-        Boss = boss;
+        boss = boss;
     }
 
     public String getName() {

@@ -1,58 +1,59 @@
 package Model;
 
+import java.security.MessageDigest;
+
 public class User {
-    private String NameUser;
-    private String Password;
-    private String Gmail;
-    private String Name;
-    private int Score;
+    private String nameUser;
+    private String password;
+    private String gmail;
+    private String name;
+    private int score;
 
     public User(String nameUser, String password, String gmail, String name, int score) {
-        NameUser = nameUser;
-        Password = password;
-        Gmail = gmail;
-        Name = name;
-        Score = score;
+        this.nameUser = nameUser;
+        this.password = password;
+        this.gmail = gmail;
+        this.name = name;
+        this.score = score;
     }
 
     public String getNameUser() {
-        return NameUser;
+        return nameUser;
     }
 
     public void setNameUser(String nameUser) {
-        NameUser = nameUser;
+        this.nameUser = nameUser;
     }
 
-    /*public String getPassword() {
-        return Password;
-    }*/
-
+    public String getPassword() {
+        return password;
+    }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public String getGmail() {
-        return Gmail;
+        return gmail;
     }
 
     public void setGmail(String gmail) {
-        Gmail = gmail;
+        this.gmail = gmail;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public int getScore() {
-        return Score;
+        return score;
     }
 
     public void setScore(int score) {
-        Score = score;
+        this.score = score;
     }
 }

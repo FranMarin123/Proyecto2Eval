@@ -7,15 +7,15 @@ public class Task {
     private LocalDate DateStar;
     private  LocalDate DateFinis;
     private Estado estado;
-    private User Integrante;
+    private User integrante;
     private String name;
     private String decripcion;
 
     public Task(LocalDate dateStar, LocalDate dateFinis,Estado estado, User integrante, String name, String decripcion) {
-        DateStar = dateStar;
-        DateFinis = dateFinis;
+        this.DateStar = dateStar;
+        this.DateFinis = dateFinis;
         this.estado = estado;
-        Integrante = integrante;
+        this.integrante = integrante;
         this.name = name;
         this.decripcion = decripcion;
     }
@@ -25,7 +25,7 @@ public class Task {
     }
 
     public void setDateStar(LocalDate dateStar) {
-        DateStar = dateStar;
+        this.DateStar = dateStar;
     }
 
     public LocalDate getDateFinis() {
@@ -33,7 +33,7 @@ public class Task {
     }
 
     public void setDateFinis(LocalDate dateFinis) {
-        DateFinis = dateFinis;
+        this.DateFinis = dateFinis;
     }
 
     public Estado getEstado() {
@@ -45,11 +45,11 @@ public class Task {
     }
 
     public User getIntegrante() {
-        return Integrante;
+        return integrante;
     }
 
     public void setIntegrante(User integrante) {
-        Integrante = integrante;
+        this.integrante = integrante;
     }
 
     public String getName() {
