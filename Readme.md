@@ -33,4 +33,3 @@ asignación de colaboradores, creación de tareas y seguimiento del estado de la
 - Intellij IDEA
 - Git/GitHub (repositorio colaborativo)
 - Trello (gestión de tareas y sprints)
-- Expresiones regulares para validación de correo electrónico
