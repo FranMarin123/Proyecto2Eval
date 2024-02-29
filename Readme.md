@@ -3,7 +3,8 @@
 ## Descripción
 
 El **Sistema de Gestión de Proyectos** es una aplicación Java que permite a los usuarios organizar y 
-gestionar proyectos de software. La aplicación incluye funciones como la creación de proyectos, asignación de colaboradores, creación de tareas y seguimiento del estado de las mismas.
+gestionar proyectos de software. La aplicación incluye funciones como la creación de proyectos, 
+asignación de colaboradores, creación de tareas y seguimiento del estado de las mismas.
 
 ## Funcionalidades
 
