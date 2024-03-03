@@ -68,4 +68,14 @@ public class Task {
         this.decripcion = decripcion;
     }
 
+    @Override
+    public String toString() {
+        return "Nombre " +
+                "Fecha inicio=" + DateStar +
+                ", Fecha Finalizada " + DateFinis +
+                " Estado de la tarea es " + estado +
+                " la persona encargada es " + integrante +
+                ", name='" + name + '\'' +
+                ", decripcion='" + decripcion ;
+    }
 }

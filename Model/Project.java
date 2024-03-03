@@ -7,7 +7,6 @@ public class Project {
     private User boss;
     private String name;
     private String descripcion;
-
     private List<Task> tasks;
 
     public Project(List<User> member, User boss, String name, String descripcion, List<Task> tasks) {
@@ -56,5 +55,14 @@ public class Project {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    @Override
+    public String toString() {
+        return "Project " + name+
+                "member=" + member +
+                ", boss=" + boss +
+                ", descripcion='" + descripcion + '\'' +
+                ", tareas=" + tasks;
     }
 }
