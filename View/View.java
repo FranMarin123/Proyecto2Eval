@@ -66,6 +66,7 @@ public abstract class View implements iView {
 
     }
 
+
     @Override
     public void removeTask() {
 
