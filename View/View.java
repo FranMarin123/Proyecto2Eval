@@ -6,79 +6,44 @@ import Model.Task;
 import Model.User;
 
 public abstract class View implements iView {
-    @Override
-    public int selectLoginRegister() {
-        return 0;
+/**
+ * @author Javier Fernández
+ * Método para mostrar un mensaje de bienvenida
+ *
+ * Method to display a welcome message
+**/
+    public static void showMessageWelcome() {
+        System.out.println("╔════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("             🚀 ¡BIENVENIDOS AL SISTEMA DE GESTIÓN DE PROYECTOS! 🚀            ");
+        System.out.println("╠════════════════════════════════════════════════════════════════════════════╣");
+        System.out.println("         🛠️  Bienvenido al sistema de gestión de proyectos en Java. 🛠️        ");
+        System.out.println("         🌟 ¡Optimiza tu trabajo colaborativo con nuestra aplicación! 🌟        ");
+        System.out.println("           🚧 Organiza tareas, proyectos y colabora eficientemente. 🚧         ");
+        System.out.println("                👩‍💻 ¡Desarrolla tus proyectos de manera exitosa! 👨‍💻          ");
+        System.out.println("                   \uD83D\uDCB2 Crea, colabora, ¡triunfa con tu equipo! \uD83D\uDCB2         ");
+        System.out.println("╠════════════════════════════════════════════════════════════════════════════╣");
+        System.out.println("║                                    [Designed by Team Gestion de Proyectos.]║");
+        System.out.println("╚════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println();
     }
 
-    @Override
-    public User register() {
-        return null;
+    /**
+     * @author Javier Fernández
+     * Método para mostrar un mensaje de despedida
+     *
+     * Method to display a goodbye message
+     **/
+    public static void showMessageGoodBye() {
+        System.out.println("╔════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("     🌟 ¡GRACIAS POR UTILIZAR NUESTRO SISTEMA DE GESTIÓN DE PROYECTOS! 🌟");
+        System.out.println("╠════════════════════════════════════════════════════════════════════════════╣");
+        System.out.println("         🚀 Esperamos que hayas tenido una experiencia productiva. 🚀   ");
+        System.out.println("          💡 ¡Continúa trabajando eficientemente en tus proyectos! 💡 ");
+        System.out.println("              🌐 ¡Vuelve pronto para más funciones y mejoras! 🌐           ");
+        System.out.println("╠════════════════════════════════════════════════════════════════════════════╣");
+        System.out.println("║                                    [Designed by Team Gestion de Proyectos.]║");
+        System.out.println("╚════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println();
     }
 
-    @Override
-    public User login() {
-        return null;
-    }
-
-    @Override
-    public int menuProject() {
-        return 0;
-    }
-
-    @Override
-    public Project selectProject() {
-        return null;
-    }
-
-    @Override
-    public void createProject() {
-
-    }
-
-    @Override
-    public void removeProject() {
-
-    }
-
-    @Override
-    public void showProject() {
-
-    }
-
-    @Override
-    public void listProject() {
-
-    }
-
-    @Override
-    public int menuTask() {
-        return 0;
-    }
-
-    @Override
-    public Task updateTask() {
-        return null;
-    }
-
-    @Override
-    public void createTask() {
-
-    }
-
-
-    @Override
-    public void removeTask() {
-
-    }
-
-    @Override
-    public void showTask() {
-
-    }
-
-    @Override
-    public void listTask() {
-
-    }
 }
