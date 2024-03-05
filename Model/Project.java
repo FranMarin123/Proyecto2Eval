@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Project {
@@ -64,5 +66,65 @@ public class Project {
                 ", boss=" + boss +
                 ", descripcion='" + descripcion + '\'' +
                 ", tareas=" + tasks;
+    }
+
+    /**
+     * Crea y añade un integrante
+     * @param u Usuario que introduce el jefe
+     * @return introduce el miembro al proyecto
+     */
+    public boolean creaUser(User u) {
+        return member.add(u);
+    }
+
+    public List<User> leeUser() {
+        return member;
+    }
+
+    /**
+     * Elimina el mienbro del proyecto
+     * @param nombre el nombre del usuario para eliminarlo
+     * @return elimina el usuario
+     */
+    public int eliminaUser(String nombre) {
+        int eliminados = 0;
+        Iterator<User> iterator = member.iterator();
+        while (iterator.hasNext()) {
+            User tmpUser = iterator.next();
+            if (tmpUser.getName().equalsIgnoreCase(nombre)) {
+                iterator.remove();
+                eliminados++;
+            }
+        }
+        return eliminados;
+    }
+    /**
+     * Crea y añade un tarea
+     * @param t tarea que introduce el jefe
+     * @return introduce el miembro al proyecto
+     */
+    public boolean creaTask(Task t) {
+        return tasks.add(t);
+    }
+
+    public List<Task> leeTask() {
+        return tasks;
+    }
+    /**
+     * Elimina el tarea del proyecto
+     * @param nombre el nombre de la tarea para eliminarlo
+     * @return elimina la tarea
+     */
+    public int eliminaTask(String nombre) {
+        int eliminados = 0;
+        Iterator<Task> iterator = tasks.iterator();
+        while (iterator.hasNext()) {
+            Task tmpTask = iterator.next();
+            if (tmpTask.getName().equalsIgnoreCase(nombre)) {
+                iterator.remove();
+                eliminados++;
+            }
+        }
+        return eliminados;
     }
 }
