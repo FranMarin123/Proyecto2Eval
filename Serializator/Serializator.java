@@ -5,12 +5,14 @@ import java.io.*;
 
 public class Serializator {
 
-        public static void serializeObject(Object obj, String fileName) {
+    public static boolean serializeObject(Object obj, String fileName) {
+        boolean comp = false;
         try (FileOutputStream fileOut = new FileOutputStream(fileName);
              ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
             objectOut.writeObject(obj);
         } catch (IOException e) {
         }
+        return comp;
     }
 
     // Función para deserializar un objeto desde un archivo

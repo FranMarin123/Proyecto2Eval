@@ -6,6 +6,7 @@ import Model.User;
 
 public interface iRepo {
     User createUser(User userToCreate);
+    User selectUser(User selectedUser);
     User removeUser(User userToRemove);
     User showUser(String username);
     User upgradeUser(User userToUpgrade);
