@@ -1,6 +1,7 @@
 package View;
 
 import Interfaces.iViewLogin;
+import Model.User;
 
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ public class ViewLogin implements iViewLogin {
      * Metodo para mostrar el menu de registro
      * Method to display the registration menu
      */
-    public void displayRegister() {
+    public User displayRegister() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println();
@@ -27,13 +28,14 @@ public class ViewLogin implements iViewLogin {
         System.out.print(" \uD83D\uDC68 Nombre: ");
         String nameInput = scanner.nextLine();
         System.out.println("╚══════════════════════════════════════╝");
+
+        // Crear un usuario temporal con los datos ingresados por el usuario
+        User temporaryUser = new User(usernameInput, passwordInput, emailInput, nameInput, '0');
+
+        // Puedes devolver este usuario temporal o utilizarlo según tus necesidades
+        return temporaryUser;
     }
-
-
-    private static boolean registerUser(String username, String password, String email, String name) {
-        return true;
-    }
-
+    
     /**
      * @author Javier Fernández
      * Metodo para mostrar el menu de inicio de sesión
