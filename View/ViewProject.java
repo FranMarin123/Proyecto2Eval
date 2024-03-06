@@ -65,6 +65,11 @@ public class ViewProject implements iViewProject {
         }
     }
 
+    /**
+     * @author Javier Fernández
+     * Metodo para crear un proyecto
+     * Method to create a project
+     */
     @Override
     public void createProject() {
         // Muestra el menu
