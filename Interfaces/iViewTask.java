@@ -2,7 +2,7 @@ package Interfaces;
 
 import Model.Task;
 
-public interface IViewTask {
+public interface iViewTask {
     int menuTask();
     Task updateTask();
     void createTask();

@@ -2,7 +2,7 @@ package Interfaces;
 
 import Model.Project;
 
-public interface IViewProject {
+public interface iViewProject {
     int menuProject();
     Project selectProject();
     void createProject();
