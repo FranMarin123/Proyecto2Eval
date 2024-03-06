@@ -1,11 +1,27 @@
 package Controller;
 
 import Interfaces.iTaskController;
+import Model.Project;
+import Model.Repo.Repo;
 import Model.Task;
+import View.ViewProject;
+import View.ViewTask;
 
 public class ControllerTask implements iTaskController {
+    ViewTask viewTask = new ViewTask();
+
     @Override
     public Task createTask() {
+        Task taskToCreate = viewTask.createTask();
+        Task taskTemp = Repo.getInstance().createTask(taskToCreate);
+
+        if (taskTemp != null) {
+            // Mostrar mensaje de usuario registrado
+            viewTask.showMessageStartTask();
+        } else {
+            // Mostrar mensaje de fallo en la creación de usuario
+            viewTask.showMessageStartTaskFailed();
+        }
         return null;
     }
 
