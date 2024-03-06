@@ -1,9 +1,9 @@
 package View;
 
-import Interfaces.IViewUser;
+import Interfaces.iViewUser;
 import Model.User;
 
-public class ViewUser implements IViewUser {
+public class ViewUser implements iViewUser {
     @Override
     public int selectLoginRegister() {
         return 0;
