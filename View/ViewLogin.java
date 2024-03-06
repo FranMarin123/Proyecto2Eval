@@ -27,14 +27,6 @@ public class ViewLogin implements iViewLogin {
         System.out.print(" \uD83D\uDC68 Nombre: ");
         String nameInput = scanner.nextLine();
         System.out.println("╚══════════════════════════════════════╝");
-
-        if (registerUser(usernameInput, passwordInput, emailInput, nameInput)) {
-            System.out.println("✅ Inicio de sesión exitoso.");
-            System.out.println("\uD83D\uDC4B ¡Bienvenido, " + usernameInput + "!");
-        } else {
-            System.out.println("❌ Error en el registro.");
-            System.out.println("\uD83D\uDD04 Por favor, inténtalo de nuevo.");
-        }
     }
 
 
