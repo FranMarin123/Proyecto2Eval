@@ -1,6 +1,6 @@
 package Interfaces;
 
-public interface IViewLogIn {
+public interface iViewLogin {
     void displayRegister();
     void displayLogIn();
 }
