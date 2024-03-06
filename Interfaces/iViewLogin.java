@@ -1,6 +1,8 @@
 package Interfaces;
 
+import Model.User;
+
 public interface iViewLogin {
-    void displayRegister();
+    User displayRegister();
     void displayLogIn();
 }

@@ -8,8 +8,8 @@ public class MainMenu implements iViewMainMenu {
 
     /**
      * @author Javier Fernández
-     * Método para mostrar el Menu Prinicpal de 6 opciones para elegir
-     * Method to display the main menu with 6 options to choose
+     * Método para mostrar el Menu Prinicpal de 3 opciones para elegir
+     * Method to display the main menu with 3 options to choose
      */
     public void displayMainMenu() {
         // Muestra el menu
