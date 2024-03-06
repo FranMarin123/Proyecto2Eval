@@ -11,7 +11,7 @@ public class ControllerUser implements iUserController {
 
     @Override
     public User showUser() {
-        String usernameToShow = viewUser.getUsernameToShow(); // Puedes implementar este método en tu vista para obtener el nombre del usuario a mostrar
+       /* String usernameToShow = viewUser.getUsernameToShow(); // Puedes implementar este método en tu vista para obtener el nombre del usuario a mostrar
         User user = Repo.getInstance().showUser(usernameToShow);
 
         if (user != null) {
@@ -22,13 +22,14 @@ public class ControllerUser implements iUserController {
             ViewUser.showMessageUserNotFound();
         }
 
-        return user;
+        return user;*/
+        return null;
     }
 
     @Override
     public User removeUser() {
         //Tiene que ser void
-        String userNameToDelete = ViewUser.getUserNameToDelete(); // Puedes implementar este método en tu vista para obtener el nombre del usuario a eliminar
+       /* String userNameToDelete = ViewUser.getUserNameToDelete(); // Puedes implementar este método en tu vista para obtener el nombre del usuario a eliminar
         boolean isUserRemoved = Repo.getInstance().removeProject(userNameToDelete);
 
         if (isUserRemoved) {
@@ -37,7 +38,7 @@ public class ControllerUser implements iUserController {
         } else {
             // Mostrar mensaje de fallo al eliminar usuario (puede deberse a que el nombre no existe)
             ViewUser.showMessageUserRemovalFailed();
-        }
+        }*/
         return null;
     }
 

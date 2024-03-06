@@ -12,7 +12,7 @@ public class ControllerProject implements iProjectController {
 
     @Override
     public Project createProject() {
-        Project projectToCreate = viewProject.createProject();
+      /*  Project projectToCreate = viewProject.createProject();
         Project projectTemp = Repo.getInstance().createProject(projectToCreate);
 
         if (projectTemp != null) {
@@ -21,7 +21,7 @@ public class ControllerProject implements iProjectController {
         } else {
             // Mostrar mensaje de fallo en la creación de usuario
             viewProject.showMessageStartProyectFailed();
-        }
+        }*/
         return null;
     }
 
