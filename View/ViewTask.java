@@ -1,9 +1,9 @@
 package View;
 
-import Interfaces.IViewTask;
+import Interfaces.iViewTask;
 import Model.Task;
 
-public class ViewTask implements IViewTask {
+public class ViewTask implements iViewTask {
     @Override
     public int menuTask() {
         return 0;
