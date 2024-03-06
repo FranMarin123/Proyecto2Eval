@@ -1,9 +1,9 @@
 package View;
 
-import Interfaces.IViewProject;
+import Interfaces.iViewProject;
 import Model.Project;
 
-public class ViewProject implements IViewProject {
+public class ViewProject implements iViewProject {
     @Override
     public int menuProject() {
         return 0;
