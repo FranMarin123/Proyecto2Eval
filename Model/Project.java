@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Project {
-    private List<User> member= new ArrayList<>();
+    private List<User> members = new ArrayList<>();
     private User boss;
     private String name;
     private String descripcion;
@@ -16,15 +16,15 @@ public class Project {
         this.name = name;
         this.descripcion = descripcion;
         this.tasks= new ArrayList<>();
-        this.member=new ArrayList<>();
+        this.members =new ArrayList<>();
     }
 
-    public List<User> getMember() {
-        return member;
+    public List<User> getMembers() {
+        return members;
     }
 
-    public void setMember(List<User> member) {
-        this.member=member;
+    public void setMembers(List<User> members) {
+        this.members = members;
     }
 
     public User getBoss() {
@@ -61,11 +61,19 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project " + name+
-                "member=" + member +
-                ", boss=" + boss +
-                ", descripcion='" + descripcion + '\'' +
-                ", tareas=" + tasks;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Proyect: ").append(name).append("\n");
+        sb.append("Descripción: ").append(descripcion).append("\n");
+        sb.append("Jefe del Equipo: ").append(boss).append("\n");
+        sb.append("Miembros del Equipo:\n");
+        for (User member : members) {
+            sb.append("\t- ").append(member).append("\n");
+        }
+        sb.append("Tareas del Equipo:\n");
+        for (Task task : tasks) {
+            sb.append("\t- ").append(task).append("\n");
+        }
+        return sb.toString();
     }
 
     /**
@@ -74,21 +82,21 @@ public class Project {
      * @return introduce el miembro al proyecto
      */
     public boolean añadeUsuario(User u) {;
-        return member.add(u);
+        return members.add(u);
     }
 
     public List<User> leeUser() {
-        return member;
+        return members;
     }
 
     /**
-     * Elimina el mienbro del proyecto
+     * Elimina el mienbro del proyecto mediante un iterator
      * @param nombre el nombre del usuario para eliminarlo
      * @return elimina el usuario
      */
     public int eliminaUser(String nombre) {
         int eliminados = 0;
-        Iterator<User> iterator = member.iterator();
+        Iterator<User> iterator = members.iterator();
         while (iterator.hasNext()) {
             User tmpUser = iterator.next();
             if (tmpUser.getName().equalsIgnoreCase(nombre)) {

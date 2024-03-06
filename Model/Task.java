@@ -26,7 +26,6 @@ public class Task {
     public Task(String sinIniciar, Object o, String s, String s1) {
 
     }
-
     public Task(LocalDate now, Object o, Estado estado, Object o1, String s, String s1) {
     }
 
@@ -104,10 +103,10 @@ public class Task {
         return "Nombre " +
                 "Fecha inicio=" + dateStar +
                 ", Fecha Finalizada " + dateFinis +
-                " Estado de la tarea es " + estado +
-                " la persona encargada es " + integrante +
-                ", name='" + name + '\'' +
-                ", decripcion='" + decripcion ;
+                ", Estado de la tarea es " + estado +
+                ", la persona encargada es " + getIntegrante().getNameUser() +
+                ", nombre de la tarea" + name + '\'' +
+                ", decripcion" + decripcion ;
     }
 
 }
