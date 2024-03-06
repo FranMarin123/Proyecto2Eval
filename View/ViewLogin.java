@@ -28,12 +28,7 @@ public class ViewLogin implements iViewLogin {
         String nameInput = scanner.nextLine();
         System.out.println("╚══════════════════════════════════════╝");
     }
-
-
-    private static boolean registerUser(String username, String password, String email, String name) {
-        return true;
-    }
-
+    
     /**
      * @author Javier Fernández
      * Metodo para mostrar el menu de inicio de sesión
