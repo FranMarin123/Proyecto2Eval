@@ -1,39 +1,42 @@
 package Model;
 
 import java.time.LocalDate;
+import java.util.Objects;
+
 import Enum.Estado;
 
 public class Task {
-    private LocalDate DateStar;
-    private  LocalDate DateFinis;
+    private LocalDate dateStar;
+    private  LocalDate dateFinis;
     private Estado estado;
     private User integrante;
     private String name;
     private String decripcion;
 
-    public Task(LocalDate dateStar, LocalDate dateFinis,Estado estado, User integrante, String name, String decripcion) {
-        this.DateStar = dateStar;
-        this.DateFinis = dateFinis;
+    public Task(Estado estado, User integrante, String name, String decripcion) {
         this.estado = estado;
         this.integrante = integrante;
         this.name = name;
         this.decripcion = decripcion;
     }
+    public Task(){
+        this(LocalDate.now(),null,Estado.Sin_Iniciar,null,"","");
+    }
+
+    public Task(String sinIniciar, Object o, String s, String s1) {
+
+    }
+
+    public Task(LocalDate now, Object o, Estado estado, Object o1, String s, String s1) {
+    }
 
     public LocalDate getDateStar() {
-        return DateStar;
+        return dateStar;
     }
 
-    public void setDateStar(LocalDate dateStar) {
-        this.DateStar = dateStar;
-    }
 
     public LocalDate getDateFinis() {
-        return DateFinis;
-    }
-
-    public void setDateFinis(LocalDate dateFinis) {
-        this.DateFinis = dateFinis;
+        return dateFinis;
     }
 
     public Estado getEstado() {
@@ -41,6 +44,15 @@ public class Task {
     }
 
     public void setEstado(Estado estado) {
+        if(estado ==Estado.Sin_Iniciar){
+            dateStar = LocalDate.of(00,00,00);
+        }
+        else if(estado==Estado.En_Proceso){
+            dateStar = LocalDate.now();
+        }
+        if(estado==Estado.Finalizado){
+            dateFinis = LocalDate.now();
+        }
         this.estado = estado;
     }
 
@@ -69,13 +81,33 @@ public class Task {
     }
 
     @Override
+    public boolean equals(Object o) {
+        boolean igual;
+        if (this == o){
+            igual = true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            igual = false;
+        }
+        Task task = (Task) o;
+        igual = Objects.equals(dateStar, task.dateStar) && Objects.equals(name, task.name);
+        return igual;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dateStar, name);
+    }
+
+    @Override
     public String toString() {
         return "Nombre " +
-                "Fecha inicio=" + DateStar +
-                ", Fecha Finalizada " + DateFinis +
+                "Fecha inicio=" + dateStar +
+                ", Fecha Finalizada " + dateFinis +
                 " Estado de la tarea es " + estado +
                 " la persona encargada es " + integrante +
                 ", name='" + name + '\'' +
                 ", decripcion='" + decripcion ;
     }
+
 }

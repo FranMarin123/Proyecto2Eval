@@ -18,6 +18,9 @@ public class User {
         this.name = name;
         this.score = score;
     }
+    public User(){
+        this("","","","",0);
+    }
 
     public String getNameUser() {
         return nameUser;
@@ -33,7 +36,7 @@ public class User {
 
     /**
      * Metodo para la contraseña de usuario
-     * @param password
+     * @param password guarda la contraseña encriptada
      */
     public void setPassword(String password) {
         try {
@@ -87,7 +90,8 @@ public class User {
         boolean igual;
         if (this == o){
             igual= true;
-        }else if (o == null || getClass() != o.getClass()){
+        }
+        if (o == null || getClass() != o.getClass()){
             igual= false;
         }
         User user = (User) o;
@@ -105,6 +109,12 @@ public class User {
                 "Gmail del usuario : " + gmail  + '\'' +
                 "Nota puntuada : " + score  + '\'';
     }
+
+    /**
+     * Compara la contraseña del usuario con la que tiene
+     * @param inputPassword la contraseña introducida por el usuario
+     * @return dvuelve si la contraseña es valida con la suya
+     */
     public boolean comparePassword(String inputPassword) {
         boolean comp;
         try {
