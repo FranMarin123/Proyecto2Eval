@@ -5,14 +5,13 @@ import Model.Project;
 import Model.Task;
 import Model.User;
 
-public abstract class View implements iView {
+public class View implements iView {
 /**
  * @author Javier Fernández
  * Método para mostrar un mensaje de bienvenida
- *
  * Method to display a welcome message
 **/
-    public static void showMessageWelcome() {
+    public void showMessageWelcome() {
         System.out.println("╔════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("             🚀 ¡BIENVENIDOS AL SISTEMA DE GESTIÓN DE PROYECTOS! 🚀            ");
         System.out.println("╠════════════════════════════════════════════════════════════════════════════╣");
@@ -30,10 +29,9 @@ public abstract class View implements iView {
     /**
      * @author Javier Fernández
      * Método para mostrar un mensaje de despedida
-     *
      * Method to display a goodbye message
      **/
-    public static void showMessageGoodBye() {
+    public void showMessageGoodBye() {
         System.out.println("╔════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("     🌟 ¡GRACIAS POR UTILIZAR NUESTRO SISTEMA DE GESTIÓN DE PROYECTOS! 🌟");
         System.out.println("╠════════════════════════════════════════════════════════════════════════════╣");
