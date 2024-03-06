@@ -13,9 +13,7 @@ public class Task {
     private String name;
     private String decripcion;
 
-    public Task(LocalDate dateStar, LocalDate dateFinis,Estado estado, User integrante, String name, String decripcion) {
-        this.dateStar = dateStar;
-        this.dateFinis = dateFinis;
+    public Task(Estado estado, User integrante, String name, String decripcion) {
         this.estado = estado;
         this.integrante = integrante;
         this.name = name;
@@ -27,6 +25,9 @@ public class Task {
 
     public Task(String sinIniciar, Object o, String s, String s1) {
 
+    }
+
+    public Task(LocalDate now, Object o, Estado estado, Object o1, String s, String s1) {
     }
 
     public LocalDate getDateStar() {
@@ -43,6 +44,12 @@ public class Task {
     }
 
     public void setEstado(Estado estado) {
+        if(estado ==Estado.Sin_Iniciar){
+            dateStar = LocalDate.of(00,00,00);
+        }
+        else if(estado==Estado.En_Proceso){
+            dateStar = LocalDate.now();
+        }
         if(estado==Estado.Finalizado){
             dateFinis = LocalDate.now();
         }
