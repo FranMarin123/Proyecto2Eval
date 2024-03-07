@@ -2,6 +2,7 @@ package View;
 
 import Interfaces.iViewProject;
 import Model.Project;
+import Model.User;
 
 import javax.swing.*;
 import java.util.Iterator;
@@ -88,7 +89,7 @@ public class ViewProject implements iViewProject {
         System.out.println("╚══════════════════════════════════════╝");
 
         // Crea un objeto Project temporal con la entrada del usuario
-        Project temporaryProject = new Project(null, null, projectNameInput, projectDescriptionInput, null);
+        Project temporaryProject = new Project(null, projectNameInput, projectDescriptionInput);
 
         // Devuelve el objeto Project temporal
         return temporaryProject;
@@ -144,9 +145,34 @@ public class ViewProject implements iViewProject {
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║          ===  PROYECTOS ===          ║");
         System.out.println("╠══════════════════════════════════════╣");
+        /*
+        // Verifica que la lista de proyectos no sea nula antes de intentar mostrarla.
+        if (projects != null && !projects.isEmpty()) {
+            System.out.println("║ Detalles de Proyectos:");
 
-        System.out.println("╚══════════════════════════════════════╝");
+            // Itera sobre la lista de proyectos y muestra detalles.
+            for (Project project : projects) {
+                System.out.println("║ - Nombre: " + project.getName());
+                System.out.println("║   Descripción: " + project.getDescripcion());
 
+                // Muestra los nombres de los usuarios asociados al proyecto.
+                List<User> projectMembers = project.getMembers();
+                if (projectMembers != null && !projectMembers.isEmpty()) {
+                    System.out.println("║   Usuarios en el Proyecto:");
+                    for (User member : projectMembers) {
+                        System.out.println("║   - " + member.getNameUser());
+                    }
+                } else {
+                    System.out.println("║   No hay usuarios asociados a este proyecto.");
+                }
+
+                System.out.println("║ ------------------------------------");
+            }
+        } else {
+            System.out.println("║ No hay proyectos disponibles.");
+        }
+
+        System.out.println("╚══════════════════════════════════════╝");*/
         return null;
     }
 
