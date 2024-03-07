@@ -6,17 +6,17 @@ import Model.User;
 public class ViewUser implements iViewUser {
 
     @Override
-    public void removeUser() {
-
+    public String removeUser() {
+        return null;
     }
 
     @Override
-    public void upgradeUser() {
-
+    public String upgradeUser() {
+        return null;
     }
 
     @Override
-    public void searchUser() {
-
+    public String searchUser() {
+        return null;
     }
 }
