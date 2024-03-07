@@ -41,7 +41,7 @@ public class ViewLogin implements iViewLogin {
      * Metodo para mostrar el menu de inicio de sesión
      * Method to display the log in menu
      */
-    public void displayLogIn() {
+    public User displayLogIn() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println();
@@ -53,6 +53,7 @@ public class ViewLogin implements iViewLogin {
         System.out.print(" \uD83D\uDD10 Contraseña: ");
         String passwordInput = scanner.nextLine();
         System.out.println("╚══════════════════════════════════════╝");
+        return null;
     }
 
     /**
