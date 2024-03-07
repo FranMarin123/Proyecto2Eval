@@ -4,7 +4,7 @@ import Model.User;
 
 public interface iViewUser {
     String removeUser();
-    String upgradeUser();
-    String searchUser();
+    User upgradeUser();
+    void searchUser();
     void displayUser(User user);
 }

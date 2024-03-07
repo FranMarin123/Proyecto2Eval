@@ -68,6 +68,8 @@ public class ViewProject implements iViewProject {
         }
     }
 
+
+
     /**
      * @author Javier Fernández
      * Metodo para crear un proyecto
@@ -141,13 +143,15 @@ public class ViewProject implements iViewProject {
         // Muestra el menu
         Scanner scanner = new Scanner(System.in);
 
+
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║          ===  PROYECTOS ===          ║");
         System.out.println("╠══════════════════════════════════════╣");
-/*
+        /*
+
+        private List<Project> projects;
         // Verifica que la lista de proyectos no sea nula antes de intentar mostrarla.
-        List<Project> projects = Project.getProjects();
         if (projects != null && !projects.isEmpty()) {
             System.out.println("║ Detalles de Proyectos:");
 
@@ -156,10 +160,18 @@ public class ViewProject implements iViewProject {
                 System.out.println("║ - Nombre: " + project.getName());
                 System.out.println("║   Descripción: " + project.getDescripcion());
 
+                // Muestra el nombre del boss
+                User boss = project.getBoss();
+                if (boss != null) {
+                    System.out.println("║   Boss: " + boss.getNameUser());
+                } else {
+                    System.out.println("║   No hay Boss asignado.");
+                }
+
                 // Muestra los nombres de los usuarios asociados al proyecto.
                 List<User> projectMembers = project.getMembers();
                 if (projectMembers != null && !projectMembers.isEmpty()) {
-                    System.out.println("║   Usuarios en el Proyecto:");
+                    System.out.println("║   Miembros del Proyecto:");
                     for (User member : projectMembers) {
                         System.out.println("║   - " + member.getNameUser());
                     }
@@ -173,7 +185,8 @@ public class ViewProject implements iViewProject {
             System.out.println("║ No hay proyectos disponibles.");
         }
 
-        System.out.println("╚══════════════════════════════════════╝");*/
+        System.out.println("╚══════════════════════════════════════╝");
+*/
         return null;
     }
 
