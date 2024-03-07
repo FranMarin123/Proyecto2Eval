@@ -11,13 +11,13 @@ public class ViewUser implements iViewUser {
     }
 
     @Override
-    public String upgradeUser() {
+    public User upgradeUser() {
         return null;
     }
 
     @Override
-    public String searchUser() {
-        return null;
+    public void searchUser() {
+        
     }
 
     @Override
