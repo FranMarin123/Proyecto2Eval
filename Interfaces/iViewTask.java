@@ -5,7 +5,7 @@ import Model.Task;
 public interface iViewTask {
     int menuTask();
     Task updateTask();
-    void createTask();
+    Task createTask();
     void removeTask();
     void showTask();
     void listTask();
