@@ -4,6 +4,7 @@ import Interfaces.iTaskController;
 import Model.Project;
 import Model.Repo.Repo;
 import Model.Task;
+import Model.User;
 import View.Utils.Utils;
 import View.ViewProject;
 import View.ViewTask;
@@ -36,8 +37,18 @@ public class ControllerTask implements iTaskController {
 
     @Override
     public Task showTask() {
-        return null;
+        String usernameToShow = viewTask.showTask();
+        Task existingTask = Repo.getInstance().showUser(usernameToShow);
+
+        if (existingTask != null) {
+            ViewTask.displayTask(existingTask);
+        } else {
+            Utils.printMsg("Usuario no encontrado");
+        }
+
+        return removeTask();
     }
+
 
     @Override
     public Task upgradeTask() {
