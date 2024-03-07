@@ -81,12 +81,8 @@ public class Project {
      * @param u Usuario que introduce el jefe
      * @return introduce el miembro al proyecto
      */
-    public boolean añadeUsuario(User u) {;
+    public boolean createUser(User u) {;
         return members.add(u);
-    }
-
-    public List<User> leeUser() {
-        return members;
     }
 
     /**
@@ -94,7 +90,7 @@ public class Project {
      * @param nombre el nombre del usuario para eliminarlo
      * @return elimina el usuario
      */
-    public int eliminaUser(String nombre) {
+    public int DeleteUser(String nombre) {
         int eliminados = 0;
         Iterator<User> iterator = members.iterator();
         while (iterator.hasNext()) {
@@ -111,19 +107,16 @@ public class Project {
      * @param t tarea que introduce el jefe
      * @return introduce el miembro al proyecto
      */
-    public boolean creaTask(Task t) {
+    public boolean createTask(Task t) {
         return tasks.add(t);
     }
 
-    public List<Task> leeTask() {
-        return tasks;
-    }
     /**
      * Elimina el tarea del proyecto
      * @param nombre el nombre de la tarea para eliminarlo
      * @return elimina la tarea
      */
-    public int eliminaTask(String nombre) {
+    public int deleteTask(String nombre) {
         int eliminados = 0;
         Iterator<Task> iterator = tasks.iterator();
         while (iterator.hasNext()) {
