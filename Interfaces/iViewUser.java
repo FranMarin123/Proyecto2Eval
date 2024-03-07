@@ -6,4 +6,5 @@ public interface iViewUser {
     String removeUser();
     String upgradeUser();
     String searchUser();
+    void displayUser(User user);
 }
