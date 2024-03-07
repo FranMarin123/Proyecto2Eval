@@ -145,8 +145,9 @@ public class ViewProject implements iViewProject {
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║          ===  PROYECTOS ===          ║");
         System.out.println("╠══════════════════════════════════════╣");
-        /*
+/*
         // Verifica que la lista de proyectos no sea nula antes de intentar mostrarla.
+        List<Project> projects = Project.getProjects();
         if (projects != null && !projects.isEmpty()) {
             System.out.println("║ Detalles de Proyectos:");
 

@@ -19,4 +19,9 @@ public class ViewUser implements iViewUser {
     public String searchUser() {
         return null;
     }
+
+    @Override
+    public void displayUser(User user) {
+
+    }
 }
