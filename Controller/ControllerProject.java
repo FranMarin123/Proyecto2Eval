@@ -4,6 +4,7 @@ import Interfaces.iProjectController;
 import Model.Project;
 import Model.Repo.Repo;
 import Model.User;
+import View.Utils.Utils;
 import View.ViewLogin;
 import View.ViewProject;
 
@@ -12,16 +13,14 @@ public class ControllerProject implements iProjectController {
 
     @Override
     public Project createProject() {
-      /*  Project projectToCreate = viewProject.createProject();
+        Project projectToCreate = viewProject.createProject();
         Project projectTemp = Repo.getInstance().createProject(projectToCreate);
 
         if (projectTemp != null) {
-            // Mostrar mensaje de usuario registrado
-            viewProject.showMessageStartProyect();
+            Utils.printMsg("Proyecto creado corretamente");
         } else {
-            // Mostrar mensaje de fallo en la creación de usuario
-            viewProject.showMessageStartProyectFailed();
-        }*/
+            Utils.printMsg("Error al crear el Proyecto");
+        }
         return null;
     }
 

@@ -13,17 +13,14 @@ public class ControllerTask implements iTaskController {
 
     @Override
     public Task createTask() {
-        /*Task taskToCreate = viewTask.createTask();
+        Task taskToCreate = viewTask.createTask();
         Task taskTemp = Repo.getInstance().createTask(taskToCreate);
 
         if (taskTemp != null) {
-            // Mostrar mensaje de usuario registrado
-           viewTask.showMessageStartTask();
-
+            Utils.printMsg("Tarea creada correctamente");
         } else {
-            // Mostrar mensaje de fallo en la creación de usuario
-            viewTask.showMessageStartTaskFailed();
-        }*/
+            Utils.printMsg("Error al crear la Tarea");
+        }
         return null;
     }
 

@@ -27,7 +27,7 @@ public class ControllerLogin implements iLoginController {
 
     @Override
     public User selectUser() {
-      /*  User loginUser = viewLogin.displayLogIn(); // Método que muestra la interfaz de inicio de sesión y devuelve un objeto User con las credenciales ingresadas
+        User loginUser = viewLogin.displayLogIn(); // Método que muestra la interfaz de inicio de sesión y devuelve un objeto User con las credenciales ingresadas
         User existingUser = Repo.getInstance().selectUser(loginUser.getNameUser());
 
         if (existingUser != null && existingUser.getPassword().equals(loginUser.getPassword())) {
@@ -35,9 +35,10 @@ public class ControllerLogin implements iLoginController {
             return existingUser;
         } else {
             // Mostrar mensaje de fallo en el inicio de sesión
-            viewLogin.showMessageStartSessionFailed();*/
+            Utils.printMsg("Fallo en el inicio de sesión");
             return null;
         }
     }
+}
 
 
