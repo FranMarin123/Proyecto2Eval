@@ -8,35 +8,41 @@ import View.ViewLogin;
 
 public class ControllerLogin implements iLoginController {
     ViewLogin viewLogin = new ViewLogin();
-    //Repo repo = new Repo();
+    userRepo repo = new UserRepo();
 
+    /**
+     * Método para crear un nuevo usuario.
+     * - Obtiene la información del usuario a través de la vista.
+     * - Utiliza el repositorio para seleccionar y guardar el usuario en un archivo.
+     * - Muestra un mensaje de inicio de sesión exitoso o fallido según el resultado.
+     */
     @Override
     public void createUser() {
         User userToCreate = viewLogin.displayRegister();
-        User userTemp = Repo.getInstance().createUser(userToCreate);
-        //User userTemp = repo.createUser(userToCreate);
+        User userTemp = repo.selectAndSaveInAfFile(userToCreate);
+
         if (userTemp != null) {
-            // Mostrar mensaje de usuario registrado
             viewLogin.showMessageStartSessionSuccessful();
         } else {
-            // Mostrar mensaje de fallo en la creación de usuario
             viewLogin.showMessageStartSessionFailed();
         }
     }
 
-
+    /**
+     * Método para seleccionar un usuario e iniciar sesión.
+     * - Obtiene las credenciales del usuario a través de la vista.
+     * - Utiliza el repositorio para seleccionar y obtener un usuario existente.
+     * - Verifica las credenciales y muestra mensajes apropiados en la consola.
+     */
     @Override
-    public User selectUser() {
-        User loginUser = viewLogin.displayLogIn(); // Método que muestra la interfaz de inicio de sesión y devuelve un objeto User con las credenciales ingresadas
-        User existingUser = Repo.getInstance().selectUser(loginUser.getNameUser());
+    public void selectUser() {
+        User loginUser = viewLogin.displayLogIn();
+        User existingUser = repo.selectAndSaveInAfFile(loginUser);
 
         if (existingUser != null && existingUser.getPassword().equals(loginUser.getPassword())) {
-            // Las credenciales son válidas, se devuelve el usuario autenticado
-            return existingUser;
+            Utils.printMsg("Inicio de sesión exitoso");
         } else {
-            // Mostrar mensaje de fallo en el inicio de sesión
             Utils.printMsg("Fallo en el inicio de sesión");
-            return null;
         }
     }
 }

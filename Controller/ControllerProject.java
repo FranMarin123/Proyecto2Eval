@@ -3,13 +3,15 @@ package Controller;
 import Interfaces.iProjectController;
 import Model.Project;
 import Model.Repo.Repo;
-import Model.User;
 import View.Utils.Utils;
-import View.ViewLogin;
 import View.ViewProject;
+import View.ViewUser;
 
 public class ControllerProject implements iProjectController {
     ViewProject viewProject = new ViewProject();
+    ViewUser viewUser = new ViewUser();
+    userRepo repo = new UserRepo();
+
 
     @Override
     public Project createProject() {
@@ -27,7 +29,17 @@ public class ControllerProject implements iProjectController {
 
     @Override
     public Project removeProject() {
-        return null;
+        String userNameToDelete = viewUser.removeUser();
+
+        Project removedProject = repo.removeProject(userNameToDelete);
+
+        if (removedProject != null) {
+            Utils.printMsg("Usuario eliminado correctamente");
+        } else {
+            Utils.printMsg("Fallo al eliminar el usuario, comprueba el nombre");
+        }
+
+        return removedProject;
     }
 
     @Override
