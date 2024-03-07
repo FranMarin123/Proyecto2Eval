@@ -15,8 +15,9 @@ public class ViewTask implements iViewTask {
     }
 
     @Override
-    public void createTask() {
+    public Task createTask() {
 
+        return null;
     }
 
     @Override

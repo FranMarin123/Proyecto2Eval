@@ -4,18 +4,19 @@ import Interfaces.iViewUser;
 import Model.User;
 
 public class ViewUser implements iViewUser {
+
     @Override
-    public int selectLoginRegister() {
-        return 0;
+    public void removeUser() {
+
     }
 
     @Override
-    public User register() {
-        return null;
+    public void upgradeUser() {
+
     }
 
     @Override
-    public User login() {
-        return null;
+    public void searchUser() {
+
     }
 }

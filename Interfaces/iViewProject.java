@@ -4,9 +4,9 @@ import Model.Project;
 
 public interface iViewProject {
     int menuProject();
-    void listProject();
-    void createProject();
+    Project listProject();
+    Project createProject();
     void removeProject();
-    Project enterProject();
+    String enterProject();
     void modifyProject();
 }

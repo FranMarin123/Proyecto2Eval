@@ -4,6 +4,8 @@ import Interfaces.iViewProject;
 import Model.Project;
 
 import javax.swing.*;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class ViewProject implements iViewProject {
@@ -71,13 +73,41 @@ public class ViewProject implements iViewProject {
      * Method to create a project
      */
     @Override
-    public void createProject() {
+    public Project createProject() {
         // Muestra el menu
         Scanner scanner = new Scanner(System.in);
 
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║         === CREAR PROYECTO ===       ║");
+        System.out.println("╠══════════════════════════════════════╣");
+        System.out.print(" \uD83D\uDC64 Nombre: ");
+        String projectNameInput = scanner.nextLine();
+        System.out.print(" \uD83D\uDD10 Descripción: ");
+        String projectDescriptionInput = scanner.nextLine();
+        System.out.println("╚══════════════════════════════════════╝");
+
+        // Crea un objeto Project temporal con la entrada del usuario
+        Project temporaryProject = new Project(null, null, projectNameInput, projectDescriptionInput, null);
+
+        // Devuelve el objeto Project temporal
+        return temporaryProject;
+    }
+
+
+    /**
+     * @author Javier Fernández
+     * Metodo para eliminar un proyecto
+     * Method to delete a project
+     */
+    @Override
+    public void removeProject() {
+        // Muestra el menu
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║       === ELIMINAR PROYECTO ===      ║");
         System.out.println("╠══════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre: ");
         String usernameInput = scanner.nextLine();
@@ -87,18 +117,37 @@ public class ViewProject implements iViewProject {
     }
 
     @Override
-    public void removeProject() {
+    public String enterProject() {
+        // Mostar proyectos
+        listProject();
 
+        // Muestra el menu
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("╔═════════════════════════════════════════════════╗");
+        System.out.println("║ === ESCRIBE EL PROYECTO QUE DESEA MODIFICAR === ║");
+        System.out.println("╠═════════════════════════════════════════════════╣");
+        System.out.print(" \uD83D\uDC64 Nombre: ");
+        String usernameInput = scanner.nextLine();
+        System.out.println("╚═════════════════════════════════════════════════╝");
+
+        return usernameInput;
     }
 
     @Override
-    public Project enterProject() {
+    public Project listProject() {
+        // Muestra el menu
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║          ===  PROYECTOS ===          ║");
+        System.out.println("╠══════════════════════════════════════╣");
+
+        System.out.println("╚══════════════════════════════════════╝");
+
         return null;
-    }
-
-    @Override
-    public void listProject() {
-
     }
 
     @Override
