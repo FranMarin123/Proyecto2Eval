@@ -14,19 +14,13 @@ public class Task {
     private String decripcion;
 
     public Task(Estado estado, User integrante, String name, String decripcion) {
-        this.estado = estado;
+        setEstado(Estado.Sin_Iniciar);
         this.integrante = integrante;
         this.name = name;
         this.decripcion = decripcion;
     }
     public Task(){
-        this(LocalDate.now(),null,Estado.Sin_Iniciar,null,"","");
-    }
-
-    public Task(String sinIniciar, Object o, String s, String s1) {
-
-    }
-    public Task(LocalDate now, Object o, Estado estado, Object o1, String s, String s1) {
+        this(Estado.Sin_Iniciar,null,"","");
     }
 
     public LocalDate getDateStar() {
@@ -58,27 +52,21 @@ public class Task {
     public User getIntegrante() {
         return integrante;
     }
-
     public void setIntegrante(User integrante) {
         this.integrante = integrante;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getDecripcion() {
         return decripcion;
     }
-
     public void setDecripcion(String decripcion) {
         this.decripcion = decripcion;
     }
-
     @Override
     public boolean equals(Object o) {
         boolean igual;
