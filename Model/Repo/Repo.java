@@ -2,111 +2,52 @@ package Model.Repo;
 
 import Interfaces.iRepo;
 import Model.Project;
-import Model.Task;
-import Model.User;
 import Serializator.Serializator;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Repo implements iRepo {
-    private User currentUser;
-    private List<Project> projects;
-
+public abstract class Repo<T> implements iRepo<T> {
 
     /**
-     * Esta función crea un archivo que guarda un usuario en un archivo.
-     * @param userToCreate Recibe el usuario que queremos guardar
-     * @return Devuelve el usuario que hemos creado
+     * Este método comprueba en que proyectos está el usuario introducido
+     * @return Devuelve todos los proyectos de los que es miembro o jefe
      */
-    @Override
-    public User createUser(User userToCreate) {
-        User userCreated=userToCreate;
-        currentUser=userCreated;
-        Serializator.serializeObject(currentUser,"./src/UserFileSaves/"+currentUser.getNameUser());
-        return userCreated;
+    public List<Project> takeAllProjectForAUser(){
+        List<Project> userProjects=new ArrayList<>();
+        List<Project> allProjects=(List<Project>) Serializator.deserializeObject("./src/ProjectFileSaves/users.bin");
+
+
+        return userProjects;
     }
 
-    @Override
-    public User selectUser(User selectedUser) {
-        File userSelected=new File("./src/UserFileSaves/"+currentUser.getNameUser().toLowerCase().replaceAll(" ",""));
-        User userSaved=(User) Serializator.deserializeObject(userSelected.toString());
-        /*if (userSaved.comparePass(selectedUser)) {
-
-        }*/
-        return null;
+    /**
+     * Este método añade un proyecto a un fichero con todos los
+     * proyectos registrados, si no se ha registrado ningún
+     * proyecto aún, crea el fichero con el primer proyecto.
+     *
+     * @param projectToAdd Recibe el proyecto que queremos añadir al fichero
+     * @return Devuelve true si el proyecto se ha añadido y false si no se ha añadido
+     */
+    public boolean addProjectToFile(Project projectToAdd) {
+        File projectsFile = new File("./src/ProjectFileSaves/users.bin");
+        boolean correctAdd = false;
+        if (projectsFile.exists()) {
+            List<Project> projectsFromFile = (List<Project>) Serializator.deserializeObject(projectsFile.toString());
+            correctAdd = projectsFromFile.add(projectToAdd);
+            Serializator.serializeObject(projectsFromFile, projectsFile.toString());
+        } else {
+            List<Project> usersFromFiles = new ArrayList<Project>();
+            correctAdd = usersFromFiles.add(projectToAdd);
+            Serializator.serializeObject(usersFromFiles, projectToAdd.toString());
+        }
+        return correctAdd;
     }
 
-    @Override
-    public User removeUser(User userToRemove) {
-        File userFileToRemove=new File("./src/UserFileSaves/"+userToRemove.getNameUser());
-        userFileToRemove.delete();
-        return userToRemove;
-    }
-
-    @Override
-    public User showUser(String username) {
-        return (User) Serializator.deserializeObject("./src/UserFileSaves/"+username);
-    }
-
-    @Override
-    public User upgradeUser(User userToUpgrade) {
-        return null;
-    }
-
-    @Override
-    public Project createProject(Project projectToCreate) {
-        return null;
-    }
-
-    @Override
-    public Project removeProject(String projectName) {
-        return null;
-    }
-
-    @Override
-    public Project showProject(String projectName) {
-        return null;
-    }
-
-    @Override
-    public Project selectProject(String projectName) {
-        return null;
-    }
-
-    @Override
-    public Project[] listAllProjects() {
-        return new Project[0];
-    }
-
-    @Override
-    public Project upgradeProject(Project projectToUpgrade, String originalProjectName) {
-        return null;
-    }
-
-    @Override
-    public Task createTask(Task taskToCreate) {
-        return null;
-    }
-
-    @Override
-    public Task removeTask(String taskName) {
-        return null;
-    }
-
-    @Override
-    public Task[] listAllTask() {
-        return new Task[0];
-    }
-
-    @Override
-    public Task showTask(String taskName) {
-        return null;
-    }
-
-    @Override
-    public Task upgradeTask(Task taskToUpgrade, String originalTask) {
-        return null;
-    }
+    public abstract T selectAndSaveInAFile(T selected);
+    public abstract T removeFromFiles(T selected);
+    public abstract T browseOne(String id);
+    public abstract T upgrade(T userToUpgrade, String oldPassword);
+    public abstract ArrayList<T> browseList();
 }
