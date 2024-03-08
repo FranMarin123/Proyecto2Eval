@@ -10,17 +10,7 @@ import java.util.List;
 
 public abstract class Repo<T> implements iRepo<T> {
 
-    /**
-     * Este método comprueba en que proyectos está el usuario introducido
-     * @return Devuelve todos los proyectos de los que es miembro o jefe
-     */
-    public List<Project> takeAllProjectForAUser(){
-        List<Project> userProjects=new ArrayList<>();
-        List<Project> allProjects=(List<Project>) Serializator.deserializeObject("./src/ProjectFileSaves/users.bin");
 
-
-        return userProjects;
-    }
 
     /**
      * Este método añade un proyecto a un fichero con todos los

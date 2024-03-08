@@ -93,6 +93,11 @@ public class UserRepo extends Repo<User> {
         return correctAdd;
     }
 
+    /**
+     * Este método elimina el usuario del archivo con todos los usuarios
+     * @param userToRemove Recibe el usuario a eliminar
+     * @return Devuelve true si se ha eliminado correctamente y false si ha habido algun error
+     */
     public boolean removeFromArrayFile(User userToRemove) {
         File usersFile = new File("./src/UserFileSaves/users.bin");
         boolean correctRemove = false;
