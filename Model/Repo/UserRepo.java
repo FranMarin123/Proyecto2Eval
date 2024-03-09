@@ -26,7 +26,7 @@ public class UserRepo extends Repo<User> {
         if (!userSelectedFile.exists() && addUserToArrayFile(selected)) {
             UserSesion.getInstance(selected);
             userCreated = selected;
-            Serializator.serializeObject(UserSesion.getInstance().getCurrentUser(), "./src/UserFileSaves/" + UserSesion.getInstance().getCurrentUser().getNameUser());
+            saveUser(UserSesion.getInstance().getCurrentUser());
         } else if (userSelectedFile.exists() && selected.getName().isEmpty()) {
             userCreated = (User) Serializator.deserializeObject(userSelectedFile.toString());
             UserSesion.getInstance(userCreated);
@@ -129,5 +129,9 @@ public class UserRepo extends Repo<User> {
             }
         }
         return comp;
+    }
+
+    public static boolean saveUser(User userToSave){
+        return Serializator.serializeObject(userToSave,"./src/UserFileSaves/" + userToSave.getNameUser());
     }
 }

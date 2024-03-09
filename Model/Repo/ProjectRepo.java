@@ -23,7 +23,7 @@ public class ProjectRepo extends Repo<Project>{
         Project tmpProject=null;
         selected.setBoss(UserSesion.getInstance().getCurrentUser());
         if (!projectFile.exists() && UserSesion.getInstance().addProject(selected)) {
-            Serializator.serializeObject(selected,projectFile.toString());
+            saveProject(selected);
             addProjectToArrayFile(selected);
             tmpProject=selected;
         }
@@ -116,5 +116,20 @@ public class ProjectRepo extends Repo<Project>{
             correctRemove = true;
         }
         return correctRemove;
+    }
+
+    public boolean selectAProject(String projectName){
+        boolean comp=false;
+        File projectFile=new File("./src/ProjectFileSaves/"+projectName);
+        Project projectToCheck=(Project) Serializator.deserializeObject(projectFile.toString());
+        if (projectFile.exists() && UserSesion.getInstance().getProjects().contains(projectToCheck)){
+            SelectedProject.addProject(projectToCheck);
+            comp=true;
+        }
+        return comp;
+    }
+
+    public static boolean saveProject(Project projectToSave){
+        return Serializator.serializeObject(projectToSave,"./src/ProjectFileSaves/"+projectToSave.getName());
     }
 }
