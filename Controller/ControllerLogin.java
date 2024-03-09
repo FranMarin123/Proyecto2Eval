@@ -1,14 +1,14 @@
 package Controller;
 
 import Interfaces.iLoginController;
-import Model.Repo.Repo;
+import Model.Repo.UserRepo;
 import Model.User;
 import View.Utils.Utils;
 import View.ViewLogin;
 
 public class ControllerLogin implements iLoginController {
     ViewLogin viewLogin = new ViewLogin();
-    userRepo repo = new UserRepo();
+    UserRepo repo = new UserRepo();
 
     /**
      * Método para crear un nuevo usuario.
@@ -19,7 +19,7 @@ public class ControllerLogin implements iLoginController {
     @Override
     public void createUser() {
         User userToCreate = viewLogin.displayRegister();
-        User userTemp = repo.selectAndSaveInAfFile(userToCreate);
+        User userTemp = repo.selectAndSaveInAFile(userToCreate);
 
         if (userTemp != null) {
             viewLogin.showMessageStartSessionSuccessful();
@@ -37,7 +37,7 @@ public class ControllerLogin implements iLoginController {
     @Override
     public void selectUser() {
         User loginUser = viewLogin.displayLogIn();
-        User existingUser = repo.selectAndSaveInAfFile(loginUser);
+        User existingUser = repo.selectAndSaveInAFile(loginUser);
 
         if (existingUser != null && existingUser.getPassword().equals(loginUser.getPassword())) {
             Utils.printMsg("Inicio de sesión exitoso");

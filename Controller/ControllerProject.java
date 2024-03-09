@@ -2,21 +2,21 @@ package Controller;
 
 import Interfaces.iProjectController;
 import Model.Project;
-import Model.Repo.Repo;
+import Model.Repo.ProjectRepo;
 import View.Utils.Utils;
 import View.ViewProject;
-import View.ViewUser;
+
+import java.util.ArrayList;
 
 public class ControllerProject implements iProjectController {
     ViewProject viewProject = new ViewProject();
-    ViewUser viewUser = new ViewUser();
-    userRepo repo = new UserRepo();
+    ProjectRepo projectRepo = new ProjectRepo();
 
 
     @Override
     public Project createProject() {
         Project projectToCreate = viewProject.createProject();
-        Project projectTemp = Repo.getInstance().createProject(projectToCreate);
+        Project projectTemp = projectRepo.selectAndSaveInAFile(projectToCreate);
 
         if (projectTemp != null) {
             Utils.printMsg("Proyecto creado corretamente");
@@ -29,9 +29,9 @@ public class ControllerProject implements iProjectController {
 
     @Override
     public Project removeProject() {
-        String userNameToDelete = viewUser.removeUser();
+        String userNameToDelete = viewProject.removeProject();
 
-        Project removedProject = repo.removeProject(userNameToDelete);
+        Project removedProject = projectRepo.removeFromFiles(userNameToDelete);
 
         if (removedProject != null) {
             Utils.printMsg("Usuario eliminado correctamente");
@@ -40,25 +40,35 @@ public class ControllerProject implements iProjectController {
         }
 
         return removedProject;
+        return null;
     }
 
     @Override
     public Project showProject() {
         return null;
-    }
+}
 
     @Override
     public Project selectProject() {
         return null;
     }
 
+
     @Override
     public Project[] listAllProjects() {
-        return new Project[0];
-    }
+        ArrayList<Project> projects = projectRepo.browseList();
+        Project[] projectArray = projects.toArray(new Project[0]);
+
+        return projectArray;    }
 
     @Override
     public Project upgradeProject() {
-        return null;
+// Solicitar al usuario el nombre de proyecto y la nueva contraseña
+        Project projectToUpgrade = viewProject.displayProjectUpgrade();
+        String oldPassword = viewProject.displayOldPassword();
+
+        // Actualizar el proyecto existente en el repositorio
+        return projectRepo.upgrade(projectToUpgrade, oldPassword);
     }
 }
+

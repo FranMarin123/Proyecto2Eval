@@ -3,27 +3,27 @@ package Controller;
 import Interfaces.iTaskController;
 import Model.Project;
 import Model.Repo.Repo;
+import Model.Repo.TaskRepo;
 import Model.Task;
 import Model.User;
 import View.Utils.Utils;
 import View.ViewProject;
 import View.ViewTask;
 
+import java.util.ArrayList;
+
 public class ControllerTask implements iTaskController {
     ViewTask viewTask = new ViewTask();
+    TaskRepo taskRepo = new TaskRepo();
 
     @Override
-    public Task createTask() {
-        Task taskToCreate = viewTask.createTask();
-        Task taskTemp = Repo.getInstance().createTask(taskToCreate);
-
-        if (taskTemp != null) {
-            Utils.printMsg("Tarea creada correctamente");
-        } else {
-            Utils.printMsg("Error al crear la Tarea");
-        }
-        return null;
+    public void createTask() {
+        Task taskcreate = viewTask.createTask();
+        Task newTask = new Task(taskcreate);
+        taskRepo.saveTask(newTask);
+        Utils.printMsg("Tarea creada correctamente");
     }
+
 
     @Override
     public Task removeTask() {
@@ -32,13 +32,15 @@ public class ControllerTask implements iTaskController {
 
     @Override
     public Task[] listAllTask() {
-        return new Task[0];
+        ArrayList<Task> tasks = taskRepo.browseList();
+        Task[] taskArray = tasks.toArray(new Task[0]);
+        return taskArray;
     }
 
     @Override
     public Task showTask() {
         String usernameToShow = viewTask.showTask();
-        Task existingTask = Repo.getInstance().showUser(usernameToShow);
+        Task existingTask = TaskRepo.showTask(usernameToShow);
 
         if (existingTask != null) {
             ViewTask.displayTask(existingTask);
@@ -51,7 +53,14 @@ public class ControllerTask implements iTaskController {
 
 
     @Override
-    public Task upgradeTask() {
-        return null;
+    public void upgradeTask() {
+        Task updatedTask = viewTask.updateTask();
+
+        if (updatedTask != null) {
+            taskRepo.upgrade(updatedTask);
+            Utils.printMsg("Datos de la tarea actualizados exitosamente");
+        } else {
+            Utils.printMsg("No se han realizado cambios en los datos del usuario");
+        }
     }
 }
