@@ -1,5 +1,5 @@
 package Interfaces;
 
 public interface iViewMainMenu {
-    void displayMainMenu();
+    int displayMainMenu();
 }
