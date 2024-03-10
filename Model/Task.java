@@ -1,11 +1,12 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 import Enum.Estado;
 
-public class Task {
+public class Task implements Serializable {
     private LocalDate dateStar;
     private  LocalDate dateFinis;
     private Estado estado;
@@ -13,15 +14,14 @@ public class Task {
     private String name;
     private String decripcion;
 
-    public Task(Estado estado, User integrante, String name, String decripcion) {
-        setEstado(estado);
+    public Task(User integrante, String name, String decripcion) {
+        setEstado(Estado.Sin_Iniciar);
         this.integrante = integrante;
         this.name = name;
         this.decripcion = decripcion;
     }
 
     public LocalDate getDateStar() {
-
         return dateStar;
     }
 
