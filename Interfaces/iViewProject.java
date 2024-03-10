@@ -2,11 +2,12 @@ package Interfaces;
 
 import Model.Project;
 
+import java.util.List;
+
 public interface iViewProject {
     int menuProject();
-    Project listProject();
+    Project showProject();
+    Project listProject(List<Project> projects);
     Project createProject();
-    void removeProject();
-    String enterProject();
-    void modifyProject();
+    Project removeProject();
 }

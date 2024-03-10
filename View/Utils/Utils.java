@@ -36,4 +36,5 @@ public class Utils {
         System.out.print(msg);
         return teclado.nextLine();
     }
+
 }
