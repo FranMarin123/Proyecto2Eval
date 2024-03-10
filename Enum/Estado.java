@@ -6,5 +6,5 @@ package Enum;
  * Sin_Indicar La tarea no ha comenzado
  */
 public enum Estado {
-    En_Proceso,Finalizado,Sin_Iniciar
+    Iniciada,Finalizado,Sin_Iniciar
 }

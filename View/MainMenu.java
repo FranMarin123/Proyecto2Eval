@@ -6,8 +6,7 @@ import javax.swing.*;
 
 public class MainMenu implements iViewMainMenu {
 
-    /**
-     * @author Javier Fernández
+    /**    * @author Javier Fernández
      * Método para mostrar el Menu Prinicpal de 3 opciones para elegir
      * Method to display the main menu with 3 options to choose
      */
@@ -22,7 +21,15 @@ public class MainMenu implements iViewMainMenu {
         System.out.println("  === [3]. SALIR \uD83D\uDEAA️        ");
         System.out.println("╚══════════════════════════════════════╝");
 
+        // Solicitar la entrada del usuario
         String userInput = JOptionPane.showInputDialog(null, "Selecciona una opción: ");
 
+        // Convertir la entrada a un entero y devolverlo
+        try {
+            return Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "❌ Por favor, introduce un número válido.");
+            return -1;
+        }
     }
 }

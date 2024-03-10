@@ -2,19 +2,21 @@ package Controller;
 
 import Interfaces.iProjectController;
 import Model.Project;
-import Model.Repo.Repo;
-import Model.User;
+import Model.Repo.ProjectRepo;
 import View.Utils.Utils;
-import View.ViewLogin;
 import View.ViewProject;
+
+import java.util.ArrayList;
 
 public class ControllerProject implements iProjectController {
     ViewProject viewProject = new ViewProject();
+    ProjectRepo projectRepo = new ProjectRepo();
+
 
     @Override
     public Project createProject() {
         Project projectToCreate = viewProject.createProject();
-        Project projectTemp = Repo.getInstance().createProject(projectToCreate);
+        Project projectTemp = projectRepo.selectAndSaveInAFile(projectToCreate);
 
         if (projectTemp != null) {
             Utils.printMsg("Proyecto creado corretamente");
@@ -27,26 +29,46 @@ public class ControllerProject implements iProjectController {
 
     @Override
     public Project removeProject() {
+        String userNameToDelete = viewProject.removeProject();
+
+        Project removedProject = projectRepo.removeFromFiles(userNameToDelete);
+
+        if (removedProject != null) {
+            Utils.printMsg("Usuario eliminado correctamente");
+        } else {
+            Utils.printMsg("Fallo al eliminar el usuario, comprueba el nombre");
+        }
+
+        return removedProject;
         return null;
     }
 
     @Override
     public Project showProject() {
         return null;
-    }
+}
 
     @Override
     public Project selectProject() {
         return null;
     }
 
+
     @Override
     public Project[] listAllProjects() {
-        return new Project[0];
-    }
+        ArrayList<Project> projects = projectRepo.browseList();
+        Project[] projectArray = projects.toArray(new Project[0]);
+
+        return projectArray;    }
 
     @Override
     public Project upgradeProject() {
-        return null;
+// Solicitar al usuario el nombre de proyecto y la nueva contraseña
+        Project projectToUpgrade = viewProject.displayProjectUpgrade();
+        String oldPassword = viewProject.displayOldPassword();
+
+        // Actualizar el proyecto existente en el repositorio
+        return projectRepo.upgrade(projectToUpgrade, oldPassword);
     }
 }
+

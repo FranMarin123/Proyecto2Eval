@@ -2,6 +2,7 @@ package Controller;
 
 import Interfaces.iUserController;
 import Model.Repo.Repo;
+import Model.Repo.UserRepo;
 import Model.User;
 import View.Utils.Utils;
 import View.ViewLogin;
@@ -9,41 +10,75 @@ import View.ViewUser;
 
 public class ControllerUser implements iUserController {
     ViewUser viewUser = new ViewUser();
+    ViewLogin viewLogin = new ViewLogin();
+    UserRepo userRepo = new UserRepo();
 
     @Override
-    public User showUser() {
-        String usernameToShow = viewUser.getUsernameToShow(); // Puedes implementar este método en tu vista para obtener el nombre del usuario a mostrar
-        User user = Repo.getInstance().showUser(usernameToShow);
+    public void showUser() {
+        User UserName = viewUser.searchUser();
 
-        if (user != null) {
-            // Mostrar información del usuario en la vista
-            ViewUser.displayUserInfo(user);
+        // Obtener el usuario existente del repositorio
+        User existingUser =userRepo.getUserByUsername(UserName);
+
+        // Verificar si el usuario existe
+        if (existingUser != null) {
+            // Mostrar la información del usuario
+            viewUser.displayUser(existingUser);
         } else {
-            // Mostrar mensaje de que el usuario no fue encontrado
             Utils.printMsg("Usuario no encontrado");
         }
-
-        return user;
     }
+
+
 
     @Override
     public User removeUser() {
-        //Tiene que ser void
-       String userNameToDelete = ViewUser.getUserNameToDelete(); // Puedes implementar este método en tu vista para obtener el nombre del usuario a eliminar
-        boolean isUserRemoved = Repo.getInstance().removeProject(userNameToDelete);
+        String userNameToDelete = viewUser.removeUser();
 
-        if (isUserRemoved) {
-            // Mostrar mensaje de usuario eliminado exitosamente
-            Utils.printMsg("Usuario elinminado correctamente");
+        User removedUser = userRepo.removeFromFiles(userNameToDelete);
+
+        if (removedUser != null) {
+            Utils.printMsg("Usuario eliminado correctamente");
         } else {
-            // Mostrar mensaje de fallo al eliminar usuario (puede deberse a que el nombre no existe)
-            Utils.printMsg("Fallo al eleminar el usuario, comprueba el nombre");
+            Utils.printMsg("Fallo al eliminar el usuario, comprueba el nombre");
         }
-        return null;
+
+        return removedUser;
+
+    }
+    @Override
+    public void upgradeUser() {
+        // Solicitar al usuario el nombre de usuario y la contraseña
+        User loginUser = viewLogin.displayLogIn();
+
+        // Obtener el usuario existente
+        User existingUser = userRepo.selectAndSaveInAFile(loginUser);
+
+        // Verificar si el usuario existe y si la contraseña coincide
+        if (existingUser != null && existingUser.getPassword().equals(loginUser.getPassword())) {
+            Utils.printMsg("Inicio de sesión exitoso");
+
+            // Llamar directamente al método en viewUser para actualizar los campos
+            User updatedUser = viewUser.upgradeUser();
+
+            if (updatedUser != null) {
+                userRepo.saveUser(updatedUser);
+                Utils.printMsg("Datos del usuario actualizados exitosamente");
+            } else {
+                Utils.printMsg("No se han realizado cambios en los datos del usuario");
+            }
+        } else {
+            Utils.printMsg("Fallo en el inicio de sesión");
+        }
+    }
     }
 
-    @Override
-    public User upgradeUser() {
-        return null;
-    }
-}
+
+
+
+
+
+
+
+
+

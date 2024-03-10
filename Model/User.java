@@ -37,7 +37,7 @@ public class User {
 
     /**
      * Metodo para la contraseña de usuario
-     * @param password guarda la contraseña encriptada
+     * @param password Se pasa hasheada
      */
     public void setPassword(String password) {
         try {
@@ -77,7 +77,6 @@ public class User {
     public int getScore() {
         return score;
     }
-
     public void setScore(int score) {
         this.score = score;
     }

@@ -3,9 +3,9 @@ package Interfaces;
 import Model.Task;
 
 public interface iTaskController {
-    Task createTask();
+    void createTask();
     Task removeTask();
     Task[] listAllTask();
     Task showTask();
-    Task upgradeTask();
+    void upgradeTask();
 }

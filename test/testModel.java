@@ -13,16 +13,18 @@ public class testModel {
     User user3 = new User("anto","3563","antonio@gmail.com","antonio",5);
 
     Task task=new Task(Estado.Sin_Iniciar,user2,"verificar","comprobar_datos");
-    Task task2=new Task(Estado.En_Proceso,user2,"controlador","Gestionar");
+    Task task2=new Task(Estado.Iniciada,user2,"controlador","Gestionar");
     Project project = new Project(user1,"gestor","aplicacion de Gestor");
-    project.añadeUsuario(user2);
-    project.añadeUsuario(user3);
-    project.creaTask(task);
-    project.creaTask(task2);
-        System.out.println(project);
-        System.out.println("Aqui quitamos el usuario a travez del nombre del usuario");
-        project.eliminaUser("antonio");
-        System.out.println(project);
-
+    project.createUser(user2);
+    project.createUser(user3);
+    project.createTask(task);
+    project.createTask(task2);
+    System.out.println(project);
+    System.out.println("Aqui quitamos el usuario a travez del nombre del usuario");
+    project.DeleteUser("antonio");
+    System.out.println(project);
+    System.out.println("ahora cambiemos el estado de tarea");
+    task2.setEstado(Estado.Finalizado);
+    System.out.println(project);
     }
 }
