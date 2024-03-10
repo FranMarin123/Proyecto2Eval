@@ -1,13 +1,8 @@
 package Controller;
 
 import Interfaces.iTaskController;
-import Model.Project;
-import Model.Repo.Repo;
 import Model.Repo.TaskRepo;
 import Model.Task;
-import Model.User;
-import View.Utils.Utils;
-import View.ViewProject;
 import View.ViewTask;
 
 import java.util.ArrayList;
