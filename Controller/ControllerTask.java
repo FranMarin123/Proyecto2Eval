@@ -20,13 +20,12 @@ public class ControllerTask implements iTaskController {
     public void createTask() {
         Task taskcreate = viewTask.createTask();
         taskRepo.selectAndSaveInAFile(taskcreate);
-        if (taskcreate != null){
+        if (taskcreate != null) {
             Utils.printMsg("Tarea creada correctamente");
-    }else{
+        } else {
             Utils.printMsg("Error al crear la tarea");
-            }
         }
-
+    }
 
 
     @Override
@@ -62,6 +61,6 @@ public class ControllerTask implements iTaskController {
             Utils.printMsg("Proyecto no encontrada");
         }
     }
-    }
+}
 
 
