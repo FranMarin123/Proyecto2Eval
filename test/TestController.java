@@ -7,7 +7,7 @@ public class TestController {
         ControllerLogin loginController = new ControllerLogin();
 
         // Llamar al método para crear un usuario
-        loginController.createUser();
+        loginController.selectUser();
 
     }
 }

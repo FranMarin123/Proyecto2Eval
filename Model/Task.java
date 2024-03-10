@@ -14,16 +14,14 @@ public class Task {
     private String decripcion;
 
     public Task(Estado estado, User integrante, String name, String decripcion) {
-        setEstado(Estado.Sin_Iniciar);
+        setEstado(estado);
         this.integrante = integrante;
         this.name = name;
         this.decripcion = decripcion;
     }
-    public Task(){
-        this(Estado.Sin_Iniciar,null,"","");
-    }
 
     public LocalDate getDateStar() {
+
         return dateStar;
     }
 
@@ -36,17 +34,20 @@ public class Task {
         return estado;
     }
 
+    /**
+     * el setEstado da Fecha a la tarea
+     * @param estado si esta Finalizada o En_proceso da fecha
+     *               si es Sin_iniciar da null
+     */
     public void setEstado(Estado estado) {
-        if(estado ==Estado.Sin_Iniciar){
-            dateStar = LocalDate.of(00,00,00);
+
+        this.estado = estado;
+        if(estado==Estado.Finalizado){
+            dateFinis= LocalDate.now();
         }
-        else if(estado==Estado.En_Proceso){
+        if(estado == Estado.Iniciada) {
             dateStar = LocalDate.now();
         }
-        if(estado==Estado.Finalizado){
-            dateFinis = LocalDate.now();
-        }
-        this.estado = estado;
     }
 
     public User getIntegrante() {
