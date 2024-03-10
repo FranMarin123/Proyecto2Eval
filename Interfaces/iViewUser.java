@@ -5,6 +5,6 @@ import Model.User;
 public interface iViewUser {
     User removeUser();
     User upgradeUser();
-    void searchUser();
+    User searchUser();
     void displayUser(User user);
 }

@@ -3,7 +3,6 @@ package Controller;
 import Interfaces.iUserController;
 import Model.Repo.UserRepo;
 import Model.User;
-import View.Utils.Utils;
 import View.ViewLogin;
 import View.ViewUser;
 
