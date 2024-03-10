@@ -2,10 +2,12 @@ package Interfaces;
 
 import Model.Task;
 
+import java.util.ArrayList;
+
 public interface iViewTask {
     int menuTask();
     Task createTask();
-    void removeTask();
-    void showTask();
-    void listTask();
+    Task removeTask();
+    void showTask(Task taskToShow);
+    void listTask(ArrayList<Task> tasks);
 }

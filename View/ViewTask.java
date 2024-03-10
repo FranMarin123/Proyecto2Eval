@@ -1,10 +1,10 @@
 package View;
 
 import Interfaces.iViewTask;
-import Model.Project;
 import Model.Task;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ViewTask implements iViewTask {
@@ -25,52 +25,15 @@ public class ViewTask implements iViewTask {
         System.out.println("  ======== [8]. SELECCIONAR TAREA ☑️️        ");
         System.out.println("  ========= [9]. SALIR PROYECTO \uD83D\uDEAA️        ");
         System.out.println("╚═══════════════════════════════════════════════════════════════╝");
+
+        // Solicitar la entrada del usuario
+        String userInput = JOptionPane.showInputDialog(null, "Selecciona una opción: ");
+
+        // Convertir la entrada a un entero y devolverlo
         try {
-            // Obtiene la opción seleccionada del usuario
-            String userInput = JOptionPane.showInputDialog(null, "Selecciona una opción: ");
-
-            // Convierte la entrada del usuario a un entero
-            int selectedOption = Integer.parseInt(userInput);
-
-            // Mensaje opción seleccionada
-            System.out.print("✅ Opción seleccionada: ");
-            switch (selectedOption) {
-                case 1:
-                    System.out.println(selectedOption + " (Mostrar Miembros)");
-                    break;
-                case 2:
-                    System.out.println(selectedOption + " (Añadir Miembros)");
-                    break;
-                case 3:
-                    System.out.println(selectedOption + " (Eliminar Miembros)");
-                    break;
-                case 4:
-                    System.out.println(selectedOption + " (Añadir Tarea)");
-                    break;
-                case 5:
-                    System.out.println(selectedOption + " (Eliminar Tarea)");
-                    break;
-                case 6:
-                    System.out.println(selectedOption + " (Mostrar Tarea de tu Usuario)");
-                    break;
-                case 7:
-                    System.out.println(selectedOption + " (Mostrar Todas Tarea de tu Proyecto)");
-                    break;
-                case 8:
-                    System.out.println(selectedOption + " (Seleccionar Tarea)");
-                    break;
-                case 9:
-                    System.out.println(selectedOption + " (Salir Proyecto)");
-                    break;
-                default:
-                    System.out.println(selectedOption);
-                    break;
-            }
-            return selectedOption;
-
+            return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            // Manejo de error en caso de que la entrada no sea un número entero
-            System.out.println("❌ Opción no válida. Por favor, ingresa un número valido.");
+            JOptionPane.showMessageDialog(null, "❌ Por favor, introduce un número válido.");
             return -1;
         }
     }
@@ -100,17 +63,18 @@ public class ViewTask implements iViewTask {
     }
 
     @Override
-    public void removeTask() {
+    public Task removeTask() {
+
+        return null;
+    }
+
+    @Override
+    public void showTask(Task taskToShow) {
 
     }
 
     @Override
-    public void showTask() {
-
-    }
-
-    @Override
-    public void listTask() {
+    public void listTask(ArrayList<Task> tasks) {
 
     }
 }

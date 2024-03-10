@@ -29,40 +29,14 @@ public class ViewProject implements iViewProject {
         System.out.println("  ===== [5]. SALIR / CERRAR SESION \uD83D\uDEAA️        ");
         System.out.println("╚══════════════════════════════════════╝");
 
+        // Solicitar la entrada del usuario
+        String userInput = JOptionPane.showInputDialog(null, "Selecciona una opción: ");
+
+        // Convertir la entrada a un entero y devolverlo
         try {
-            // Obtén la opción seleccionada del usuario
-            String userInput = JOptionPane.showInputDialog(null, "Selecciona una opción: ");
-
-            // Convierte la entrada del usuario a un entero
-            int selectedOption = Integer.parseInt(userInput);
-
-            // Retorna la opción seleccionada
-            System.out.print("✅ Opción seleccionada: ");
-            switch (selectedOption) {
-                case 1:
-                    System.out.println(selectedOption + " (Mostrar Proyectos)");
-                    break;
-                case 2:
-                    System.out.println(selectedOption + " (Crear Proyectos)");
-                    break;
-                case 3:
-                    System.out.println(selectedOption + " (Eliminar Proyectos)");
-                    break;
-                case 4:
-                    System.out.println(selectedOption + " (Entrar en un Proyecto)");
-                    break;
-                case 5:
-                    System.out.println(selectedOption + " (Salir / Cerrar Sesión)");
-                    break;
-                default:
-                    System.out.println(selectedOption);
-                    break;
-            }
-            return selectedOption;
-
+            return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            // Manejo de error en caso de que la entrada no sea un número entero
-            System.out.println("❌ Opción no válida. Por favor, ingresa un número valido.");
+            JOptionPane.showMessageDialog(null, "❌ Por favor, introduce un número válido.");
             return -1;
         }
     }
@@ -119,6 +93,28 @@ public class ViewProject implements iViewProject {
         return new Project(null, projectNameInput, descriptionInput);
     }
 
+    @Override
+    public Project upgradeProject() {
+        // Muestra el menu
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║      === ACTUALIZAR PROYECTO ===     ║");
+        System.out.println("╠══════════════════════════════════════╣");
+        System.out.print(" \uD83D\uDC64 Nombre: ");
+        String projectNameInput = scanner.nextLine();
+        System.out.print(" \uD83D\uDD10 Descripción: ");
+        String projectDescriptionInput = scanner.nextLine();
+        System.out.println("╚══════════════════════════════════════╝");
+
+        // Crea un objeto Project temporal con la entrada del usuario
+        Project temporaryProject = new Project(null, projectNameInput, projectDescriptionInput);
+
+        // Devuelve el objeto Project temporal
+        return temporaryProject;
+    }
+
     /**
      * @author Javier Fernández
      * Metodo para mostrar un proyecto
@@ -126,7 +122,7 @@ public class ViewProject implements iViewProject {
      * @return
      */
     @Override
-    public Project showProject() {
+    public Project showProject(Project projecttoshow) {
         Project currentProject = null;
 
         if (currentProject != null) {
