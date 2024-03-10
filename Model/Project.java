@@ -1,10 +1,13 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Project {
+import static java.awt.geom.Path2D.contains;
+
+public class Project implements Serializable {
     private List<User> members = new ArrayList<>();
     private User boss;
     private String name;
@@ -77,17 +80,23 @@ public class Project {
     }
 
     /**
-     * Crea y añade un integrante
+     * Crea y añade un integrante y no se puede repetir
      * @param u Usuario que introduce el jefe
      * @return introduce el miembro al proyecto
      */
-    public boolean createUser(User u) {;
-        return members.add(u);
+    public boolean createUser(User u) {
+        boolean isDiferent=false;
+        if(!members.contains(u)){
+            members.add(u);
+            isDiferent=true;
+        }
+        return isDiferent;
     }
 
     /**
      * Elimina el mienbro del proyecto mediante un iterator
      * @param nombre el nombre del usuario para eliminarlo
+     *
      * @return elimina el usuario
      */
     public int DeleteUser(String nombre) {
@@ -95,7 +104,7 @@ public class Project {
         Iterator<User> iterator = members.iterator();
         while (iterator.hasNext()) {
             User tmpUser = iterator.next();
-            if (tmpUser.getName().equalsIgnoreCase(nombre)) {
+            if (tmpUser.getNameUser().equalsIgnoreCase(nombre)) {
                 iterator.remove();
                 eliminados++;
             }
@@ -108,7 +117,12 @@ public class Project {
      * @return introduce el miembro al proyecto
      */
     public boolean createTask(Task t) {
-        return tasks.add(t);
+        boolean isDifetent= false;
+        if(!tasks.contains(t)){
+            tasks.add(t);
+            isDifetent=true;
+        }
+        return isDifetent;
     }
 
     /**

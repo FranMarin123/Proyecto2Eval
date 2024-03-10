@@ -1,26 +1,25 @@
 package Model;
 
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable {
     private String nameUser;
     private String password;
     private String gmail;
     private String name;
-    private int score;
 
-    public User(String nameUser, String password, String gmail, String name, int score) {
+    public User(String nameUser, String password, String gmail, String name) {
         this.nameUser = nameUser;
         this.password = password;
         this.gmail = gmail;
         this.name = name;
-        this.score = score;
     }
     public User(){
-        this("","","","",0);
+        this("","","","");
     }
 
     public String getNameUser() {
@@ -74,13 +73,6 @@ public class User {
         this.name = name;
     }
 
-    public int getScore() {
-        return score;
-    }
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     /**Ningun usuario puede tener un Gmail un nombre de usuario igual
      * @param o
      * @return de vuelve si es igual o no
@@ -106,8 +98,7 @@ public class User {
         return "Usuario -> " + name + '\''+
                 "Nombre del usuario : " + nameUser  + '\'' +
                 "Contraseña : " + hiddenPassword + '\'' +
-                "Gmail del usuario : " + gmail  + '\'' +
-                "Nota puntuada : " + score  + '\'';
+                "Gmail del usuario : " + gmail  ;
     }
 
     /**
