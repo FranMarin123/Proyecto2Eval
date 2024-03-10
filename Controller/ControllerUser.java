@@ -16,7 +16,7 @@ public class ControllerUser implements iUserController {
         User UserName = viewUser.searchUser();
 
         // Obtener el usuario existente del repositorio
-        User existingUser =userRepo.getUserByUsername(UserName);
+        User existingUser =userRepo.browseOne(UserName.getNameUser());
 
         // Verificar si el usuario existe
         if (existingUser != null) {
@@ -31,7 +31,7 @@ public class ControllerUser implements iUserController {
 
     @Override
     public User removeUser() {
-        String userNameToDelete = viewUser.removeUser();
+        User userNameToDelete = viewUser.removeUser();
 
         User removedUser = userRepo.removeFromFiles(userNameToDelete);
 
@@ -60,7 +60,7 @@ public class ControllerUser implements iUserController {
             User updatedUser = viewUser.upgradeUser();
 
             if (updatedUser != null) {
-                userRepo.saveUser(updatedUser);
+                userRepo.upgrade(updatedUser, existingUser.getNameUser());
                 Utils.printMsg("Datos del usuario actualizados exitosamente");
             } else {
                 Utils.printMsg("No se han realizado cambios en los datos del usuario");

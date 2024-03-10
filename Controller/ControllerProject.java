@@ -4,6 +4,7 @@ import Interfaces.iProjectController;
 import Model.Project;
 import Model.Repo.ProjectRepo;
 import View.ViewProject;
+import View.ViewTask;
 
 import java.util.ArrayList;
 
@@ -28,46 +29,58 @@ public class ControllerProject implements iProjectController {
 
     @Override
     public Project removeProject() {
-        String userNameToDelete = viewProject.removeProject();
+        Project projectToDelete = viewProject.removeProject();
 
-        Project removedProject = projectRepo.removeFromFiles(userNameToDelete);
+        Project removedProject = projectRepo.removeFromFiles(projectToDelete);
 
         if (removedProject != null) {
             Utils.printMsg("Usuario eliminado correctamente");
         } else {
-            Utils.printMsg("Fallo al eliminar el usuario, comprueba el nombre");
+            Utils.printMsg("Fallo al eliminar el proyecto, comprueba el nombre");
         }
 
         return removedProject;
-        return null;
     }
 
     @Override
-    public Project showProject() {
-        return null;
-}
+    public void showProject() {
+        String nameProject = Utils.readString("Introduce el nombre del proyecto");
+        Project projecttoshow = projectRepo.browseOne(nameProject);
+        //Metodo de la vista para mostrar
+        if (projecttoshow != null) {
+            viewProject.showProyect(projecttoshow);
+        } else {
+            Utils.printMsg("Proyecto no encontrada");
+        }
+    }
 
     @Override
-    public Project selectProject() {
-        return null;
+    public void selectProject() {
+        String nameProject = Utils.readString("Introduce el nombre del proyecto");
+        if (projectRepo.selectAProject(nameProject)) {
+            Utils.printMsg("Se ha selecionado correctamente");
+        } else {
+            Utils.printMsg("Ha habido un problema al seleccionar");
+        }
     }
 
 
     @Override
-    public Project[] listAllProjects() {
+    public void listAllProjects() {
         ArrayList<Project> projects = projectRepo.browseList();
-        Project[] projectArray = projects.toArray(new Project[0]);
+        viewProject.listProject(projects);
 
-        return projectArray;    }
+    }
 
     @Override
-    public Project upgradeProject() {
+    public void upgradeProject() {
+        String oldname = Utils.readString("Nombre del proyecto a modificar");
 // Solicitar al usuario el nombre de proyecto y la nueva contraseña
-        Project projectToUpgrade = viewProject.displayProjectUpgrade();
-        String oldPassword = viewProject.displayOldPassword();
 
-        // Actualizar el proyecto existente en el repositorio
-        return projectRepo.upgrade(projectToUpgrade, oldPassword);
+        Project projectToUpgrade = viewProject.displayProjectUpgrade();
+
+       viewProject.showProject(projectRepo.upgrade(projectToUpgrade,oldname)
+);
     }
 }
 

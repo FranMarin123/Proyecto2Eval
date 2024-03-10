@@ -14,48 +14,49 @@ public class ControllerTask implements iTaskController {
     @Override
     public void createTask() {
         Task taskcreate = viewTask.createTask();
-        Task newTask = new Task(taskcreate);
-        taskRepo.saveTask(newTask);
-        Utils.printMsg("Tarea creada correctamente");
-    }
+        taskRepo.selectAndSaveInAFile(taskcreate);
+        if (taskcreate != null){
+            Utils.printMsg("Tarea creada correctamente");
+    }else{
+            Utils.printMsg("Error al crear la tarea");
+            }
+        }
+
 
 
     @Override
     public Task removeTask() {
-        return null;
+        Task taskToDelete = viewTask.removeTask();
+
+        Task removedTask = taskRepo.removeFromFiles(taskToDelete);
+
+        if (removedTask != null) {
+            Utils.printMsg("Usuario eliminado correctamente");
+        } else {
+            Utils.printMsg("Fallo al eliminar la tarea, comprueba el nombre");
+        }
+
+        return removedTask;
     }
 
+
     @Override
-    public Task[] listAllTask() {
+    public void listAllTask() {
         ArrayList<Task> tasks = taskRepo.browseList();
-        Task[] taskArray = tasks.toArray(new Task[0]);
-        return taskArray;
+        viewTask.listTask(tasks);
     }
 
     @Override
-    public Task showTask() {
-        String usernameToShow = viewTask.showTask();
-        Task existingTask = TaskRepo.showTask(usernameToShow);
-
-        if (existingTask != null) {
-            ViewTask.displayTask(existingTask);
+    public void showTask() {
+        String nameTask = Utils.readString("Introduce el nombre de la tarea");
+        Task taskToShow = taskRepo.browseOne(nameTask);
+        //Metodo de la vista para mostrar
+        if (taskToShow != null) {
+            viewTask.showTask(taskToShow);
         } else {
-            Utils.printMsg("Usuario no encontrado");
+            Utils.printMsg("Proyecto no encontrada");
         }
-
-        return removeTask();
+    }
     }
 
 
-    @Override
-    public void upgradeTask() {
-        Task updatedTask = viewTask.updateTask();
-
-        if (updatedTask != null) {
-            taskRepo.upgrade(updatedTask);
-            Utils.printMsg("Datos de la tarea actualizados exitosamente");
-        } else {
-            Utils.printMsg("No se han realizado cambios en los datos del usuario");
-        }
-    }
-}
