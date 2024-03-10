@@ -2,6 +2,7 @@ package Controller;
 
 import Interfaces.iUserController;
 import Model.Repo.Repo;
+import Model.Repo.UserRepo;
 import Model.User;
 import View.Utils.Utils;
 import View.ViewLogin;
@@ -10,14 +11,14 @@ import View.ViewUser;
 public class ControllerUser implements iUserController {
     ViewUser viewUser = new ViewUser();
     ViewLogin viewLogin = new ViewLogin();
-    userRepo repo = new UserRepo();
+    UserRepo userRepo = new UserRepo();
 
     @Override
     public void showUser() {
         User UserName = viewUser.searchUser();
 
         // Obtener el usuario existente del repositorio
-        User existingUser = repo.getUserByUsername(UserName);
+        User existingUser =userRepo.getUserByUsername(UserName);
 
         // Verificar si el usuario existe
         if (existingUser != null) {
@@ -34,7 +35,7 @@ public class ControllerUser implements iUserController {
     public User removeUser() {
         String userNameToDelete = viewUser.removeUser();
 
-        User removedUser = Repo.getInstance().removeUser(userNameToDelete);
+        User removedUser = userRepo.removeFromFiles(userNameToDelete);
 
         if (removedUser != null) {
             Utils.printMsg("Usuario eliminado correctamente");
@@ -43,6 +44,7 @@ public class ControllerUser implements iUserController {
         }
 
         return removedUser;
+
     }
     @Override
     public void upgradeUser() {
@@ -50,22 +52,28 @@ public class ControllerUser implements iUserController {
         User loginUser = viewLogin.displayLogIn();
 
         // Obtener el usuario existente
-        User existingUser = repo.selectAndCheck(loginUser);
+        User existingUser = userRepo.selectAndSaveInAFile(loginUser);
 
         // Verificar si el usuario existe y si la contraseña coincide
         if (existingUser != null && existingUser.getPassword().equals(loginUser.getPassword())) {
             Utils.printMsg("Inicio de sesión exitoso");
 
             // Llamar directamente al método en viewUser para actualizar los campos
-            viewUser.updateUserFields(existingUser);
+            User updatedUser = viewUser.upgradeUser();
 
-            Utils.printMsg("Datos del usuario actualizados exitosamente");
+            if (updatedUser != null) {
+                userRepo.saveUser(updatedUser);
+                Utils.printMsg("Datos del usuario actualizados exitosamente");
+            } else {
+                Utils.printMsg("No se han realizado cambios en los datos del usuario");
+            }
         } else {
             Utils.printMsg("Fallo en el inicio de sesión");
         }
     }
+    }
 
-        }
+
 
 
 
