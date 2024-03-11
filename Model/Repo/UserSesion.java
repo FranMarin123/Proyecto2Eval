@@ -19,7 +19,9 @@ public class UserSesion {
     private UserSesion(User user) {
         currentUser = user;
         projects = new ArrayList<>();
-        projects = takeAllProjectForAUser();
+        if (takeAllProjectForAUser()!=null) {
+            projects = takeAllProjectForAUser();
+        }
     }
 
     public static UserSesion getInstance() {
@@ -51,12 +53,14 @@ public class UserSesion {
         List<Project> userProjects = new ArrayList<>();
         File projectsFile = new File("./src/ProjectFileSaves/projects.bin");
         List<Project> allProjects = Serializator.deserializeObject(projectsFile.toString());
-        Iterator<Project> iterator = allProjects.iterator();
-        if (projectsFile.exists()) {
-            while (iterator.hasNext()) {
-                Project tmpProject = iterator.next();
-                if (tmpProject.getBoss().equals(currentUser) || proveUserMemberOf(tmpProject)) {
-                    userProjects.add(tmpProject);
+        if (allProjects!=null) {
+            Iterator<Project> iterator = allProjects.iterator();
+            if (projectsFile.exists()) {
+                while (iterator.hasNext()) {
+                    Project tmpProject = iterator.next();
+                    if (tmpProject.getBoss().equals(currentUser) || proveUserMemberOf(tmpProject)) {
+                        userProjects.add(tmpProject);
+                    }
                 }
             }
         }
