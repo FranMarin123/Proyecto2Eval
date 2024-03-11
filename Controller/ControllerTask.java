@@ -3,6 +3,7 @@ package Controller;
 import Interfaces.iTaskController;
 import Model.Repo.TaskRepo;
 import Model.Task;
+import View.Utils.Utils;
 import View.ViewTask;
 
 import java.util.ArrayList;
@@ -53,9 +54,20 @@ public class ControllerTask implements iTaskController {
         if (taskToShow != null) {
             viewTask.showTask(taskToShow);
         } else {
-            Utils.printMsg("Proyecto no encontrada");
+            Utils.printMsg("Tarea no encontrada");
         }
     }
-}
+
+    @Override
+    public void selectTask() {
+       String nameTask = Utils.readString("Introduce el nombre de la tarea");
+        if (taskRepo.selectTask(nameTask)) {
+            Utils.printMsg("Se ha selecionado correctamente");
+        } else {
+            Utils.printMsg("Ha habido un problema al seleccionar");
+        }
+    }
+    }
+
 
 

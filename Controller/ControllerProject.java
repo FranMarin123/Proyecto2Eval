@@ -3,6 +3,7 @@ package Controller;
 import Interfaces.iProjectController;
 import Model.Project;
 import Model.Repo.ProjectRepo;
+import View.Utils.Utils;
 import View.ViewProject;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class ControllerProject implements iProjectController {
 
     @Override
     public void showProject() {
-        String nameProject = Utils.readString("Introduce el nombre del proyecto");
+        String nameProject = viewProject.searchProject();
         Project projecttoshow = projectRepo.browseOne(nameProject);
         //Metodo de la vista para mostrar
         if (projecttoshow != null) {
@@ -75,7 +76,7 @@ public class ControllerProject implements iProjectController {
     public void upgradeProject() {
         String oldname = Utils.readString("Nombre del proyecto a modificar");
 
-        Project projectToUpgrade = viewProject.displayProjectUpgrade();
+        Project projectToUpgrade = viewProject.upgradeProject();
 
         viewProject.showProject(projectRepo.upgrade(projectToUpgrade, oldname));
     }

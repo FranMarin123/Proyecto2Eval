@@ -7,4 +7,5 @@ public interface iTaskController {
     Task removeTask();
     void listAllTask();
     void showTask();
+    void selectTask();
 }

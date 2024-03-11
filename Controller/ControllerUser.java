@@ -1,34 +1,46 @@
 package Controller;
 
 import Interfaces.iUserController;
+import Model.Repo.ProjectRepo;
 import Model.Repo.UserRepo;
 import Model.User;
+import View.Utils.Utils;
 import View.ViewLogin;
 import View.ViewUser;
+
+import java.util.ArrayList;
 
 public class ControllerUser implements iUserController {
     ViewUser viewUser = new ViewUser();
     ViewLogin viewLogin = new ViewLogin();
     UserRepo userRepo = new UserRepo();
+    ProjectRepo projectRepo = new ProjectRepo();
 
+    /**
+     * Este método pide un  usuario  a través de la vista (viewUser)
+     * Luegolo pasa el usuario al repositorio de usuarios (userRepo).
+     * Si el usuario existe, se muestra en la vista, de lo contrario,
+     * se muestra un mensaje indicando que el usuario no se encontró.
+     */
     @Override
     public void showUser() {
         User UserName = viewUser.searchUser();
 
-        // Obtener el usuario existente del repositorio
-        User existingUser =userRepo.browseOne(UserName.getNameUser());
+        User existingUser = userRepo.browseOne(UserName.getNameUser());
 
-        // Verificar si el usuario existe
         if (existingUser != null) {
-            // Mostrar la información del usuario
             viewUser.displayUser(existingUser);
         } else {
             Utils.printMsg("Usuario no encontrado");
         }
     }
 
-
-
+    /**
+     * Este método muestra pide un  usuario  a través de la vista (viewUser)
+     * Luegolo pasa el usuario al repositorio de usuarios (userRepo).
+     * Si el usuario existe, se elemina, de lo contrario,
+     * se muestra un mensaje indicando que el usuario no se encontró.
+     */
     @Override
     public User removeUser() {
         User userNameToDelete = viewUser.removeUser();
@@ -44,19 +56,22 @@ public class ControllerUser implements iUserController {
         return removedUser;
 
     }
+
+    /**
+     * Este método pide un incio de sesión a través de la vista (viewUser)
+     * Luegolo pasa el usuario al repositorio de usuarios (userRepo).
+     * Si el usuario existe, se podrá actualizar, de lo contrario,
+     * se muestra un mensaje indicando que el usuario no se encontró.
+     */
     @Override
     public void upgradeUser() {
-        // Solicitar al usuario el nombre de usuario y la contraseña
         User loginUser = viewLogin.displayLogIn();
 
-        // Obtener el usuario existente
         User existingUser = userRepo.selectAndSaveInAFile(loginUser);
 
-        // Verificar si el usuario existe y si la contraseña coincide
         if (existingUser != null && existingUser.getPassword().equals(loginUser.getPassword())) {
             Utils.printMsg("Inicio de sesión exitoso");
 
-            // Llamar directamente al método en viewUser para actualizar los campos
             User updatedUser = viewUser.upgradeUser();
 
             if (updatedUser != null) {
@@ -69,7 +84,43 @@ public class ControllerUser implements iUserController {
             Utils.printMsg("Fallo en el inicio de sesión");
         }
     }
+
+    /**
+     *En este metodo muestra todos los miembros que esten en el proyecto.
+     */
+    @Override
+    public void listAllMember() {
+        ArrayList<User> users = userRepo.browseList();
+        viewUser.listUsers(users);
     }
+
+    @Override
+    public boolean addMember() {
+        boolean comp = false;
+        String memberName = Utils.readString("Introduce el usuario del miembro que quieres añadir");
+        if (projectRepo.addMember(memberName)) {
+            Utils.printMsg("Miembro añadido correctamente");
+        } else {
+            Utils.printMsg("Error al añadir el miembro");
+        }
+
+        return comp;
+    }
+
+    @Override
+    public boolean removeMember() {
+        boolean comp = false;
+        String memberName = Utils.readString("Introduce el usuario del miembro que quieres eliminar");
+        if (projectRepo.removeMember(memberName)) {
+            Utils.printMsg("Miembro eliminado correctamente");
+        } else {
+            Utils.printMsg("Error al eliminar el miembro");
+        }
+
+        return comp;
+    }
+
+}
 
 
 
