@@ -75,6 +75,16 @@ public class TaskRepo extends Repo<Task>{
         return taskToReturn;
     }
 
+    public boolean selectTask(String taskName){
+        boolean comp=false;
+        Task taskToSelect=Serializator.deserializeObject("./src/TaskFileSaves/"+taskName);
+        if (taskToSelect!=null){
+            SelectedTask.addTask(taskToSelect);
+            comp=true;
+        }
+        return comp;
+    }
+
     @Override
     public ArrayList<Task> browseList() {
         return (ArrayList<Task>) SelectedProject.get_instance().getActualProject().getTasks();
