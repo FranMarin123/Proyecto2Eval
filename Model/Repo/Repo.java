@@ -38,6 +38,6 @@ public abstract class Repo<T> implements iRepo<T> {
     public abstract T selectAndSaveInAFile(T selected);
     public abstract T removeFromFiles(T selected);
     public abstract T browseOne(String id);
-    public abstract T upgrade(T userToUpgrade, String oldPassword);
+    public abstract T upgrade(T userToUpgrade, String name);
     public abstract ArrayList<T> browseList();
 }

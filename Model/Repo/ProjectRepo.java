@@ -58,14 +58,24 @@ public class ProjectRepo extends Repo<Project>{
         File projectFile=new File("./src/ProjectFileSaves/"+username);
         Project projectToReturn=null;
         if (projectFile.exists()){
-            projectToReturn=(Project) Serializator.deserializeObject(projectFile.toString());
+            projectToReturn=Serializator.deserializeObject(projectFile.toString());
         }
         return projectToReturn;
     }
 
     @Override
-    public Project upgrade(Project userToUpgrade, String oldPassword) {
-        return null;
+    public Project upgrade(Project projectToUpgrade, String name) {
+        File projectSelectedFile = new File("./src/ProjectFileSaves/" + name.toLowerCase().replaceAll(" ", ""));
+        File projectUpgradedFile = new File("./src/ProjectFileSaves/" + projectToUpgrade.getName().toLowerCase().replaceAll(" ", ""));
+        Project projectToReturn=null;
+        if (!projectUpgradedFile.exists()){
+            projectToReturn=Serializator.deserializeObject(projectSelectedFile.toString());
+            removeFromArrayFile(projectToReturn);
+            projectSelectedFile.delete();
+            saveProject(projectToUpgrade);
+            addProjectToArrayFile(projectToUpgrade);
+        }
+        return projectToReturn;
     }
 
     /**
@@ -89,7 +99,7 @@ public class ProjectRepo extends Repo<Project>{
         File projectsFile = new File("./src/ProjectFileSaves/projects.bin");
         boolean correctAdd = false;
         if (projectsFile.exists()) {
-            List<Project> projectsFromFile = (List<Project>) Serializator.deserializeObject(projectsFile.toString());
+            List<Project> projectsFromFile = Serializator.deserializeObject(projectsFile.toString());
                 projectsFromFile.add(projectToAdd);
                 Serializator.serializeObject(projectsFromFile, projectsFile.toString());
                 correctAdd = true;
@@ -111,7 +121,7 @@ public class ProjectRepo extends Repo<Project>{
     public boolean removeFromArrayFile(Project projectToRemove) {
         File projectsFile = new File("./src/ProjectFileSaves/projects.bin");
         boolean correctRemove = false;
-        List<Project> projectsFromFile = (List<Project>) Serializator.deserializeObject(projectsFile.toString());
+        List<Project> projectsFromFile = Serializator.deserializeObject(projectsFile.toString());
         if (projectsFromFile.remove(projectToRemove)) {
             correctRemove = true;
         }
@@ -121,7 +131,7 @@ public class ProjectRepo extends Repo<Project>{
     public boolean selectAProject(String projectName){
         boolean comp=false;
         File projectFile=new File("./src/ProjectFileSaves/"+projectName);
-        Project projectToCheck=(Project) Serializator.deserializeObject(projectFile.toString());
+        Project projectToCheck=Serializator.deserializeObject(projectFile.toString());
         if (projectFile.exists() && UserSesion.getInstance().getProjects().contains(projectToCheck)){
             SelectedProject.addProject(projectToCheck);
             comp=true;
@@ -129,7 +139,29 @@ public class ProjectRepo extends Repo<Project>{
         return comp;
     }
 
+    public boolean addMember(String userName){
+        User userToAdd=Serializator.deserializeObject("./src/ProjectFileSaves/"+userName);
+        boolean comp=SelectedProject.get_instance().getActualProject().createUser(userToAdd);
+        if (comp){
+            saveProject(SelectedProject.get_instance().getActualProject());
+        }
+        return comp;
+    }
+
+    public boolean removeMember(String userName){
+        User userToAdd=Serializator.deserializeObject("./src/ProjectFileSaves/"+userName);
+        boolean comp=SelectedProject.get_instance().getActualProject().deleteUser(userToAdd);
+        if (comp){
+            saveProject(SelectedProject.get_instance().getActualProject());
+        }
+        return comp;
+    }
+
+
+
     public static boolean saveProject(Project projectToSave){
         return Serializator.serializeObject(projectToSave,"./src/ProjectFileSaves/"+projectToSave.getName());
     }
+
+
 }
