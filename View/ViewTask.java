@@ -1,13 +1,22 @@
 package View;
 
 import Interfaces.iViewTask;
+import Model.Project;
 import Model.Task;
+import Model.User;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ViewTask implements iViewTask {
+
+    /**
+     * @author Javier Fernández
+     * Método para mostrar el Menu Tareas de 5 opciones para elegir
+     * Method to display the task menu with 5 options to choose
+     * @return int
+     */
     @Override
     public int menuTask() {
         // Muestra el menu
@@ -38,43 +47,114 @@ public class ViewTask implements iViewTask {
         }
     }
 
+    /**
+     * @author Javier Fernández
+     * Método para crear una tarea
+     * Method to create a task
+     * @return Task
+     */
     @Override
     public Task createTask() {
         // Muestra el menu
         Scanner scanner = new Scanner(System.in);
 
         System.out.println();
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║          === CREAR TAREA ===         ║");
-        System.out.println("╠══════════════════════════════════════╣");
+        System.out.println("╔════════════════════════════════════════════════════════════╗");
+        System.out.println("║                   === 🛠️ CREAR TAREA 🛠️ ===              ║");
+        System.out.println("╠════════════════════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre Usuario Asigando: ");
         String taskNameUserInput = scanner.nextLine();
+        // Crea un objeto User temporal con la entrada del usuario
+        User userTemporary = new User(taskNameUserInput, null, null, null);
         System.out.print(" \uD83D\uDD10 Nombre Tarea: ");
         String taskNameTaskInput = scanner.nextLine();
         System.out.print(" \uD83D\uDD10 Descripción: ");
         String taskDescriptionInput = scanner.nextLine();
-        System.out.println("╚══════════════════════════════════════╝");
+        System.out.println("╚════════════════════════════════════════════════════════════╝");
 
         // Crea un objeto Task temporal con la entrada del usuario
-        Task temporaryTask = new Task(taskNameUserInput, taskNameTaskInput, taskDescriptionInput);
+        Task temporaryTask = new Task(userTemporary, taskNameTaskInput, taskDescriptionInput);
 
         // Devuelve el objeto Project temporal
         return temporaryTask;
     }
 
+    /**
+     * @author Javier Fernández
+     * Método para eliminar una tarea
+     * Method to remove a task
+     * @return Task
+     */
     @Override
     public Task removeTask() {
+        // Muestra el menú
+        Scanner scanner = new Scanner(System.in);
 
-        return null;
+        System.out.println();
+        System.out.println("╔════════════════════════════════════════════╗");
+        System.out.println("║         === ❌ ELIMINAR TAREA ❌ ===       ║");
+        System.out.println("╠════════════════════════════════════════════╣");
+        System.out.print(" \uD83D\uDC64 Nombre Tarea: ");
+        String taskNameInput = scanner.nextLine();
+        System.out.println("╚════════════════════════════════════════════╝");
+
+        // Crea y devuelve un nuevo objeto Task con la información ingresada
+        return new Task(null, taskNameInput, null);
     }
 
     @Override
     public void showTask(Task taskToShow) {
+        // Muestra el menú
+        System.out.println();
+        System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                              === ✏ TAREA ✏ ===                             ║");
+        System.out.println("╠══════════════════════════════════════════════════════════════════════════════╣");
 
+        if (taskToShow != null) {
+            System.out.println(" \uD83D\uDD25 Nombre: " + taskToShow.getName());
+            System.out.println(" \uD83D\uDCDD Descripción: " + taskToShow.getDecripcion());
+            System.out.println(" \uD83D\uDCC5 Fecha de Inicio: " + taskToShow.getDateStar());
+            System.out.println(" \uD83D\uDCC4 Fecha de Finalización: " + taskToShow.getDateFinis());
+            System.out.println(" \uD83D\uDE80 Estado: " + taskToShow.getEstado());
+            System.out.println(" \uD83D\uDC68‍ Persona Encargada: " + taskToShow.getIntegrante().getNameUser());
+        } else {
+            System.out.println(" ❌ No se proporcionó una tarea válida para mostrar.");
+        }
+
+        System.out.println("╚═════════════════════════════════════════════════════════════════════════════╝");
     }
 
+    /**
+     * @author Javier Fernández
+     * Metodo para listar las tareas
+     * Method to list the tasks
+     */
     @Override
     public void listTask(ArrayList<Task> tasks) {
+        Task selectedTask = null;
 
+        if (tasks != null && !tasks.isEmpty()) {
+            int taskIndex = 1;
+
+            System.out.println();
+            System.out.println("╔══════════════════════════════════════════════════════════╗");
+            System.out.println("║             === \uD83D\uDCCB LISTA DE TAREAS \uD83D\uDCCB ===           ║");
+            System.out.println("╠══════════════════════════════════════════════════════════╣");
+
+            // Mostrar la lista de tareas y sus detalles uno por uno
+            for (Task task : tasks) {
+                System.out.println(" [" + taskIndex + "] " + task.getName());
+                // Llama al método showTask para mostrar los detalles de la tarea actual
+                showTask(task);
+
+                // Puedes agregar aquí la lógica para que el usuario seleccione una tarea, si es necesario
+
+                taskIndex++;
+            }
+
+            System.out.println("╚════════════════════════════════════════════════════════╝");
+        } else {
+            System.out.println(" ❌ No hay tareas disponibles.");
+        }
     }
 }
