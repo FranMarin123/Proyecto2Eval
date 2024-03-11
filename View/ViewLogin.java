@@ -53,7 +53,9 @@ public class ViewLogin implements iViewLogin {
         System.out.print(" \uD83D\uDD10 Contraseña: ");
         String passwordInput = scanner.nextLine();
         System.out.println("╚══════════════════════════════════════╝");
-        return null;
+
+        // Crear un usuario temporal con los datos ingresados por el usuario
+        return new User(usernameInput, passwordInput, null, null);
     }
 
     /**
