@@ -18,6 +18,7 @@ public class UserSesion {
 
     private UserSesion(User user) {
         currentUser = user;
+        projects = new ArrayList<>();
         projects = takeAllProjectForAUser();
     }
 
@@ -49,7 +50,7 @@ public class UserSesion {
     public List<Project> takeAllProjectForAUser() {
         List<Project> userProjects = new ArrayList<>();
         File projectsFile = new File("./src/ProjectFileSaves/projects.bin");
-        List<Project> allProjects = (List<Project>) Serializator.deserializeObject(projectsFile.toString());
+        List<Project> allProjects = Serializator.deserializeObject(projectsFile.toString());
         Iterator<Project> iterator = allProjects.iterator();
         if (projectsFile.exists()) {
             while (iterator.hasNext()) {
