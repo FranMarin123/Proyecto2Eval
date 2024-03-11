@@ -17,7 +17,7 @@ public class ViewLogin implements iViewLogin {
 
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║          === REGISTRARSE ===         ║");
+        System.out.println("║        === \uD83D\uDD11 REGISTRARSE \uD83D\uDD11 ===         ║");
         System.out.println("╠══════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre de Usuario: ");
         String usernameInput = scanner.nextLine();
@@ -30,12 +30,12 @@ public class ViewLogin implements iViewLogin {
         System.out.println("╚══════════════════════════════════════╝");
 
         // Crear un usuario temporal con los datos ingresados por el usuario
-        User temporaryUser = new User(usernameInput, passwordInput, emailInput, nameInput, '0');
+        User temporaryUser = new User(usernameInput, passwordInput, emailInput, nameInput);
 
         // Puedes devolver este usuario temporal o utilizarlo según tus necesidades
         return temporaryUser;
     }
-    
+
     /**
      * @author Javier Fernández
      * Metodo para mostrar el menu de inicio de sesión
@@ -46,7 +46,7 @@ public class ViewLogin implements iViewLogin {
 
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║        === INICIAR SESIÓN ===        ║");
+        System.out.println("║        === \uD83D\uDD11 INICIAR SESIÓN \uD83D\uDD11 ===        ║");
         System.out.println("╠══════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre de Usuario: ");
         String usernameInput = scanner.nextLine();

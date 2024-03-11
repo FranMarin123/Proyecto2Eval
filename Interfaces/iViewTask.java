@@ -1,8 +1,11 @@
 package Interfaces;
 
+import Model.Project;
 import Model.Task;
+import Model.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface iViewTask {
     int menuTask();
