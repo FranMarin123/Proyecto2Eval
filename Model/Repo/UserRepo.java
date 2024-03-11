@@ -56,8 +56,18 @@ public class UserRepo extends Repo<User> {
     }
 
     @Override
-    public User upgrade(User userToUpgrade, String oldPassword) {
-        return null;
+    public User upgrade(User userToUpgrade, String name) {
+        File userSelectedFile = new File("./src/UserFileSaves/" + name.toLowerCase().replaceAll(" ", ""));
+        File userUpgradedFile = new File("./src/UserFileSaves/" + userToUpgrade.getNameUser().toLowerCase().replaceAll(" ", ""));
+        User userToReturn=null;
+        if (!userUpgradedFile.exists()){
+            userToReturn=(User) Serializator.deserializeObject(userSelectedFile.toString());
+            removeFromArrayFile(userToReturn);
+            userSelectedFile.delete();
+            saveUser(userToUpgrade);
+            addUserToArrayFile(userToUpgrade);
+        }
+        return userToReturn;
     }
 
     @Override
