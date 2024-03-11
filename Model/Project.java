@@ -95,21 +95,18 @@ public class Project implements Serializable {
 
     /**
      * Elimina el mienbro del proyecto mediante un iterator
-     * @param nombre el nombre del usuario para eliminarlo
+     * @param toremove el nombre del usuario para eliminarlo
      *
      * @return elimina el usuario
      */
-    public int DeleteUser(String nombre) {
-        int eliminados = 0;
-        Iterator<User> iterator = members.iterator();
-        while (iterator.hasNext()) {
-            User tmpUser = iterator.next();
-            if (tmpUser.getNameUser().equalsIgnoreCase(nombre)) {
-                iterator.remove();
-                eliminados++;
-            }
+    public boolean deleteUser(User toremove) {
+        boolean isDiferent=false;
+
+        if(!members.contains(toremove)){
+            members.remove(toremove);
+            isDiferent=true;
         }
-        return eliminados;
+        return isDiferent;
     }
     /**
      * Crea y añade un tarea
@@ -127,20 +124,17 @@ public class Project implements Serializable {
 
     /**
      * Elimina el tarea del proyecto
-     * @param nombre el nombre de la tarea para eliminarlo
+     * @param toremove el nombre de la tarea para eliminarlo
      * @return elimina la tarea
      */
-    public int deleteTask(String nombre) {
-        int eliminados = 0;
-        Iterator<Task> iterator = tasks.iterator();
-        while (iterator.hasNext()) {
-            Task tmpTask = iterator.next();
-            if (tmpTask.getName().equalsIgnoreCase(nombre)) {
-                iterator.remove();
-                eliminados++;
-            }
+    public boolean deleteTask(Task toremove) {
+        boolean isDifetent= false;
+        if(!tasks.contains(toremove)){
+            tasks.remove(toremove);
+            isDifetent=true;
         }
-        return eliminados;
+        return isDifetent;
+
     }
 
 }
