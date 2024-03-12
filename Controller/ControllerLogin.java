@@ -22,7 +22,7 @@ public class ControllerLogin implements iLoginController {
         User userToCreate = viewLogin.displayRegister();
         User userTemp = repo.selectAndSaveInAFile(userToCreate);
 
-        if (userTemp != null) {
+        if (userTemp.getNameUser() != null || userTemp.getPassword() != null || userTemp.getGmail() != null) {
             viewLogin.showMessageStartSessionSuccessful();
             comp = true;
         } else {

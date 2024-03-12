@@ -58,7 +58,7 @@ public class UserSesion {
             if (projectsFile.exists()) {
                 while (iterator.hasNext()) {
                     Project tmpProject = iterator.next();
-                    if (tmpProject.getBoss().equals(currentUser) || proveUserMemberOf(tmpProject)) {
+                    if (tmpProject.getBoss()!=null && tmpProject.getBoss().equals(currentUser) || proveUserMemberOf(tmpProject)) {
                         userProjects.add(tmpProject);
                     }
                 }

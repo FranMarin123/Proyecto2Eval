@@ -35,7 +35,7 @@ public class Project implements Serializable {
     }
 
     public void setBoss(User boss) {
-        boss = boss;
+        this.boss = boss;
     }
 
     public String getName() {
