@@ -19,9 +19,9 @@ public class ControllerProject implements iProjectController {
         Project projectTemp = projectRepo.selectAndSaveInAFile(projectToCreate);
 
         if (projectTemp != null) {
-            Utils.printMsg("Proyecto creado corretamente");
+            Utils.printMsg("✅ Proyecto creado corretamente");
         } else {
-            Utils.printMsg("Error al crear el Proyecto");
+            Utils.printMsg("❌ Error al crear el Proyecto");
         }
         return null;
     }
@@ -34,9 +34,9 @@ public class ControllerProject implements iProjectController {
         Project removedProject = projectRepo.removeFromFiles(projectToDelete);
 
         if (removedProject != null) {
-            Utils.printMsg("Usuario eliminado correctamente");
+            Utils.printMsg("✅ Proyecto eliminado correctamente");
         } else {
-            Utils.printMsg("Fallo al eliminar el proyecto, comprueba el nombre");
+            Utils.printMsg("❌ Fallo al eliminar el proyecto, comprueba el nombre");
         }
 
         return removedProject;
@@ -50,17 +50,17 @@ public class ControllerProject implements iProjectController {
         if (projecttoshow != null) {
             viewProject.showProject(projecttoshow);
         } else {
-            Utils.printMsg("Proyecto no encontrada");
+            Utils.printMsg("❌ Proyecto no encontrado");
         }
     }
 
     @Override
     public void selectProject() {
-        String nameProject = Utils.readString("Introduce el nombre del proyecto");
+        String nameProject = Utils.readString("Introduce el nombre del proyecto: ");
         if (projectRepo.selectAProject(nameProject)) {
-            Utils.printMsg("Se ha selecionado correctamente");
+            Utils.printMsg("✅ Se ha selecionado correctamente");
         } else {
-            Utils.printMsg("Ha habido un problema al seleccionar");
+            Utils.printMsg("❌ Ha habido un problema al seleccionar");
         }
     }
 
@@ -74,7 +74,7 @@ public class ControllerProject implements iProjectController {
 
     @Override
     public void upgradeProject() {
-        String oldname = Utils.readString("Nombre del proyecto a modificar");
+        String oldname = Utils.readString("Nombre del proyecto a modificar: ");
 
         Project projectToUpgrade = viewProject.upgradeProject();
 

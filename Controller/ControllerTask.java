@@ -17,9 +17,9 @@ public class ControllerTask implements iTaskController {
         Task taskcreate = viewTask.createTask();
         taskRepo.selectAndSaveInAFile(taskcreate);
         if (taskcreate != null) {
-            Utils.printMsg("Tarea creada correctamente");
+            Utils.printMsg("✅ Tarea creada correctamente");
         } else {
-            Utils.printMsg("Error al crear la tarea");
+            Utils.printMsg("❌ Error al crear la tarea");
         }
     }
 
@@ -31,9 +31,9 @@ public class ControllerTask implements iTaskController {
         Task removedTask = taskRepo.removeFromFiles(taskToDelete);
 
         if (removedTask != null) {
-            Utils.printMsg("Usuario eliminado correctamente");
+            Utils.printMsg("✅ Tarea eliminada correctamente");
         } else {
-            Utils.printMsg("Fallo al eliminar la tarea, comprueba el nombre");
+            Utils.printMsg("❌ Fallo al eliminar la tarea, comprueba el nombre");
         }
 
         return removedTask;
@@ -48,23 +48,23 @@ public class ControllerTask implements iTaskController {
 
     @Override
     public void showTask() {
-        String nameTask = Utils.readString("Introduce el nombre de la tarea");
+        String nameTask = Utils.readString("Introduce el nombre de la tarea: ");
         Task taskToShow = taskRepo.browseOne(nameTask);
         //Metodo de la vista para mostrar
         if (taskToShow != null) {
             viewTask.showTask(taskToShow);
         } else {
-            Utils.printMsg("Tarea no encontrada");
+            Utils.printMsg("❌ Tarea no encontrada");
         }
     }
 
     @Override
     public void selectTask() {
-       String nameTask = Utils.readString("Introduce el nombre de la tarea");
+       String nameTask = Utils.readString("Introduce el nombre de la tarea: ");
         if (taskRepo.selectTask(nameTask)) {
-            Utils.printMsg("Se ha selecionado correctamente");
+            Utils.printMsg("✅ Se ha selecionado correctamente");
         } else {
-            Utils.printMsg("Ha habido un problema al seleccionar");
+            Utils.printMsg("❌ Ha habido un problema al seleccionar");
         }
     }
     }
