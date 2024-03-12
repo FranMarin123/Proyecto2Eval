@@ -6,6 +6,7 @@ import Model.User;
 import java.util.Scanner;
 
 public class ViewLogin implements iViewLogin {
+    Scanner scanner = new Scanner(System.in);
 
     /**
      * @author Javier Fernández
@@ -13,8 +14,7 @@ public class ViewLogin implements iViewLogin {
      * Method to display the registration menu
      */
     public User displayRegister() {
-        Scanner scanner = new Scanner(System.in);
-
+        // Muestra el menu
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║        === \uD83D\uDD11 REGISTRARSE \uD83D\uDD11 ===         ║");
@@ -42,8 +42,7 @@ public class ViewLogin implements iViewLogin {
      * Method to display the log in menu
      */
     public User displayLogIn() {
-        Scanner scanner = new Scanner(System.in);
-
+        // Muestra el menu
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║        === \uD83D\uDD11 INICIAR SESIÓN \uD83D\uDD11 ===        ║");

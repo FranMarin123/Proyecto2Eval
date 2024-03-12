@@ -160,7 +160,7 @@ public class ViewProject implements iViewProject {
     @Override
     public void showProject(Project projecttoshow) {
         Project currentProject = null;
-
+        // Mostrar el proyecto
         if (currentProject != null) {
             System.out.println();
             System.out.println("╔════════════════════════════════════════════════════════╗");
@@ -202,7 +202,7 @@ public class ViewProject implements iViewProject {
     @Override
     public void listProject(List<Project> projects) {
         Project selectedProject = null;
-
+        // Mostrar la lista de proyectos
         if (projects != null && !projects.isEmpty()) {
             int projectIndex = 1;
 
