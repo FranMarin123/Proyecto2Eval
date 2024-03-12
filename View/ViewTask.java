@@ -58,7 +58,7 @@ public class ViewTask implements iViewTask {
         // Muestra el menu
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║                   === 🛠️ CREAR TAREA 🛠️ ===              ║");
+        System.out.println("                   === 🛠️ CREAR TAREA 🛠️ ===              ");
         System.out.println("╠════════════════════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre Usuario Asigando: ");
         String taskNameUserInput = scanner.nextLine();
@@ -88,7 +88,7 @@ public class ViewTask implements iViewTask {
         // Muestra el menú
         System.out.println();
         System.out.println("╔════════════════════════════════════════════╗");
-        System.out.println("║         === ❌ ELIMINAR TAREA ❌ ===       ║");
+        System.out.println("          === ❌ ELIMINAR TAREA ❌ ===       ");
         System.out.println("╠════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre Tarea: ");
         String taskNameInput = scanner.nextLine();
@@ -109,7 +109,7 @@ public class ViewTask implements iViewTask {
         // Muestra el menú
         System.out.println();
         System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                              === ✏ TAREA ✏ ===                             ║");
+        System.out.println("                               === ✏ TAREA ✏ ===                             ");
         System.out.println("╠══════════════════════════════════════════════════════════════════════════════╣");
 
         if (taskToShow != null) {
@@ -140,7 +140,7 @@ public class ViewTask implements iViewTask {
 
             System.out.println();
             System.out.println("╔══════════════════════════════════════════════════════════╗");
-            System.out.println("║             === \uD83D\uDCCB LISTA DE TAREAS \uD83D\uDCCB ===           ║");
+            System.out.println("              === \uD83D\uDCCB LISTA DE TAREAS \uD83D\uDCCB ===           ");
             System.out.println("╠══════════════════════════════════════════════════════════╣");
 
             // Mostrar la lista de tareas y sus detalles uno por uno

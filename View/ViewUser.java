@@ -22,7 +22,7 @@ public class ViewUser implements iViewUser {
             // Mostrar el Menu
             System.out.println();
             System.out.println("╔════════════════════════════════════════════════════════╗");
-            System.out.println("║             === 📋 LISTA DE USUARIOS 📋 ===            ║");
+            System.out.println("              === 📋 LISTA DE USUARIOS 📋 ===            ");
             System.out.println("╠════════════════════════════════════════════════════════╣");
 
             // Mostrar la lista de usuarios
@@ -50,7 +50,7 @@ public class ViewUser implements iViewUser {
         // Muestra el menú
         System.out.println();
         System.out.println("╔════════════════════════════════════════════╗");
-        System.out.println("║        === ❌ ELIMINAR USUARIO ❌ ===      ║");
+        System.out.println("         === ❌ ELIMINAR USUARIO ❌ ===      ");
         System.out.println("╠════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre Usuario: ");
         String userNameInput = scanner.nextLine();
@@ -71,7 +71,7 @@ public class ViewUser implements iViewUser {
         // Muestra el menu
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════╗");
-        System.out.println("║          === \uD83D\uDD04 ACTUALIZAR USUARIO \uD83D\uDD04 ===        ║");
+        System.out.println("           === \uD83D\uDD04 ACTUALIZAR USUARIO \uD83D\uDD04 ===        ");
         System.out.println("╠════════════════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre Usuario: ");
         String userNameUserInput = scanner.nextLine();
@@ -101,7 +101,7 @@ public class ViewUser implements iViewUser {
         // Muestra el menú
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════╗");
-        System.out.println("║                === 🔍 BUSCAR USUARIO 🔍 ===            ║");
+        System.out.println("                 === 🔍 BUSCAR USUARIO 🔍 ===            ");
         System.out.println("╠════════════════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre de Usuario: ");
         String usernameInput = scanner.nextLine();
@@ -123,7 +123,7 @@ public class ViewUser implements iViewUser {
             // Mostrar el usuario
             System.out.println();
             System.out.println("╔════════════════════════════════════════════════════════╗");
-            System.out.println("║                🔍 DETALLES DE USUARIO 🔍               ║");
+            System.out.println("                 🔍 DETALLES DE USUARIO 🔍               ");
             System.out.println("╠════════════════════════════════════════════════════════╣");
             System.out.println(" \uD83D\uDC64 Nombre de Usuario: " + user.getNameUser());
             System.out.println(" \uD83D\uDCE7 Correo Electrónico: " + user.getGmail());
