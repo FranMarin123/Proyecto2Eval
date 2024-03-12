@@ -102,7 +102,7 @@ public class Project implements Serializable {
     public boolean deleteUser(User toremove) {
         boolean isDiferent=false;
 
-        if(!members.contains(toremove)){
+        if(members.contains(toremove)){
             members.remove(toremove);
             isDiferent=true;
         }
@@ -129,7 +129,7 @@ public class Project implements Serializable {
      */
     public boolean deleteTask(Task toremove) {
         boolean isDifetent= false;
-        if(!tasks.contains(toremove)){
+        if(tasks.contains(toremove)){
             tasks.remove(toremove);
             isDifetent=true;
         }
