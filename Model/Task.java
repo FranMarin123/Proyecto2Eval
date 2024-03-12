@@ -44,6 +44,7 @@ public class Task implements Serializable {
         this.estado = estado;
         if(estado==Estado.Finalizado){
             dateFinis= LocalDate.now();
+            dateStar= LocalDate.now();
         }
         if(estado == Estado.Iniciada) {
             dateStar = LocalDate.now();

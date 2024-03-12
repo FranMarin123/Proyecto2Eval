@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class ViewLogin implements iViewLogin {
+    Scanner scanner = new Scanner(System.in);
 
     /**
      * @author Javier Fernández
@@ -20,9 +21,11 @@ public class ViewLogin implements iViewLogin {
         String emailInput = "";
         String nameInput="";
 
+
+        // Muestra el menu
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║        === \uD83D\uDD11 REGISTRARSE \uD83D\uDD11 ===         ║");
+        System.out.println("         === \uD83D\uDD11 REGISTRARSE \uD83D\uDD11 ===         ");
         System.out.println("╠══════════════════════════════════════╣");
         do {
         System.out.print(" \uD83D\uDC64 Nombre de Usuario: ");
@@ -53,11 +56,10 @@ public class ViewLogin implements iViewLogin {
      * Method to display the log in menu
      */
     public User displayLogIn() {
-        Scanner scanner = new Scanner(System.in);
-
+        // Muestra el menu
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║        === \uD83D\uDD11 INICIAR SESIÓN \uD83D\uDD11 ===        ║");
+        System.out.println("         === \uD83D\uDD11 INICIAR SESIÓN \uD83D\uDD11 ===        ");
         System.out.println("╠══════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre de Usuario: ");
         String usernameInput = scanner.nextLine();

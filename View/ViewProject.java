@@ -32,8 +32,12 @@ public class ViewProject implements iViewProject {
             System.out.println("  ==== [4]. ELIMINAR PROYECTOS \uD83D\uDDD1️️        ");
             System.out.println("  ===== [5]. SELECCIONAR UN PROYECTO ➡️️        ");
             System.out.println("  ====== [6]. ACTUALIZAR PROYECTOS ↻️ ");
-            System.out.println("  ======= [7]. SALIR / CERRAR SESION \uD83D\uDEAA️        ");
+            System.out.println("  ======= [7]. ELIMINAR USUARIO \uD83D\uDDD1️ ");
+            System.out.println("  ======== [8]. ACTUALIZAR USUARIO \uD83D\uDD04 ");
+            System.out.println("  ========= [9]. BUSCAR USUARIO \uD83D\uDD0D ");
+            System.out.println("  ========== [10]. SALIR / CERRAR SESION \uD83D\uDEAA️        ");
             System.out.println("╚════════════════════════════════════════════════════════╝");
+
 
             // Solicitar la entrada del usuario
             String userInput = JOptionPane.showInputDialog(null, "Selecciona una opción: ");
@@ -63,7 +67,7 @@ public class ViewProject implements iViewProject {
         // Muestra el menu
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════╗");
-        System.out.println("║               === 🔍 BUSCAR PROYECTO 🔍 ===            ║");
+        System.out.println("                === 🔍 BUSCAR PROYECTO 🔍 ===            ");
         System.out.println("╠════════════════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre del Proyecto: ");
         String projectNameInput = scanner.nextLine();
@@ -83,7 +87,7 @@ public class ViewProject implements iViewProject {
         // Muestra el menu
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════╗");
-        System.out.println("║                === 🛠️ CREAR PROYECTO 🛠️ ===            ║");
+        System.out.println("                 === 🛠️ CREAR PROYECTO 🛠️ ===            ");
         System.out.println("╠════════════════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre: ");
         String projectNameInput = scanner.nextLine();
@@ -109,7 +113,7 @@ public class ViewProject implements iViewProject {
         // Muestra el menu
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════╗");
-        System.out.println("║              === ❌ ELIMINAR PROYECTO ❌ ===           ║");
+        System.out.println("               === ❌ ELIMINAR PROYECTO ❌ ===           ");
         System.out.println("╠════════════════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre: ");
         String projectNameInput = scanner.nextLine();
@@ -132,7 +136,7 @@ public class ViewProject implements iViewProject {
         // Muestra el menu
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════╗");
-        System.out.println("║          === \uD83D\uDD04 ACTUALIZAR PROYECTO \uD83D\uDD04 ===        ║");
+        System.out.println("           === \uD83D\uDD04 ACTUALIZAR PROYECTO \uD83D\uDD04 ===        ");
         System.out.println("╠════════════════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre: ");
         String projectNameInput = scanner.nextLine();
@@ -156,11 +160,11 @@ public class ViewProject implements iViewProject {
     @Override
     public void showProject(Project projecttoshow) {
         Project currentProject = null;
-
+        // Mostrar el proyecto
         if (currentProject != null) {
             System.out.println();
             System.out.println("╔════════════════════════════════════════════════════════╗");
-            System.out.println("║                 ===  ✏ PROYECTO ✏ ===                ║");
+            System.out.println("                  ===  ✏ PROYECTO ✏ ===                ");
             System.out.println("╠════════════════════════════════════════════════════════╣");
             System.out.println(" * Detalles del Proyecto *");
             System.out.println(" \uD83D\uDC64 Nombre: " + currentProject.getName());
@@ -198,13 +202,13 @@ public class ViewProject implements iViewProject {
     @Override
     public void listProject(List<Project> projects) {
         Project selectedProject = null;
-
+        // Mostrar la lista de proyectos
         if (projects != null && !projects.isEmpty()) {
             int projectIndex = 1;
 
             System.out.println();
             System.out.println("╔════════════════════════════════════════════════════════╗");
-            System.out.println("║     === \uD83D\uDCCB LISTA DE PROYECTOS \uD83D\uDCCB ===    ║");
+            System.out.println("      === \uD83D\uDCCB LISTA DE PROYECTOS \uD83D\uDCCB ===    ");
             System.out.println("╠════════════════════════════════════════════════════════╣");
 
             // Mostrar la lista de proyectos

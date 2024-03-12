@@ -97,9 +97,10 @@ public class ViewTaskScreen implements iViewTaskScreen {
 
     @Override
     public Task modifyNameTask(Task task) {
+        // Muestra la información de la tarea
         System.out.println();
         System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                          === ✏ MODIFICAR NOMBRE ✏ ===                      ║");
+        System.out.println("                           === ✏ MODIFICAR NOMBRE ✏ ===                      ");
         System.out.println("╠══════════════════════════════════════════════════════════════════════════════╣");
 
         // Pide al usuario que ingrese el nuevo nombre
@@ -127,9 +128,10 @@ public class ViewTaskScreen implements iViewTaskScreen {
      */
     @Override
     public Task modifyDescriptionTask(Task task) {
+        // Muestra el menu de la descripción
         System.out.println();
         System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                       === ✏ MODIFICAR DESCRIPCION ✏ ===                    ║");
+        System.out.println("                        === ✏ MODIFICAR DESCRIPCION ✏ ===                    ");
         System.out.println("╠══════════════════════════════════════════════════════════════════════════════╣");
 
         // Pide al usuario que ingrese el nuevo nombre

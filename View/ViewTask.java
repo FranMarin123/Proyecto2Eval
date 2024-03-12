@@ -1,7 +1,6 @@
 package View;
 
 import Interfaces.iViewTask;
-import Model.Project;
 import Model.Task;
 import Model.User;
 
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ViewTask implements iViewTask {
+    Scanner scanner = new Scanner(System.in);
 
     /**
      * @author Javier Fernández
@@ -56,11 +56,9 @@ public class ViewTask implements iViewTask {
     @Override
     public Task createTask() {
         // Muestra el menu
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║                   === 🛠️ CREAR TAREA 🛠️ ===              ║");
+        System.out.println("                   === 🛠️ CREAR TAREA 🛠️ ===              ");
         System.out.println("╠════════════════════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre Usuario Asigando: ");
         String taskNameUserInput = scanner.nextLine();
@@ -88,11 +86,9 @@ public class ViewTask implements iViewTask {
     @Override
     public Task removeTask() {
         // Muestra el menú
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println();
         System.out.println("╔════════════════════════════════════════════╗");
-        System.out.println("║         === ❌ ELIMINAR TAREA ❌ ===       ║");
+        System.out.println("          === ❌ ELIMINAR TAREA ❌ ===       ");
         System.out.println("╠════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre Tarea: ");
         String taskNameInput = scanner.nextLine();
@@ -102,12 +98,18 @@ public class ViewTask implements iViewTask {
         return new Task(null, taskNameInput, null);
     }
 
+    /**
+     * @author Javier Fernández
+     * Método para mostrar una tarea
+     * Method to show a task
+     * @param taskToShow
+     */
     @Override
     public void showTask(Task taskToShow) {
         // Muestra el menú
         System.out.println();
         System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                              === ✏ TAREA ✏ ===                             ║");
+        System.out.println("                               === ✏ TAREA ✏ ===                             ");
         System.out.println("╠══════════════════════════════════════════════════════════════════════════════╣");
 
         if (taskToShow != null) {
@@ -132,13 +134,13 @@ public class ViewTask implements iViewTask {
     @Override
     public void listTask(ArrayList<Task> tasks) {
         Task selectedTask = null;
-
+        // Menu de tareas
         if (tasks != null && !tasks.isEmpty()) {
             int taskIndex = 1;
 
             System.out.println();
             System.out.println("╔══════════════════════════════════════════════════════════╗");
-            System.out.println("║             === \uD83D\uDCCB LISTA DE TAREAS \uD83D\uDCCB ===           ║");
+            System.out.println("              === \uD83D\uDCCB LISTA DE TAREAS \uD83D\uDCCB ===           ");
             System.out.println("╠══════════════════════════════════════════════════════════╣");
 
             // Mostrar la lista de tareas y sus detalles uno por uno
@@ -146,8 +148,6 @@ public class ViewTask implements iViewTask {
                 System.out.println(" [" + taskIndex + "] " + task.getName());
                 // Llama al método showTask para mostrar los detalles de la tarea actual
                 showTask(task);
-
-                // Puedes agregar aquí la lógica para que el usuario seleccione una tarea, si es necesario
 
                 taskIndex++;
             }

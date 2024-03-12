@@ -21,10 +21,11 @@ public class testModel {
     project.createTask(task2);
     System.out.println(project);
     System.out.println("Aqui quitamos el usuario a travez del nombre del usuario");
+    project.deleteUser(user3);
+    project.deleteTask(task2);
     System.out.println(project);
     System.out.println("ahora cambiemos el estado de tarea");
     task2.setEstado(Estado.Finalizado);
-    task2.setEstado(Estado.Iniciada);
     System.out.println(project);
     }
 }
