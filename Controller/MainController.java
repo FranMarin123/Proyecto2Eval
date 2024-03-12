@@ -16,6 +16,14 @@ public class MainController {
     ControllerUser controllerUser = new ControllerUser();
     View view = new View();
 
+    /**
+     * Método para manejar la selección del menú de inicio de sesión.
+     * - Muestra un mensaje de bienvenida.
+     * - Crea un objeto MainMenu para mostrar el menú principal.
+     * - Realiza un bucle para recibir y procesar la selección del usuario.
+     * - Ejecuta la lógica correspondiente según la opción seleccionada por el usuario.
+     * - Si se registra o inicia sesión un usuario con éxito, muestra el menú principal.
+     */
     public void loginMainMenuSelection() {
         view.showMessageWelcome();
         MainMenu mainMenu = new MainMenu();
@@ -46,6 +54,13 @@ public class MainController {
         } while (userInput != 3);
     }
 
+    /**
+     * Método para manejar las opciones del menú principal.
+     * - Crea un objeto ViewProject para mostrar el menú de proyectos.
+     * - Realiza un bucle para recibir y procesar la selección del usuario.
+     * - Ejecuta la lógica correspondiente según la opción seleccionada por el usuario.
+     * - Si se selecciona un proyecto con éxito, muestra el menú del proyecto.
+     */
     public void menu() {
         ViewProject viewProject = new ViewProject();
         int userInput;
@@ -108,6 +123,13 @@ public class MainController {
 
     }
 
+    /**
+     * Método para manejar las opciones del menú del proyecto.
+     * - Crea un objeto ViewTask para mostrar el menú de tareas.
+     * - Realiza un bucle para recibir y procesar la selección del usuario.
+     * - Ejecuta la lógica correspondiente según la opción seleccionada por el usuario.
+     * - Si se selecciona una tarea con éxito, muestra el menú de la tarea.
+     */
     public void menuProject() {
         ViewTask viewTask = new ViewTask();
         int userInput;
@@ -166,6 +188,12 @@ public class MainController {
         } while (userInput != 9);
     }
 
+    /**
+     * Método para manejar las opciones del menú de la tarea.
+     * - Crea un objeto ViewTaskScreen para mostrar el menú de la tarea.
+     * - Realiza un bucle para recibir y procesar la selección del usuario.
+     * - Ejecuta la lógica correspondiente según la opción seleccionada por el usuario.
+     */
     public void menuTask() {
         ViewTaskScreen viewTaskScreen = new ViewTaskScreen();
         TaskRepo taskRepo = new TaskRepo();

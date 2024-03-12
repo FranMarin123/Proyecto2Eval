@@ -22,7 +22,7 @@ public class ControllerLogin implements iLoginController {
         User userToCreate = viewLogin.displayRegister();
         User userTemp = repo.createUser(userToCreate);
 
-        if (userTemp!=null && !userTemp.getNameUser().isEmpty()
+        if (userTemp != null && !userTemp.getNameUser().isEmpty()
                 && !userTemp.getPassword().isEmpty() && !userTemp.getGmail().isEmpty()) {
             viewLogin.showMessageStartSessionSuccessful();
             comp = true;
