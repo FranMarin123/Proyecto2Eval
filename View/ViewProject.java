@@ -32,8 +32,12 @@ public class ViewProject implements iViewProject {
             System.out.println("  ==== [4]. ELIMINAR PROYECTOS \uD83D\uDDD1️️        ");
             System.out.println("  ===== [5]. SELECCIONAR UN PROYECTO ➡️️        ");
             System.out.println("  ====== [6]. ACTUALIZAR PROYECTOS ↻️ ");
-            System.out.println("  ======= [7]. SALIR / CERRAR SESION \uD83D\uDEAA️        ");
+            System.out.println("  ======= [7]. ELIMINAR USUARIO \uD83D\uDDD1️ ");
+            System.out.println("  ======== [8]. ACTUALIZAR USUARIO \uD83D\uDD04 ");
+            System.out.println("  ========= [9]. BUSCAR USUARIO \uD83D\uDD0D ");
+            System.out.println("  ========== [10]. SALIR / CERRAR SESION \uD83D\uDEAA️        ");
             System.out.println("╚════════════════════════════════════════════════════════╝");
+
 
             // Solicitar la entrada del usuario
             String userInput = JOptionPane.showInputDialog(null, "Selecciona una opción: ");
