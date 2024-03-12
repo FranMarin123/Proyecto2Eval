@@ -27,8 +27,8 @@ public class UserRepo extends Repo<User> {
             UserSesion.getInstance(selected);
             userCreated = selected;
             saveUser(UserSesion.getInstance().getCurrentUser());
-        } else if (userSelectedFile.exists() && selected.getName().isEmpty()) {
-            userCreated = (User) Serializator.deserializeObject(userSelectedFile.toString());
+        } else if (userSelectedFile.exists() && selected.getName()!=null) {
+            userCreated = Serializator.deserializeObject(userSelectedFile.toString());
             UserSesion.getInstance(userCreated);
         }
         return userCreated;

@@ -13,7 +13,6 @@ public class Serializator {
             oos.writeObject(obj);
             result=true;
         }catch(IOException e){
-            //no voy a hacer nada por simplicidad
         }
         return result;
     }
@@ -25,7 +24,6 @@ public class Serializator {
         )){
             result=(T)ois.readObject();
         }catch(IOException | ClassNotFoundException e){
-            //no hago nada por simplicidad
         }
         return result;
     }
