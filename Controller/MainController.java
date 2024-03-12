@@ -70,6 +70,18 @@ public class MainController {
                 controllerProject.upgradeProject();
                 break;
             case 7:
+                // Lógica para eliminar usuario
+                controllerUser.removeUser();
+                break;
+            case 8:
+                // Lógica para actualizar usuario
+                controllerUser.upgradeUser();
+                break;
+            case 9:
+                // Lógica para buscar usuario
+                controllerUser.showUser();
+                break;
+            case 10:
                 // Lógica para salir / cerrar sesión
                 loginMainMenuSelection();
                 break;
