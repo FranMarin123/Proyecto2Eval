@@ -18,26 +18,24 @@ public class MainController {
         view.showMessageWelcome();
         MainMenu mainMenu = new MainMenu();
         int userInput;
-        boolean comp = false;
         do {
             userInput = mainMenu.displayMainMenu();
             switch (userInput) {
                 case 1:
                     // Lógica para registrar un usuario
-                    comp = controllerLogin.createUser();
+                    controllerLogin.createUser();
+                    menu();
                     break;
                 case 2:
                     // Lógica para iniciar sesión de un usuario
-                    comp = controllerLogin.selectUser();
+                    controllerLogin.selectUser();
+                    menu();
                     break;
                 case 3:
                     view.showMessageGoodBye();
                     break;
                 default:
                     throw new IllegalStateException("Opción inválida: " + userInput);
-            }
-            if (comp) {
-                menu();
             }
         } while (userInput != 3);
     }
