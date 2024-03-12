@@ -21,7 +21,7 @@ public class ViewUser implements iViewUser {
         if (users != null && !users.isEmpty()) {
             System.out.println();
             System.out.println("╔════════════════════════════════════════════════════════╗");
-            System.out.println("║            === 📋 LISTA DE USUARIOS 📋 ===             ║");
+            System.out.println("║             === 📋 LISTA DE USUARIOS 📋 ===            ║");
             System.out.println("╠════════════════════════════════════════════════════════╣");
 
             // Mostrar la lista de usuarios
