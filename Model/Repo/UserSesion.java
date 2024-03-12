@@ -8,7 +8,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 
 public class UserSesion {
     private static UserSesion _instance;
@@ -19,7 +18,7 @@ public class UserSesion {
     private UserSesion(User user) {
         currentUser = user;
         projects = new ArrayList<>();
-        if (takeAllProjectForAUser()!=null) {
+        if (takeAllProjectForAUser() != null) {
             projects = takeAllProjectForAUser();
         }
     }
@@ -28,11 +27,19 @@ public class UserSesion {
         return _instance;
     }
 
-    public static UserSesion getInstance(User userToUse) {
-        if (_instance == null) {
+    public static void getInstance(User userToUse) {
+        if (userToUse!=null) {
             _instance = new UserSesion(userToUse);
         }
-        return _instance;
+    }
+
+    public boolean removeProject(Project projectToRemove){
+        boolean comp=false;
+        if (projectToRemove!=null){
+            projects.remove(projectToRemove);
+            comp=true;
+        }
+        return comp;
     }
 
     public User getCurrentUser() {
@@ -53,12 +60,12 @@ public class UserSesion {
         List<Project> userProjects = new ArrayList<>();
         File projectsFile = new File("./src/ProjectFileSaves/projects.bin");
         List<Project> allProjects = Serializator.deserializeObject(projectsFile.toString());
-        if (allProjects!=null) {
+        if (currentUser!=null && allProjects != null) {
             Iterator<Project> iterator = allProjects.iterator();
             if (projectsFile.exists()) {
                 while (iterator.hasNext()) {
                     Project tmpProject = iterator.next();
-                    if (tmpProject.getBoss()!=null && tmpProject.getBoss().equals(currentUser) || proveUserMemberOf(tmpProject)) {
+                    if (tmpProject.getBoss() != null && tmpProject.getBoss().equals(currentUser) || proveUserMemberOf(tmpProject)) {
                         userProjects.add(tmpProject);
                     }
                 }

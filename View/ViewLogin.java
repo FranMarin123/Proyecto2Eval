@@ -68,7 +68,7 @@ public class ViewLogin implements iViewLogin {
         System.out.println("╚══════════════════════════════════════╝");
 
         // Crear un usuario temporal con los datos ingresados por el usuario
-        return new User(usernameInput, passwordInput, null, null);
+        return new User(usernameInput, passwordInput, "", "");
     }
 
     /**

@@ -20,7 +20,7 @@ public class ViewProject implements iViewProject {
     public int menuProject() {
         int selectedOption = -1;
 
-        while (selectedOption < 1 || selectedOption > 7) {
+        while (selectedOption < 1 || selectedOption > 10) {
             // Muestra el menu
             System.out.println();
             System.out.println("╔════════════════════════════════════════════════════════╗");
@@ -45,7 +45,7 @@ public class ViewProject implements iViewProject {
             // Convertir la entrada a un entero y verificar si está en el rango válido
             try {
                 selectedOption = Integer.parseInt(userInput);
-                if (selectedOption < 1 || selectedOption > 7) {
+                if (selectedOption < 1 || selectedOption > 10) {
                     JOptionPane.showMessageDialog(null, "❌ Por favor, introduce un número entre 1 y 7.");
                 }
             } catch (NumberFormatException e) {

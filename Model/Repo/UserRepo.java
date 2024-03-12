@@ -24,7 +24,7 @@ public class UserRepo extends Repo<User> {
         File userSelectedFile = new File("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
         User userInFile=Serializator.deserializeObject(userSelectedFile.toString());
         User userLogged = null;
-        if (userSelectedFile.exists() && userInFile.getPassword().equals(selected.getPassword())) {
+        if (userInFile!=null && userSelectedFile.exists() && userInFile.getPassword().equals(selected.getPassword())) {
             userLogged = userInFile;
             UserSesion.getInstance(userLogged);
         }
