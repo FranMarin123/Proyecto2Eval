@@ -43,7 +43,7 @@ public class ProjectRepo extends Repo<Project>{
             tmpProject=selected;
             projectFile.delete();
             removeFromArrayFile(selected);
-            UserSesion.getInstance().getProjects().remove(selected);
+            UserSesion.getInstance().removeProject(selected);
         }
         return tmpProject;
     }
@@ -55,12 +55,8 @@ public class ProjectRepo extends Repo<Project>{
      */
     @Override
     public Project browseOne(String username) {
-        File projectFile=new File("./src/ProjectFileSaves/"+username);
-        Project projectToReturn=null;
-        if (projectFile.exists()){
-            projectToReturn=Serializator.deserializeObject(projectFile.toString());
-        }
-        return projectToReturn;
+        File projectFile=new File("./src/ProjectFileSaves/"+username.replaceAll(" ","").toLowerCase());
+        return Serializator.deserializeObject(projectFile.toString());
     }
 
     @Override
@@ -84,7 +80,11 @@ public class ProjectRepo extends Repo<Project>{
      */
     @Override
     public ArrayList<Project> browseList() {
-        return (ArrayList<Project>) UserSesion.getInstance().getProjects();
+        ArrayList<Project> projectList=(ArrayList<Project>) UserSesion.getInstance().getProjects();
+        if (projectList!=null){
+
+        }
+        return projectList;
     }
 
     /**
@@ -124,6 +124,7 @@ public class ProjectRepo extends Repo<Project>{
         List<Project> projectsFromFile = Serializator.deserializeObject(projectsFile.toString());
         if (projectsFromFile.remove(projectToRemove)) {
             correctRemove = true;
+            Serializator.serializeObject(projectsFromFile,projectsFile.toString());
         }
         return correctRemove;
     }

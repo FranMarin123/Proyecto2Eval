@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import static java.awt.geom.Path2D.contains;
 
@@ -24,6 +25,16 @@ public class Project implements Serializable {
 
     public List<User> getMembers() {
         return members;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        boolean comp=false;
+        if (this == object) comp=true;
+        if (object == null || getClass() != object.getClass()) comp=false;
+        Project project = (Project) object;
+        comp=Objects.equals(name, project.name);
+        return comp;
     }
 
     public void setMembers(List<User> members) {

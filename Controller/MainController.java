@@ -3,6 +3,7 @@ package Controller;
 
 import Model.Repo.SelectedTask;
 import Model.Repo.TaskRepo;
+import Model.Repo.UserSesion;
 import View.*;
 import Enum.Estado;
 import View.Utils.Utils;
@@ -24,12 +25,16 @@ public class MainController {
                 case 1:
                     // Lógica para registrar un usuario
                     controllerLogin.createUser();
-                    menu();
+                    if (UserSesion.getInstance()!=null) {
+                        menu();
+                    }
                     break;
                 case 2:
                     // Lógica para iniciar sesión de un usuario
                     controllerLogin.selectUser();
-                    menu();
+                    if (UserSesion.getInstance()!=null) {
+                        menu();
+                    }
                     break;
                 case 3:
                     view.showMessageGoodBye();
@@ -77,11 +82,25 @@ public class MainController {
                     Utils.pressEnter();
                     break;
                 case 7:
+                    controllerUser.removeUser();
+                    Utils.pressEnter();
+                    break;
+                case 8:
+                    // Lógica para actualizar usuario
+                    controllerUser.upgradeUser();
+                    Utils.pressEnter();
+                    break;
+                case 9:
+                    // Lógica para buscar usuario
+                    controllerUser.showUser();
+                    Utils.pressEnter();
+                    break;
+                case 10:
                     break;
                 default:
                     Utils.printMsg("Opción inválida: " + userInput);
             }
-        } while (userInput != 7);
+        } while (userInput != 10);
 
     }
 
