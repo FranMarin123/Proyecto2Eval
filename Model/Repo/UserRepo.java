@@ -22,22 +22,32 @@ public class UserRepo extends Repo<User> {
     @Override
     public User selectAndSaveInAFile(User selected) {
         File userSelectedFile = new File("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
+        User userInFile=Serializator.deserializeObject(userSelectedFile.toString());
+        User userLogged = null;
+        if (userSelectedFile.exists() && userInFile.getPassword().equals(selected.getPassword())) {
+            userLogged = userInFile;
+            UserSesion.getInstance(userLogged);
+        }
+        return userLogged;
+    }
+
+    public User createUser(User selected) {
+        File userSelectedFile = new File("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
         User userCreated = null;
         if (!userSelectedFile.exists() && addUserToArrayFile(selected)) {
             UserSesion.getInstance(selected);
             userCreated = selected;
             saveUser(UserSesion.getInstance().getCurrentUser());
-        } else if (userSelectedFile.exists() && selected.getName()!=null) {
-            userCreated = Serializator.deserializeObject(userSelectedFile.toString());
-            UserSesion.getInstance(userCreated);
         }
         return userCreated;
     }
 
+
+
     @Override
     public User removeFromFiles(User selected) {
         File userSelectedFile = new File("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
-        User savedUserToProve = (User) Serializator.deserializeObject("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
+        User savedUserToProve = Serializator.deserializeObject("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
         if (userSelectedFile.exists() && savedUserToProve.getPassword().equals(selected.getPassword())
                 && removeFromArrayFile(selected)) {
             userSelectedFile.delete();
@@ -50,7 +60,7 @@ public class UserRepo extends Repo<User> {
         File userSelectedFile = new File("./src/UserFileSaves/" + id.toLowerCase().replaceAll(" ", ""));
         User userToReturn=null;
         if (userSelectedFile.exists()){
-            userToReturn=(User) Serializator.deserializeObject(userSelectedFile.toString());
+            userToReturn=Serializator.deserializeObject(userSelectedFile.toString());
         }
         return userToReturn;
     }
@@ -61,7 +71,7 @@ public class UserRepo extends Repo<User> {
         File userUpgradedFile = new File("./src/UserFileSaves/" + userToUpgrade.getNameUser().toLowerCase().replaceAll(" ", ""));
         User userToReturn=null;
         if (!userUpgradedFile.exists()){
-            userToReturn=(User) Serializator.deserializeObject(userSelectedFile.toString());
+            userToReturn=Serializator.deserializeObject(userSelectedFile.toString());
             removeFromArrayFile(userToReturn);
             userSelectedFile.delete();
             saveUser(userToUpgrade);
@@ -72,7 +82,7 @@ public class UserRepo extends Repo<User> {
 
     @Override
     public ArrayList<User> browseList() {
-        return (ArrayList<User>) Serializator.deserializeObject("./src/UserFileSaves/users.bin");
+        return Serializator.deserializeObject("./src/UserFileSaves/users.bin");
     }
 
     /**
@@ -87,7 +97,7 @@ public class UserRepo extends Repo<User> {
         File usersFile = new File("./src/UserFileSaves/users.bin");
         boolean correctAdd = false;
         if (usersFile.exists()) {
-            List<User> usersFromFile = (List<User>) Serializator.deserializeObject(usersFile.toString());
+            List<User> usersFromFile = Serializator.deserializeObject(usersFile.toString());
             if (verifyMailAndUsername(usersFromFile, userToAdd)) {
                 usersFromFile.add(userToAdd);
                 Serializator.serializeObject(usersFromFile, usersFile.toString());
@@ -111,7 +121,7 @@ public class UserRepo extends Repo<User> {
     public boolean removeFromArrayFile(User userToRemove) {
         File usersFile = new File("./src/UserFileSaves/users.bin");
         boolean correctRemove = false;
-        List<User> usersFromFile = (List<User>) Serializator.deserializeObject(usersFile.toString());
+        List<User> usersFromFile = Serializator.deserializeObject(usersFile.toString());
         if (usersFromFile.remove(userToRemove)) {
             correctRemove = true;
         }

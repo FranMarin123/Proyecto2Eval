@@ -20,9 +20,10 @@ public class ControllerLogin implements iLoginController {
     public boolean createUser() {
         boolean comp = false;
         User userToCreate = viewLogin.displayRegister();
-        User userTemp = repo.selectAndSaveInAFile(userToCreate);
+        User userTemp = repo.createUser(userToCreate);
 
-        if (userTemp.getNameUser() != null || userTemp.getPassword() != null || userTemp.getGmail() != null) {
+        if (userTemp!=null && !userTemp.getNameUser().isEmpty()
+                && !userTemp.getPassword().isEmpty() && !userTemp.getGmail().isEmpty()) {
             viewLogin.showMessageStartSessionSuccessful();
             comp = true;
         } else {
