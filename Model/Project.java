@@ -9,11 +9,11 @@ import java.util.Objects;
 import static java.awt.geom.Path2D.contains;
 
 public class Project implements Serializable {
-    private List<User> members = new ArrayList<>();
+    private List<User> members;
     private User boss;
     private String name;
     private String descripcion;
-    private List<Task> tasks = new ArrayList<>();
+    private List<Task> tasks;
 
     public Project( User boss, String name, String descripcion) {
         this.boss = boss;

@@ -17,7 +17,6 @@ public class ControllerProject implements iProjectController {
     public Project createProject() {
         Project projectToCreate = viewProject.createProject();
         Project projectTemp = projectRepo.selectAndSaveInAFile(projectToCreate);
-
         if (projectTemp != null) {
             Utils.printMsg("✅ Proyecto creado corretamente");
         } else {

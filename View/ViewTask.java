@@ -29,7 +29,7 @@ public class ViewTask implements iViewTask {
         System.out.println("  === [3]. ELIMINAR MIEMBROS \uD83D\uDDD1️️        ");
         System.out.println("  ==== [4]. AÑADIR TAREA ➕️️        ");
         System.out.println("  ===== [5]. ELIMINAR TAREA \uD83D\uDDD1️️        ");
-        System.out.println("  ====== [6]. MOSTRAR TAREA DE TU USUARIO \uD83D\uDC40️        ");
+        System.out.println("  ====== [6]. BUSCAR UNA TAREA \uD83D\uDC40️        ");
         System.out.println("  ======= [7]. MOSTRAR TODAS TAREA DE TU PROYECTO \uD83D\uDC40️        ");
         System.out.println("  ======== [8]. SELECCIONAR TAREA ☑️️        ");
         System.out.println("  ========= [9]. SALIR PROYECTO \uD83D\uDEAA️        ");
@@ -63,7 +63,7 @@ public class ViewTask implements iViewTask {
         System.out.print(" \uD83D\uDC64 Nombre Usuario Asigando: ");
         String taskNameUserInput = scanner.nextLine();
         // Crea un objeto User temporal con la entrada del usuario
-        User userTemporary = new User(taskNameUserInput, null, null, null);
+        User userTemporary = new User(taskNameUserInput, "", null, null);
         System.out.print(" \uD83D\uDD10 Nombre Tarea: ");
         String taskNameTaskInput = scanner.nextLine();
         System.out.print(" \uD83D\uDD10 Descripción: ");

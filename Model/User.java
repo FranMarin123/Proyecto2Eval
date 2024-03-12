@@ -14,7 +14,7 @@ public class User implements Serializable {
 
     public User(String nameUser, String password, String gmail, String name) {
         this.nameUser = nameUser;
-        this.password = password;
+        setPassword(password);
         this.gmail = gmail;
         this.name = name;
     }
@@ -87,9 +87,11 @@ public class User implements Serializable {
             igual= false;
         }
         User user = (User) o;
-        igual = Objects.equals(nameUser, user.nameUser) && Objects.equals(gmail, user.gmail);
+        igual = Objects.equals(nameUser, user.nameUser) || Objects.equals(gmail, user.gmail);
         return igual;
     }
+
+
 
 
     @Override

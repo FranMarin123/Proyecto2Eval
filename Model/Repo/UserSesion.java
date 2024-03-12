@@ -33,6 +33,10 @@ public class UserSesion {
         }
     }
 
+    public void closeSession(){
+        _instance=null;
+    }
+
     public boolean removeProject(Project projectToRemove){
         boolean comp=false;
         if (projectToRemove!=null){

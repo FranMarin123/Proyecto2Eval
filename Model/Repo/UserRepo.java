@@ -48,11 +48,18 @@ public class UserRepo extends Repo<User> {
     public User removeFromFiles(User selected) {
         File userSelectedFile = new File("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
         User savedUserToProve = Serializator.deserializeObject("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
+        User userToReturn=null;
+        System.out.println("fichero "+userSelectedFile.exists());
+        System.out.println("contraseña"+savedUserToProve.getPassword().equals(selected.getPassword()));
+        System.out.println("nombre"+!UserSesion.getInstance().getCurrentUser().getNameUser().equals(selected.getNameUser()));
         if (userSelectedFile.exists() && savedUserToProve.getPassword().equals(selected.getPassword())
-                && removeFromArrayFile(selected)) {
+                && !UserSesion.getInstance().getCurrentUser().getNameUser().equals(selected.getNameUser())) {
+            removeFromArrayFile(savedUserToProve);
+            userToReturn=savedUserToProve;
             userSelectedFile.delete();
+
         }
-        return savedUserToProve;
+        return userToReturn;
     }
 
     @Override

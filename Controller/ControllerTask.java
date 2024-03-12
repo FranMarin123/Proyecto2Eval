@@ -15,8 +15,8 @@ public class ControllerTask implements iTaskController {
     @Override
     public void createTask() {
         Task taskcreate = viewTask.createTask();
-        taskRepo.selectAndSaveInAFile(taskcreate);
-        if (taskcreate != null) {
+        Task taskToCheck = taskRepo.selectAndSaveInAFile(taskcreate);
+        if (taskToCheck != null) {
             Utils.printMsg("✅ Tarea creada correctamente");
         } else {
             Utils.printMsg("❌ Error al crear la tarea");
