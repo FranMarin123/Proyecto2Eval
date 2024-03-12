@@ -19,6 +19,7 @@ public class ViewUser implements iViewUser {
     @Override
     public void listUsers(List<User> users) {
         if (users != null && !users.isEmpty()) {
+            // Mostrar el Menu
             System.out.println();
             System.out.println("╔════════════════════════════════════════════════════════╗");
             System.out.println("║             === 📋 LISTA DE USUARIOS 📋 ===            ║");
@@ -119,6 +120,7 @@ public class ViewUser implements iViewUser {
     @Override
     public void displayUser(User user) {
         if (user != null) {
+            // Mostrar el usuario
             System.out.println();
             System.out.println("╔════════════════════════════════════════════════════════╗");
             System.out.println("║                🔍 DETALLES DE USUARIO 🔍               ║");

@@ -1,7 +1,6 @@
 package View;
 
 import Interfaces.iViewTask;
-import Model.Project;
 import Model.Task;
 import Model.User;
 
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ViewTask implements iViewTask {
+    Scanner scanner = new Scanner(System.in);
 
     /**
      * @author Javier Fernández
@@ -56,8 +56,6 @@ public class ViewTask implements iViewTask {
     @Override
     public Task createTask() {
         // Muestra el menu
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════════╗");
         System.out.println("║                   === 🛠️ CREAR TAREA 🛠️ ===              ║");
@@ -88,8 +86,6 @@ public class ViewTask implements iViewTask {
     @Override
     public Task removeTask() {
         // Muestra el menú
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println();
         System.out.println("╔════════════════════════════════════════════╗");
         System.out.println("║         === ❌ ELIMINAR TAREA ❌ ===       ║");
@@ -138,7 +134,7 @@ public class ViewTask implements iViewTask {
     @Override
     public void listTask(ArrayList<Task> tasks) {
         Task selectedTask = null;
-
+        // Menu de tareas
         if (tasks != null && !tasks.isEmpty()) {
             int taskIndex = 1;
 
@@ -152,8 +148,6 @@ public class ViewTask implements iViewTask {
                 System.out.println(" [" + taskIndex + "] " + task.getName());
                 // Llama al método showTask para mostrar los detalles de la tarea actual
                 showTask(task);
-
-                // Puedes agregar aquí la lógica para que el usuario seleccione una tarea, si es necesario
 
                 taskIndex++;
             }
