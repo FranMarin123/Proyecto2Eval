@@ -17,7 +17,7 @@ public class ViewLogin implements iViewLogin {
         // Muestra el menu
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║        === \uD83D\uDD11 REGISTRARSE \uD83D\uDD11 ===         ║");
+        System.out.println("         === \uD83D\uDD11 REGISTRARSE \uD83D\uDD11 ===         ");
         System.out.println("╠══════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre de Usuario: ");
         String usernameInput = scanner.nextLine();
@@ -45,7 +45,7 @@ public class ViewLogin implements iViewLogin {
         // Muestra el menu
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║        === \uD83D\uDD11 INICIAR SESIÓN \uD83D\uDD11 ===        ║");
+        System.out.println("         === \uD83D\uDD11 INICIAR SESIÓN \uD83D\uDD11 ===        ");
         System.out.println("╠══════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre de Usuario: ");
         String usernameInput = scanner.nextLine();
