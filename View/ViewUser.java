@@ -1,10 +1,9 @@
 package View;
 
 import Interfaces.iViewUser;
-import Model.Project;
-import Model.Task;
 import Model.User;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -54,10 +53,12 @@ public class ViewUser implements iViewUser {
         System.out.println("╠════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre Usuario: ");
         String userNameInput = scanner.nextLine();
+        System.out.print(" \uD83D\uDC64 Contraseña: ");
+        String passwordInput = scanner.nextLine();
         System.out.println("╚════════════════════════════════════════════╝");
 
         // Crea y devuelve un nuevo objeto User con la información ingresada
-        return new User(userNameInput, null, null, null);
+        return new User(userNameInput, passwordInput, "", "");
     }
 
     /**
@@ -108,7 +109,7 @@ public class ViewUser implements iViewUser {
         System.out.println("╚════════════════════════════════════════════════════════╝");
 
         // Devuelve un nuevo objeto User con el nombre de usuario ingresado por el usuario
-        return new User(usernameInput, null, null, null);
+        return new User(usernameInput, "", null, null);
     }
 
     /**

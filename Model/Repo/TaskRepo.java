@@ -19,12 +19,13 @@ public class TaskRepo extends Repo<Task>{
     @Override
     public Task selectAndSaveInAFile(Task selected) {
         File taskFile=new File("./src/TaskFileSaves/"+selected.getName());
-        Task taskToReturn=(Task) Serializator.deserializeObject(taskFile.toString());
-        if (!taskFile.exists()){
+        User member=Serializator.deserializeObject("./src/UserFileSaves/"+selected.getIntegrante().getNameUser());
+        selected.setIntegrante(member);
+        Task taskToReturn=null;
+        if (!taskFile.exists() && selected.getIntegrante()!=null){
             Serializator.serializeObject(selected,taskFile.toString());
             SelectedProject.get_instance().addTaskToActualProject(selected);
-        } else if (!SelectedProject.get_instance().addTaskToActualProject(taskToReturn)) {
-            taskToReturn=null;
+            taskToReturn=selected;
         }
         return taskToReturn;
     }
@@ -37,9 +38,10 @@ public class TaskRepo extends Repo<Task>{
     @Override
     public Task removeFromFiles(Task selected) {
         File taskFile=new File("./src/TaskFileSaves/"+selected.getName());
-        Task taskToCheck=(Task) Serializator.deserializeObject(taskFile.toString());
+        Task taskToCheck=Serializator.deserializeObject(taskFile.toString());
         if (taskFile.exists() && SelectedProject.get_instance().getActualProject().getTasks().remove(taskToCheck)){
             taskFile.delete();
+            SelectedProject.get_instance().removeTaskFromActualProject(taskToCheck);
         }else {
             taskToCheck=null;
         }
@@ -78,7 +80,7 @@ public class TaskRepo extends Repo<Task>{
     public boolean selectTask(String taskName){
         boolean comp=false;
         Task taskToSelect=Serializator.deserializeObject("./src/TaskFileSaves/"+taskName);
-        if (taskToSelect!=null){
+        if (taskToSelect!=null && taskToSelect.getIntegrante().equals(UserSesion.getInstance().getCurrentUser())){
             SelectedTask.addTask(taskToSelect);
             comp=true;
         }
@@ -91,6 +93,13 @@ public class TaskRepo extends Repo<Task>{
     }
 
     public static boolean saveTask(Task taskToSave){
-        return Serializator.serializeObject(taskToSave,"./src/TaskFileSaves/"+taskToSave.getName());
+        return Serializator.serializeObject(taskToSave,"./src/TaskFileSaves/"+taskToSave.getName().replaceAll(" ","").toLowerCase());
     }
+
+    public static boolean removeTask(Task taskToSave){
+        File taskToRemove=new File("./src/TaskFileSaves/"+taskToSave.getName().replaceAll(" ","").toLowerCase());
+        return taskToRemove.delete();
+    }
+
+
 }

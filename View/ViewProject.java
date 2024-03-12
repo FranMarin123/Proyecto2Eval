@@ -117,12 +117,10 @@ public class ViewProject implements iViewProject {
         System.out.println("╠════════════════════════════════════════════════════════╣");
         System.out.print(" \uD83D\uDC64 Nombre: ");
         String projectNameInput = scanner.nextLine();
-        System.out.print(" \uD83D\uDCDD Descripción: ");
-        String descriptionInput = scanner.nextLine();
         System.out.println("╚════════════════════════════════════════════════════════╝");
 
         // Crear y devolver un nuevo objeto Project con la información ingresada
-        return new Project(null, projectNameInput, descriptionInput);
+        return new Project(null, projectNameInput, "");
     }
 
     /**
@@ -159,29 +157,28 @@ public class ViewProject implements iViewProject {
      */
     @Override
     public void showProject(Project projecttoshow) {
-        Project currentProject = null;
         // Mostrar el proyecto
-        if (currentProject != null) {
+        if (projecttoshow != null) {
             System.out.println();
             System.out.println("╔════════════════════════════════════════════════════════╗");
             System.out.println("                  ===  ✏ PROYECTO ✏ ===                ");
             System.out.println("╠════════════════════════════════════════════════════════╣");
             System.out.println(" * Detalles del Proyecto *");
-            System.out.println(" \uD83D\uDC64 Nombre: " + currentProject.getName());
-            System.out.println(" \uD83D\uDCDD Descripción: " + currentProject.getDescripcion());
+            System.out.println(" \uD83D\uDC64 Nombre: " + projecttoshow.getName());
+            System.out.println(" \uD83D\uDCDD Descripción: " + projecttoshow.getDescripcion());
 
             // Mostrar el jefe del equipo
-            User boss = currentProject.getBoss();
+            User boss = projecttoshow.getBoss();
             if (boss != null) {
                 System.out.println(" \uD83D\uDC68‍🚀 Jefe del Equipo: " + boss.getNameUser());
             } else {
                 System.out.println(" ❌ No hay jefe del equipo asignado.");
             }
 
-            if (currentProject.getMembers() != null && !currentProject.getMembers().isEmpty()) {
+            if (projecttoshow.getMembers() != null && !projecttoshow.getMembers().isEmpty()) {
                 System.out.println(" \uD83E\uDD16 Miembros del Proyecto:");
 
-                for (User member : currentProject.getMembers()) {
+                for (User member : projecttoshow.getMembers()) {
                     System.out.println(" \uD83E\uDD16 - " + member.getNameUser());
                 }
             } else {

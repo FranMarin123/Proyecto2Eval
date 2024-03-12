@@ -2,6 +2,7 @@ package Controller;
 
 import Interfaces.iUserController;
 import Model.Repo.ProjectRepo;
+import Model.Repo.SelectedProject;
 import Model.Repo.UserRepo;
 import Model.User;
 import View.Utils.Utils;
@@ -9,6 +10,7 @@ import View.ViewLogin;
 import View.ViewUser;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ControllerUser implements iUserController {
     ViewUser viewUser = new ViewUser();
@@ -90,8 +92,13 @@ public class ControllerUser implements iUserController {
      */
     @Override
     public void listAllMember() {
-        ArrayList<User> users = userRepo.browseList();
-        viewUser.listUsers(users);
+        List<User> allMembers= SelectedProject.get_instance().getActualProject().getMembers();
+        System.out.println(SelectedProject.get_instance().toString());
+        if (allMembers!=null) {
+            viewUser.listUsers(allMembers);
+        }else {
+            Utils.printMsg("❌ Error, todavía no hay miembros");
+        }
     }
 
     @Override

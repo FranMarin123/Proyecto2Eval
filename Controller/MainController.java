@@ -1,6 +1,7 @@
 package Controller;
 
 
+import Model.Repo.SelectedProject;
 import Model.Repo.SelectedTask;
 import Model.Repo.TaskRepo;
 import Model.Repo.UserSesion;
@@ -74,7 +75,9 @@ public class MainController {
                 case 5:
                     // Lógica para entrar en un proyecto
                     controllerProject.selectProject();
-                    menuProject();
+                    if (SelectedProject.get_instance()!=null) {
+                        menuProject();
+                    }
                     break;
                 case 6:
                     // Lógica para actualizar un proyecto
@@ -96,6 +99,7 @@ public class MainController {
                     Utils.pressEnter();
                     break;
                 case 10:
+                    UserSesion.getInstance().closeSession();
                     break;
                 default:
                     Utils.printMsg("Opción inválida: " + userInput);
@@ -108,6 +112,7 @@ public class MainController {
         ViewTask viewTask = new ViewTask();
         int userInput;
         do {
+            System.out.println(SelectedProject.get_instance().getActualProject().toString());
             userInput = viewTask.menuTask();
             switch (userInput) {
                 case 1:
@@ -148,9 +153,12 @@ public class MainController {
                 case 8:
                     // Lógica para selecionar una tarea
                     controllerTask.selectTask();
-                    menuTask();
+                    if (SelectedTask.get_instance()!=null) {
+                        menuTask();
+                    }
                     break;
                 case 9:
+                    SelectedProject.get_instance().closeProject();
                     break;
                 default:
                     Utils.printMsg("Opción inválida: " + userInput);
@@ -168,41 +176,57 @@ public class MainController {
             switch (userInput) {
                 case 1:
                     // Información tarea
-                    viewTask.showTask(taskRepo.browseOne(SelectedTask.get_instance().getActualProject().getName()));
+                    viewTask.showTask(taskRepo.browseOne(SelectedTask.get_instance().getActualTask().getName()));
                     Utils.pressEnter();
                     break;
                 case 2:
                     // Cambiar estado
 
                     int tmp = viewTaskScreen.menuState();
+                    SelectedProject.get_instance().removeTaskFromActualProject(SelectedTask.get_instance().getActualTask());
+                    TaskRepo.removeTask(SelectedTask.get_instance().getActualTask());
                     switch (tmp) {
                         case 1:
-                            SelectedTask.get_instance().getActualProject().setEstado(Estado.Iniciada);
+                            SelectedTask.get_instance().getActualTask().setEstado(Estado.Iniciada);
                             break;
                         case 2:
-                            SelectedTask.get_instance().getActualProject().setEstado(Estado.Sin_Iniciar);
+                            SelectedTask.get_instance().getActualTask().setEstado(Estado.Sin_Iniciar);
                             break;
                         case 3:
-                            SelectedTask.get_instance().getActualProject().setEstado(Estado.Finalizado);
+                            SelectedTask.get_instance().getActualTask().setEstado(Estado.Finalizado);
                             break;
                         default:
                             break;
                     }
+                    TaskRepo.saveTask(SelectedTask.get_instance().getActualTask());
+                    SelectedProject.get_instance().addTaskToActualProject(SelectedTask.get_instance().getActualTask());
                     Utils.pressEnter();
                     break;
                 case 3:
                     // Modificar nombre
                     String newName = Utils.readString("Introduce el nuevo nombre: ");
-                    SelectedTask.get_instance().getActualProject().setName(newName);
+                    SelectedProject.get_instance().removeTaskFromActualProject(SelectedTask.get_instance().getActualTask());
+                    TaskRepo.removeTask(SelectedTask.get_instance().getActualTask());
+
+                    SelectedTask.get_instance().getActualTask().setName(newName);
+
+                    TaskRepo.saveTask(SelectedTask.get_instance().getActualTask());
+                    SelectedProject.get_instance().addTaskToActualProject(SelectedTask.get_instance().getActualTask());
                     Utils.pressEnter();
                     break;
                 case 4:
                     // Modificar Descripción
                     String newDescription = Utils.readString("Introduce la nueva descripción: ");
-                    SelectedTask.get_instance().getActualProject().setName(newDescription);
+                    SelectedProject.get_instance().removeTaskFromActualProject(SelectedTask.get_instance().getActualTask());
+                    TaskRepo.removeTask(SelectedTask.get_instance().getActualTask());
+                    SelectedTask.get_instance().getActualTask().setDecripcion(newDescription);
+                    TaskRepo.saveTask(SelectedTask.get_instance().getActualTask());
+                    SelectedProject.get_instance().addTaskToActualProject(SelectedTask.get_instance().getActualTask());
                     Utils.pressEnter();
                     break;
                 case 5:
+                    SelectedTask.get_instance().closeTask();
+                    break;
                 default:
                     Utils.printMsg("Opción inválida: " + userInput);
             }
