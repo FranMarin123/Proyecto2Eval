@@ -4,6 +4,7 @@ import Interfaces.iViewLogin;
 import Model.User;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class ViewLogin implements iViewLogin {
     Scanner scanner = new Scanner(System.in);
@@ -14,19 +15,32 @@ public class ViewLogin implements iViewLogin {
      * Method to display the registration menu
      */
     public User displayRegister() {
+        Scanner scanner = new Scanner(System.in);
+        String usernameInput = "";
+        String passwordInput = "";
+        String emailInput = "";
+        String nameInput="";
+
+
         // Muestra el menu
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("         === \uD83D\uDD11 REGISTRARSE \uD83D\uDD11 ===         ");
         System.out.println("╠══════════════════════════════════════╣");
-        System.out.print(" \uD83D\uDC64 Nombre de Usuario: ");
-        String usernameInput = scanner.nextLine();
-        System.out.print(" \uD83D\uDD10 Contraseña: ");
-        String passwordInput = scanner.nextLine();
-        System.out.print(" \uD83D\uDCE7 Correo Electrónico: ");
-        String emailInput = scanner.nextLine();
+        do {
+            System.out.print(" \uD83D\uDC64 Nombre de Usuario: ");
+            usernameInput = scanner.nextLine();
+        } while (!(Pattern.compile("[A-Za-z0-9]+").matcher(usernameInput).matches()));
+        do {
+            System.out.print(" \uD83D\uDD10 Contraseña: ");
+            passwordInput = scanner.nextLine();
+        } while (!(Pattern.compile("[A-Za-z0-9]+").matcher(passwordInput).matches()));
+        do {
+            System.out.print(" \uD83D\uDCE7 Correo Electrónico: ");
+            emailInput = scanner.nextLine();
+        } while (!Pattern.compile("[A-Za-z0-9]+@gmail[.](com|es)").matcher(emailInput).matches());
         System.out.print(" \uD83D\uDC68 Nombre: ");
-        String nameInput = scanner.nextLine();
+        nameInput = scanner.nextLine();
         System.out.println("╚══════════════════════════════════════╝");
 
         // Crear un usuario temporal con los datos ingresados por el usuario
@@ -65,6 +79,7 @@ public class ViewLogin implements iViewLogin {
     public void showMessageStartSessionSuccessful() {
         System.out.println("✅ Inicio de sesión exitoso.");
     }
+
     public void showMessageStartSessionFailed() {
         System.out.println("❌ Inicio de sesión fallido. Usuario o contraseña incorrectos.");
     }
