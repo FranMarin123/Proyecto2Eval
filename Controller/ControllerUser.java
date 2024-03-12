@@ -31,7 +31,7 @@ public class ControllerUser implements iUserController {
         if (existingUser != null) {
             viewUser.displayUser(existingUser);
         } else {
-            Utils.printMsg("Usuario no encontrado");
+            Utils.printMsg("❌ Usuario no encontrado");
         }
     }
 
@@ -48,9 +48,9 @@ public class ControllerUser implements iUserController {
         User removedUser = userRepo.removeFromFiles(userNameToDelete);
 
         if (removedUser != null) {
-            Utils.printMsg("Usuario eliminado correctamente");
+            Utils.printMsg("✅ Usuario eliminado correctamente");
         } else {
-            Utils.printMsg("Fallo al eliminar el usuario, comprueba el nombre");
+            Utils.printMsg("❌ Fallo al eliminar el usuario, comprueba el nombre");
         }
 
         return removedUser;
@@ -70,18 +70,18 @@ public class ControllerUser implements iUserController {
         User existingUser = userRepo.selectAndSaveInAFile(loginUser);
 
         if (existingUser != null && existingUser.getPassword().equals(loginUser.getPassword())) {
-            Utils.printMsg("Inicio de sesión exitoso");
+            Utils.printMsg("✅ Inicio de sesión exitoso");
 
             User updatedUser = viewUser.upgradeUser();
 
             if (updatedUser != null) {
                 userRepo.upgrade(updatedUser, existingUser.getNameUser());
-                Utils.printMsg("Datos del usuario actualizados exitosamente");
+                Utils.printMsg("✅ Datos del usuario actualizados exitosamente");
             } else {
-                Utils.printMsg("No se han realizado cambios en los datos del usuario");
+                Utils.printMsg("❌ No se han realizado cambios en los datos del usuario");
             }
         } else {
-            Utils.printMsg("Fallo en el inicio de sesión");
+            Utils.printMsg("❌ Fallo en el inicio de sesión");
         }
     }
 
@@ -97,11 +97,11 @@ public class ControllerUser implements iUserController {
     @Override
     public boolean addMember() {
         boolean comp = false;
-        String memberName = Utils.readString("Introduce el usuario del miembro que quieres añadir");
+        String memberName = Utils.readString("Introduce el usuario del miembro que quieres añadir: ");
         if (projectRepo.addMember(memberName)) {
-            Utils.printMsg("Miembro añadido correctamente");
+            Utils.printMsg("✅ Miembro añadido correctamente");
         } else {
-            Utils.printMsg("Error al añadir el miembro");
+            Utils.printMsg("❌ Error al añadir el miembro");
         }
 
         return comp;
@@ -110,11 +110,11 @@ public class ControllerUser implements iUserController {
     @Override
     public boolean removeMember() {
         boolean comp = false;
-        String memberName = Utils.readString("Introduce el usuario del miembro que quieres eliminar");
+        String memberName = Utils.readString("Introduce el usuario del miembro que quieres eliminar: ");
         if (projectRepo.removeMember(memberName)) {
-            Utils.printMsg("Miembro eliminado correctamente");
+            Utils.printMsg("✅ Miembro eliminado correctamente");
         } else {
-            Utils.printMsg("Error al eliminar el miembro");
+            Utils.printMsg("❌ Error al eliminar el miembro");
         }
 
         return comp;

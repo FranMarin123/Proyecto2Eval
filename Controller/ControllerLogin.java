@@ -44,10 +44,10 @@ public class ControllerLogin implements iLoginController {
         User existingUser = repo.selectAndSaveInAFile(loginUser);
 
         if (existingUser != null && existingUser.getPassword().equals(loginUser.getPassword())) {
-            Utils.printMsg("Inicio de sesión exitoso");
+            Utils.printMsg("✅ Inicio de sesión exitoso");
             comp = true;
         } else {
-            Utils.printMsg("Fallo en el inicio de sesión");
+            Utils.printMsg("❌ Fallo en el inicio de sesión");
         }
         return comp;
 
