@@ -102,6 +102,12 @@ public class ViewTask implements iViewTask {
         return new Task(null, taskNameInput, null);
     }
 
+    /**
+     * @author Javier Fernández
+     * Método para mostrar una tarea
+     * Method to show a task
+     * @param taskToShow
+     */
     @Override
     public void showTask(Task taskToShow) {
         // Muestra el menú
