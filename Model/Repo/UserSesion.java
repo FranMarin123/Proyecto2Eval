@@ -23,20 +23,36 @@ public class UserSesion {
         }
     }
 
+    /**
+     * Devuelve la instancia actual
+     * @return Devuelve la instancia actual
+     */
     public static UserSesion getInstance() {
         return _instance;
     }
 
+    /**
+     * Añade un usuario a la instancia actual
+     * @param userToUse Recibe el usuario a instanciar
+     */
     public static void getInstance(User userToUse) {
         if (userToUse!=null) {
             _instance = new UserSesion(userToUse);
         }
     }
 
+    /**
+     * Establece a null la instancia
+     */
     public void closeSession(){
         _instance=null;
     }
 
+    /**
+     * Elimina un proyecto de la instancia actual
+     * @param projectToRemove Proyecto a eliminar
+     * @return Devuelve true si se elimina y false si no
+     */
     public boolean removeProject(Project projectToRemove){
         boolean comp=false;
         if (projectToRemove!=null){
@@ -46,10 +62,18 @@ public class UserSesion {
         return comp;
     }
 
+    /**
+     * Devuelve el usuario actual
+     * @return Devuelve el usuario actual
+     */
     public User getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * Devuelve los proyectos actual
+     * @return Devuelve los proyectos actual
+     */
     public List<Project> getProjects() {
         return projects;
     }
@@ -97,6 +121,11 @@ public class UserSesion {
         return result;
     }
 
+    /**
+     * Añade un proyecto a la instancia actual
+     * @param projectToAdd Proyecto a añadir
+     * @return Devuelve true si se ha añadido y false si no
+     */
     public boolean addProject(Project projectToAdd) {
         boolean result = false;
         if (!projects.contains(projectToAdd)) {

@@ -12,11 +12,8 @@ import java.util.Objects;
 public class UserRepo extends Repo<User> {
 
     /**
-     * Esta función comprueba si es un registro o un inicio de sesión y si es un registro,
-     * registra el archivo del usuario y le inicia sesión, y si es un inicio de sesión,
-     * solo le inicia sesión
-     *
-     * @param selected Recibe el usuario que quiere registrarse o iniciar sesión
+     * Este método inicia sesión con un usuario
+     * @param selected Recibe el usuario que quiere iniciar sesión
      * @return Devuelve el usuario que se instancia o null si hay algún error con el usuario
      */
     @Override
@@ -31,6 +28,11 @@ public class UserRepo extends Repo<User> {
         return userLogged;
     }
 
+    /**
+     * Este método crea un usuario
+     * @param selected Recibe un usuario para crear
+     * @return Devuelve el usuario creado o null si no se ha creado
+     */
     public User createUser(User selected) {
         File userSelectedFile = new File("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
         User userCreated = null;
@@ -42,8 +44,11 @@ public class UserRepo extends Repo<User> {
         return userCreated;
     }
 
-
-
+    /**
+     * Elimina el usuario introducido
+     * @param selected Recibe el usuario a eliminar
+     * @return Devuelve el usuario borrado
+     */
     @Override
     public User removeFromFiles(User selected) {
         File userSelectedFile = new File("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
@@ -59,6 +64,11 @@ public class UserRepo extends Repo<User> {
         return userToReturn;
     }
 
+    /**
+     * Este método busca un usuario por nombre
+     * @param id Recibe el nombre del usuario
+     * @return Devuelve el usuario buscado
+     */
     @Override
     public User browseOne(String id) {
         File userSelectedFile = new File("./src/UserFileSaves/" + id.toLowerCase().replaceAll(" ", ""));
@@ -69,6 +79,12 @@ public class UserRepo extends Repo<User> {
         return userToReturn;
     }
 
+    /**
+     * Este método actualiza un usuario
+     * @param userToUpgrade Recibe el usuario actualizado
+     * @param name Recibe el nombre del usuario a actualizar
+     * @return Devuelve el usuario sin actualizar
+     */
     @Override
     public User upgrade(User userToUpgrade, String name) {
         File userSelectedFile = new File("./src/UserFileSaves/" + name.toLowerCase().replaceAll(" ", ""));
@@ -84,6 +100,10 @@ public class UserRepo extends Repo<User> {
         return userToReturn;
     }
 
+    /**
+     * Devuelve todos los usuarios
+     * @return Devuelve todos los usuarios
+     */
     @Override
     public ArrayList<User> browseList() {
         return Serializator.deserializeObject("./src/UserFileSaves/users.bin");
@@ -155,6 +175,11 @@ public class UserRepo extends Repo<User> {
         return comp;
     }
 
+    /**
+     * Guarda un usuario en un archivo
+     * @param userToSave Recibe el usuario a guardar
+     * @return Devuelve true si se ha guardado y false si no
+     */
     public static boolean saveUser(User userToSave){
         return Serializator.serializeObject(userToSave,"./src/UserFileSaves/" + userToSave.getNameUser().toLowerCase().replaceAll(" ",""));
     }
