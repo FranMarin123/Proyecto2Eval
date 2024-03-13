@@ -95,7 +95,6 @@ public class ControllerUser implements iUserController {
     @Override
     public void listAllMember() {
         List<User> allMembers= SelectedProject.get_instance().getActualProject().getMembers();
-        System.out.println(SelectedProject.get_instance().toString());
         if (allMembers!=null) {
             viewUser.listUsers(allMembers);
         }else {

@@ -18,8 +18,8 @@ public class TaskRepo extends Repo<Task>{
      */
     @Override
     public Task selectAndSaveInAFile(Task selected) {
-        File taskFile=new File("./src/TaskFileSaves/"+selected.getName());
-        User member=Serializator.deserializeObject("./src/UserFileSaves/"+selected.getIntegrante().getNameUser());
+        File taskFile=new File("./src/TaskFileSaves/"+selected.getName().toLowerCase().replaceAll(" ",""));
+        User member=Serializator.deserializeObject("./src/UserFileSaves/"+selected.getIntegrante().getNameUser().toLowerCase().replaceAll(" ",""));
         selected.setIntegrante(member);
         Task taskToReturn=null;
         if (!taskFile.exists() && selected.getIntegrante()!=null){
@@ -37,7 +37,7 @@ public class TaskRepo extends Repo<Task>{
      */
     @Override
     public Task removeFromFiles(Task selected) {
-        File taskFile=new File("./src/TaskFileSaves/"+selected.getName());
+        File taskFile=new File("./src/TaskFileSaves/"+selected.getName().toLowerCase().replaceAll(" ",""));
         Task taskToCheck=Serializator.deserializeObject(taskFile.toString());
         if (taskFile.exists() && SelectedProject.get_instance().getActualProject().getTasks().remove(taskToCheck)){
             taskFile.delete();
@@ -55,7 +55,7 @@ public class TaskRepo extends Repo<Task>{
      */
     @Override
     public Task browseOne(String id) {
-        return (Task) Serializator.deserializeObject("./src/TaskFileSaves/"+id);
+        return Serializator.deserializeObject("./src/TaskFileSaves/"+id.toLowerCase().replaceAll(" ",""));
     }
 
     /**
@@ -79,7 +79,7 @@ public class TaskRepo extends Repo<Task>{
 
     public boolean selectTask(String taskName){
         boolean comp=false;
-        Task taskToSelect=Serializator.deserializeObject("./src/TaskFileSaves/"+taskName);
+        Task taskToSelect=Serializator.deserializeObject("./src/TaskFileSaves/"+taskName.toLowerCase().replaceAll(" ",""));
         if (taskToSelect!=null && taskToSelect.getIntegrante().equals(UserSesion.getInstance().getCurrentUser())){
             SelectedTask.addTask(taskToSelect);
             comp=true;

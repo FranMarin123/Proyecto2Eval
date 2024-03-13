@@ -19,7 +19,7 @@ public class ProjectRepo extends Repo<Project>{
      */
     @Override
     public Project selectAndSaveInAFile(Project selected) {
-        File projectFile=new File("./src/ProjectFileSaves/"+selected.getName());
+        File projectFile=new File("./src/ProjectFileSaves/"+selected.getName().toLowerCase().replaceAll(" ",""));
         Project tmpProject=null;
         selected.setBoss(UserSesion.getInstance().getCurrentUser());
         if (!projectFile.exists()) {
@@ -38,7 +38,7 @@ public class ProjectRepo extends Repo<Project>{
      */
     @Override
     public Project removeFromFiles(Project selected) {
-        File projectFile=new File("./src/ProjectFileSaves/"+selected.getName());
+        File projectFile=new File("./src/ProjectFileSaves/"+selected.getName().toLowerCase().replaceAll(" ",""));
         Project tmpProject=null;
         if (projectFile.exists()){
             tmpProject=selected;
@@ -130,9 +130,10 @@ public class ProjectRepo extends Repo<Project>{
         return correctRemove;
     }
 
+
     public boolean selectAProject(String projectName){
         boolean comp=false;
-        File projectFile=new File("./src/ProjectFileSaves/"+projectName);
+        File projectFile=new File("./src/ProjectFileSaves/"+projectName.toLowerCase().replaceAll(" ",""));
         Project projectToCheck=Serializator.deserializeObject(projectFile.toString());
         if (projectFile.exists() && UserSesion.getInstance().getProjects().contains(projectToCheck)){
             SelectedProject.addProject(projectToCheck);
