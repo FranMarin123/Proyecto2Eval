@@ -60,6 +60,12 @@ public class ProjectRepo extends Repo<Project>{
         return Serializator.deserializeObject(projectFile.toString());
     }
 
+    /**
+     * Este método actualiza un proyecto, borra el proyecto antiguo y añade el nuevo
+     * @param projectToUpgrade Recibe el proyecto actualizado
+     * @param name Recibe el nombre del antiguo proyecto
+     * @return Devuelve el proyecto eliminado
+     */
     @Override
     public Project upgrade(Project projectToUpgrade, String name) {
         File projectSelectedFile = new File("./src/ProjectFileSaves/" + name.toLowerCase().replaceAll(" ", ""));
@@ -131,6 +137,11 @@ public class ProjectRepo extends Repo<Project>{
     }
 
 
+    /**
+     * Este método selecciona un proyecto en concreto
+     * @param projectName Recibe el nombre del proyecto
+     * @return Devuelve el proyecto con el nombre introducido
+     */
     public boolean selectAProject(String projectName){
         boolean comp=false;
         File projectFile=new File("./src/ProjectFileSaves/"+projectName.toLowerCase().replaceAll(" ",""));
@@ -142,6 +153,11 @@ public class ProjectRepo extends Repo<Project>{
         return comp;
     }
 
+    /**
+     * Este método añade un usuario a un proyecto
+     * @param userName Recibe el nombre del usuario
+     * @return Devuelve true si se ha añadido y false si no se ha añadido
+     */
     public boolean addMember(String userName){
         File userFile=new File("./src/UserFileSaves/"+userName.toLowerCase().replaceAll(" ",""));
         User userToAdd=Serializator.deserializeObject("./src/UserFileSaves/"+userName.toLowerCase().replaceAll(" ",""));
@@ -157,6 +173,11 @@ public class ProjectRepo extends Repo<Project>{
         return comp;
     }
 
+    /**
+     * Este método elimina un usuario de un proyecto
+     * @param userName Recibe el nombre del usuario
+     * @return Devuelve true si se ha borrado correctamente y false si no
+     */
     public boolean removeMember(String userName){
         File userFile=new File("./src/UserFileSaves/"+userName.toLowerCase().replaceAll(" ",""));
         User userToAdd=Serializator.deserializeObject(userFile.toString());
@@ -172,11 +193,12 @@ public class ProjectRepo extends Repo<Project>{
         return comp;
     }
 
-
-
+    /**
+     * Este método serializa un proyecto
+     * @param projectToSave Recoge el proyecto a guardar
+     * @return Devuelve true si se ha guardado y false si no
+     */
     public static boolean saveProject(Project projectToSave){
         return Serializator.serializeObject(projectToSave,"./src/ProjectFileSaves/"+projectToSave.getName().toLowerCase().replaceAll(" ",""));
     }
-
-
 }

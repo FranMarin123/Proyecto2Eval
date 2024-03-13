@@ -77,6 +77,11 @@ public class TaskRepo extends Repo<Task>{
         return taskToReturn;
     }
 
+    /**
+     * Selecciona una tarea para instanciar
+     * @param taskName Recibe el nombre de la tarea
+     * @return Devuelve true si se ha instanciado y false si no
+     */
     public boolean selectTask(String taskName){
         boolean comp=false;
         Task taskToSelect=Serializator.deserializeObject("./src/TaskFileSaves/"+taskName.toLowerCase().replaceAll(" ",""));
@@ -87,15 +92,29 @@ public class TaskRepo extends Repo<Task>{
         return comp;
     }
 
+    /**
+     * Devuelve las tareas del proyecto actual
+     * @return Devuelve un ArrayList con las tareas actuales
+     */
     @Override
     public ArrayList<Task> browseList() {
         return (ArrayList<Task>) SelectedProject.get_instance().getActualProject().getTasks();
     }
 
+    /**
+     * Guarda la tarea introducida
+     * @param taskToSave Recibe la tarea que quieres guardar
+     * @return Devuelve true si se ha guardado y false si no
+     */
     public static boolean saveTask(Task taskToSave){
         return Serializator.serializeObject(taskToSave,"./src/TaskFileSaves/"+taskToSave.getName().replaceAll(" ","").toLowerCase());
     }
 
+    /**
+     * Elimina una tarea
+     * @param taskToSave Recibe la tarea a eliminar
+     * @return Devuelve true si se ha eliminado y false si no
+     */
     public static boolean removeTask(Task taskToSave){
         File taskToRemove=new File("./src/TaskFileSaves/"+taskToSave.getName().replaceAll(" ","").toLowerCase());
         return taskToRemove.delete();
