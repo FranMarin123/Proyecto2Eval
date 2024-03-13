@@ -12,7 +12,12 @@ public class ControllerProject implements iProjectController {
     ViewProject viewProject = new ViewProject();
     ProjectRepo projectRepo = new ProjectRepo();
 
-
+    /**
+     * Método para crear un nuevo proyecto.
+     * - Obtiene la información del proyecto a través de la vista.
+     * - Utiliza el repositorio para seleccionar y guardar el proyecto en un archivo.
+     * - Muestra un mensaje indicando si el proyecto se ha creado correctamente o si ha ocurrido un error.
+     */
     @Override
     public Project createProject() {
         Project projectToCreate = viewProject.createProject();
@@ -25,7 +30,12 @@ public class ControllerProject implements iProjectController {
         return null;
     }
 
-
+    /**
+     * Método para eliminar un proyecto.
+     * - Obtiene el proyecto a eliminar a través de la vista.
+     * - Utiliza el repositorio para eliminar el proyecto del archivo.
+     * - Muestra un mensaje indicando si el proyecto se ha eliminado correctamente o si ha ocurrido un error.
+     */
     @Override
     public Project removeProject() {
         Project projectToDelete = viewProject.removeProject();
@@ -41,6 +51,12 @@ public class ControllerProject implements iProjectController {
         return removedProject;
     }
 
+    /**
+     * Método para mostrar un proyecto.
+     * - Obtiene el nombre del proyecto a mostrar a través de la vista.
+     * - Utiliza el repositorio para buscar y obtener el proyecto.
+     * - Muestra el proyecto si se encuentra, de lo contrario, muestra un mensaje de error.
+     */
     @Override
     public void showProject() {
         String nameProject = viewProject.searchProject();
@@ -53,6 +69,12 @@ public class ControllerProject implements iProjectController {
         }
     }
 
+    /**
+     * Método para seleccionar un proyecto.
+     * - Solicita al usuario que introduzca el nombre del proyecto a través de la entrada estándar.
+     * - Utiliza el repositorio para seleccionar el proyecto.
+     * - Muestra un mensaje indicando si el proyecto se ha seleccionado correctamente o si ha ocurrido un error.
+     */
     @Override
     public void selectProject() {
         String nameProject = Utils.readString("Introduce el nombre del proyecto: ");
@@ -63,7 +85,11 @@ public class ControllerProject implements iProjectController {
         }
     }
 
-
+    /**
+     * Método para listar todos los proyectos.
+     * - Utiliza el repositorio para obtener una lista de todos los proyectos.
+     * - Utiliza la vista para mostrar la lista de proyectos.
+     */
     @Override
     public void listAllProjects() {
         ArrayList<Project> projects = projectRepo.browseList();
@@ -71,6 +97,13 @@ public class ControllerProject implements iProjectController {
 
     }
 
+    /**
+     * Método para actualizar un proyecto.
+     * - Solicita al usuario el nombre del proyecto a modificar.
+     * - Utiliza la vista para obtener la información actualizada del proyecto.
+     * - Utiliza el repositorio para realizar la actualización del proyecto.
+     * - Muestra el proyecto actualizado.
+     */
     @Override
     public void upgradeProject() {
         String oldname = Utils.readString("Nombre del proyecto a modificar: ");

@@ -88,7 +88,9 @@ public class ControllerUser implements iUserController {
     }
 
     /**
-     *En este metodo muestra todos los miembros que esten en el proyecto.
+     * Método para listar todos los miembros del proyecto actual.
+     * - Obtiene la lista de miembros del proyecto actual a través del objeto SelectedProject.
+     * - Muestra la lista de miembros si existe alguno, de lo contrario, muestra un mensaje de error.
      */
     @Override
     public void listAllMember() {
@@ -101,6 +103,12 @@ public class ControllerUser implements iUserController {
         }
     }
 
+    /**
+     * Método para añadir un miembro al proyecto.
+     * - Solicita al usuario que introduzca el nombre del miembro a añadir.
+     * - Utiliza el repositorio de proyectos para añadir el miembro.
+     * - Muestra un mensaje indicando si el miembro se ha añadido correctamente o si ha ocurrido un error.
+     */
     @Override
     public boolean addMember() {
         boolean comp = false;
@@ -114,6 +122,12 @@ public class ControllerUser implements iUserController {
         return comp;
     }
 
+    /**
+     * Método para eliminar un miembro del proyecto.
+     * - Solicita al usuario que introduzca el nombre del miembro a eliminar.
+     * - Utiliza el repositorio de proyectos para eliminar el miembro.
+     * - Muestra un mensaje indicando si el miembro se ha eliminado correctamente o si ha ocurrido un error.
+     */
     @Override
     public boolean removeMember() {
         boolean comp = false;
