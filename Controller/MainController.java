@@ -134,7 +134,6 @@ public class MainController {
         ViewTask viewTask = new ViewTask();
         int userInput;
         do {
-            System.out.println(SelectedProject.get_instance().getActualProject().toString());
             userInput = viewTask.menuTask();
             switch (userInput) {
                 case 1:

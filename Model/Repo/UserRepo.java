@@ -49,9 +49,6 @@ public class UserRepo extends Repo<User> {
         File userSelectedFile = new File("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
         User savedUserToProve = Serializator.deserializeObject("./src/UserFileSaves/" + selected.getNameUser().toLowerCase().replaceAll(" ", ""));
         User userToReturn=null;
-        System.out.println("fichero "+userSelectedFile.exists());
-        System.out.println("contraseña"+savedUserToProve.getPassword().equals(selected.getPassword()));
-        System.out.println("nombre"+!UserSesion.getInstance().getCurrentUser().getNameUser().equals(selected.getNameUser()));
         if (userSelectedFile.exists() && savedUserToProve.getPassword().equals(selected.getPassword())
                 && !UserSesion.getInstance().getCurrentUser().getNameUser().equals(selected.getNameUser())) {
             removeFromArrayFile(savedUserToProve);
@@ -159,6 +156,6 @@ public class UserRepo extends Repo<User> {
     }
 
     public static boolean saveUser(User userToSave){
-        return Serializator.serializeObject(userToSave,"./src/UserFileSaves/" + userToSave.getNameUser());
+        return Serializator.serializeObject(userToSave,"./src/UserFileSaves/" + userToSave.getNameUser().toLowerCase().replaceAll(" ",""));
     }
 }

@@ -7,6 +7,7 @@ import Model.User;
 import javax.swing.*;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class ViewProject implements iViewProject {
     Scanner scanner = new Scanner(System.in);
@@ -84,15 +85,21 @@ public class ViewProject implements iViewProject {
      */
     @Override
     public Project createProject() {
+        String projectNameInput = "";
+        String projectDescriptionInput = "";
         // Muestra el menu
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════╗");
         System.out.println("                 === 🛠️ CREAR PROYECTO 🛠️ ===            ");
         System.out.println("╠════════════════════════════════════════════════════════╣");
-        System.out.print(" \uD83D\uDC64 Nombre: ");
-        String projectNameInput = scanner.nextLine();
-        System.out.print(" \uD83D\uDD10 Descripción: ");
-        String projectDescriptionInput = scanner.nextLine();
+        do {
+            System.out.print(" \uD83D\uDC64 Nombre: ");
+            projectNameInput = scanner.nextLine();
+        } while (!(Pattern.compile("[A-Za-z0-9]+").matcher(projectNameInput).matches()));
+        do {
+            System.out.print(" \uD83D\uDD10 Descripción: ");
+            projectDescriptionInput = scanner.nextLine();
+        } while (!(Pattern.compile("[A-Za-z0-9]+").matcher(projectNameInput).matches()));
         System.out.println("╚════════════════════════════════════════════════════════╝");
 
         // Crea un objeto Project temporal con la entrada del usuario
@@ -110,13 +117,16 @@ public class ViewProject implements iViewProject {
      */
     @Override
     public Project removeProject() {
+        String projectNameInput = "";
         // Muestra el menu
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════╗");
         System.out.println("               === ❌ ELIMINAR PROYECTO ❌ ===           ");
         System.out.println("╠════════════════════════════════════════════════════════╣");
-        System.out.print(" \uD83D\uDC64 Nombre: ");
-        String projectNameInput = scanner.nextLine();
+        do {
+            System.out.print(" \uD83D\uDC64 Nombre: ");
+            projectNameInput = scanner.nextLine();
+        } while (!(Pattern.compile("[A-Za-z0-9]+").matcher(projectNameInput).matches()));
         System.out.println("╚════════════════════════════════════════════════════════╝");
 
         // Crear y devolver un nuevo objeto Project con la información ingresada
@@ -124,22 +134,28 @@ public class ViewProject implements iViewProject {
     }
 
     /**
+     * @return Project
      * @author Javier Fernández
      * Metodo para actualizar un proyecto
      * Method to update a project
-     * @return Project
      */
     @Override
     public Project upgradeProject() {
+        String projectNameInput = "";
+        String projectDescriptionInput = "";
         // Muestra el menu
         System.out.println();
         System.out.println("╔════════════════════════════════════════════════════════╗");
         System.out.println("           === \uD83D\uDD04 ACTUALIZAR PROYECTO \uD83D\uDD04 ===        ");
         System.out.println("╠════════════════════════════════════════════════════════╣");
-        System.out.print(" \uD83D\uDC64 Nombre: ");
-        String projectNameInput = scanner.nextLine();
-        System.out.print(" \uD83D\uDCDD Descripción: ");
-        String projectDescriptionInput = scanner.nextLine();
+        do {
+            System.out.print(" \uD83D\uDC64 Nombre: ");
+            projectNameInput = scanner.nextLine();
+        } while (!(Pattern.compile("[A-Za-z0-9]+").matcher(projectNameInput).matches()));
+        do {
+            System.out.print(" \uD83D\uDD10 Descripción: ");
+            projectDescriptionInput = scanner.nextLine();
+        } while (!(Pattern.compile("[A-Za-z0-9]+").matcher(projectNameInput).matches()));
         System.out.println("╚════════════════════════════════════════════════════════╝");
 
         // Crea un objeto Project temporal con la entrada del usuario
@@ -150,10 +166,10 @@ public class ViewProject implements iViewProject {
     }
 
     /**
+     * @return
      * @author Javier Fernández
      * Metodo para mostrar un proyecto
      * Method to show a project
-     * @return
      */
     @Override
     public void showProject(Project projecttoshow) {
@@ -191,10 +207,10 @@ public class ViewProject implements iViewProject {
     }
 
     /**
+     * @param projects
      * @author Javier Fernández
      * Metodo para listar proyectos
      * Method to list projects
-     * @param projects
      */
     @Override
     public void listProject(List<Project> projects) {
